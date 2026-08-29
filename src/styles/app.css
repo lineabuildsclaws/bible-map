@@ -395,30 +395,34 @@ a:hover {
 }
 
 .legend-marker {
-  display: inline-block;
+  display: inline-grid;
   flex: 0 0 auto;
-  width: 11px;
-  height: 11px;
+  width: 13px;
+  height: 13px;
+  place-items: center;
   border-radius: 50%;
 }
 
-.legend-marker--confirmed {
+.legend-marker--place {
   background: #3c6659;
   border: 2px solid #f7f2e8;
   box-shadow: 0 0 0 1px #3c6659;
 }
 
-.legend-marker--associated {
-  width: 9px;
-  height: 9px;
-  background: #66897e;
-  border: 1px solid #f7f2e8;
-  box-shadow: 0 0 0 1px #66897e;
+.legend-marker--basemap {
+  width: 22px;
+  color: #3d3d3b;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  background: none;
+  border-radius: 0;
 }
 
-.legend-marker--uncertain {
+.legend-marker--candidate {
   background: #f9f4e9;
   border: 2px dashed #9b6a25;
+  border-radius: 3px;
 }
 
 .panel__note {

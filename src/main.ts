@@ -3,7 +3,7 @@ import { bibleReferenceUrl } from './bible/references';
 import { loadPhaseData } from './data';
 import { createBibleMap, type BibleMapController } from './map/create-map';
 import { findPlaces } from './search/places';
-import type { PhaseData, PlaceFeature, PlaceStatus } from './types';
+import type { PhaseData, PlaceFeature } from './types';
 
 const root = document.querySelector<HTMLElement>('#app');
 
@@ -33,9 +33,12 @@ function appendExternalLink(parent: HTMLElement, url: string, text: string): voi
   parent.append(link);
 }
 
-function markerForStatus(status: PlaceStatus): HTMLElement {
-  const marker = element('span', `legend-marker legend-marker--${status}`);
+type LegendMarkerKind = 'place' | 'basemap' | 'candidate';
+
+function markerForLegend(kind: LegendMarkerKind): HTMLElement {
+  const marker = element('span', `legend-marker legend-marker--${kind}`);
   marker.setAttribute('aria-hidden', 'true');
+  if (kind === 'basemap') marker.textContent = 'Aa';
   return marker;
 }
 
@@ -114,20 +117,20 @@ function renderWelcomePanel(): void {
   const intro = element(
     'p',
     'panel__intro',
-    'Search or select a place. Labels stay present so you can compare nearby landmarks without losing your bearings.',
+    'Search or click a colored marker. Plain map labels provide geographic context only.',
   );
   const guide = element('div', 'panel__guide');
   guide.append(element('p', 'panel__section-label', 'Map key'));
 
   const guideList = element('ul', 'legend');
-  const guideItems: Array<[PlaceStatus, string]> = [
-    ['confirmed', 'Well identified place'],
-    ['associated', 'Nearby biblical landmark'],
-    ['uncertain', 'Competing candidate area'],
+  const guideItems: Array<[LegendMarkerKind, string]> = [
+    ['place', 'Biblical place or landmark — clickable'],
+    ['basemap', 'Basemap label — context only (e.g. Jerusalem)'],
+    ['candidate', 'Debated location area — shown when selected'],
   ];
-  for (const [status, label] of guideItems) {
+  for (const [kind, label] of guideItems) {
     const item = element('li', 'legend__item');
-    item.append(markerForStatus(status), element('span', undefined, label));
+    item.append(markerForLegend(kind), element('span', undefined, label));
     guideList.append(item);
   }
 

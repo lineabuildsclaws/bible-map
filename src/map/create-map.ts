@@ -231,8 +231,8 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       source: PHASE_SOURCE_ID,
       filter: ['==', ['get', 'kind'], 'place'],
       paint: {
-        'circle-radius': ['match', ['get', 'status'], 'associated', 4.5, 'uncertain', 7.5, 5.4],
-        'circle-color': ['match', ['get', 'status'], 'associated', '#66897e', 'uncertain', '#f5efe1', '#3c6659'],
+        'circle-radius': ['match', ['get', 'status'], 'uncertain', 7.5, 5.4],
+        'circle-color': ['match', ['get', 'status'], 'uncertain', '#f5efe1', '#3c6659'],
         'circle-stroke-color': ['match', ['get', 'status'], 'uncertain', '#9b6a25', '#f7f2e8'],
         'circle-stroke-width': ['match', ['get', 'status'], 'uncertain', 2, 1.5],
         'circle-opacity': 1,
