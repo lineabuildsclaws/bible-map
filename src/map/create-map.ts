@@ -1,4 +1,5 @@
-import { Map as MapLibreMap, NavigationControl, type GeoJSONSource, type MapGeoJSONFeature, type MapMouseEvent } from 'maplibre-gl';
+import { Map as MapLibreMap, NavigationControl, setWorkerUrl, type GeoJSONSource, type MapGeoJSONFeature, type MapMouseEvent } from 'maplibre-gl';
+import mapLibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 import type { FeatureCollection } from 'geojson';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { INITIAL_VIEW, MAP_BOUNDS, MAP_STYLE_URL } from '../config';
@@ -7,6 +8,12 @@ import type { PhaseData, PlaceFeature } from '../types';
 const PHASE_SOURCE_ID = 'phase1-places';
 const SELECTED_SOURCE_ID = 'selected-place';
 const PLACE_HIT_LAYER_ID = 'place-hit-area';
+
+// MapLibre normally resolves its data worker beside its own module. Vite rolls
+// the main module into our application bundle, so that default URL would point
+// to a non-existent file in `assets/` after deployment. Importing the worker
+// as an asset keeps the decoder on the same origin and works with our CSP.
+setWorkerUrl(mapLibreWorkerUrl);
 
 export interface BibleMapController {
   selectPlace: (place: PlaceFeature, options?: { move?: boolean }) => void;
