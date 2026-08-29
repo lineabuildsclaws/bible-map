@@ -304,18 +304,76 @@ a:hover {
   z-index: 3;
   width: min(358px, calc(100vw - 40px));
   max-height: calc(100% - 48px);
-  padding: 23px;
-  overflow: auto;
+  overflow: visible;
   background: rgb(255 253 247 / 96%);
   border: 1px solid #ded5c4;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgb(38 33 24 / 19%);
   scrollbar-color: #b6ab98 transparent;
+  transition: width 160ms ease, height 160ms ease, box-shadow 160ms ease;
 }
 
 .place-panel:focus-visible {
   outline: 3px solid #d59d47;
   outline-offset: 3px;
+}
+
+.panel__content {
+  max-height: calc(100vh - 126px);
+  padding: 23px;
+  overflow: auto;
+  border-radius: inherit;
+}
+
+.panel__toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  place-items: center;
+  color: #345f59;
+  font-size: 1.25rem;
+  line-height: 1;
+  background: #f4efe3;
+  border: 1px solid #d4cbb9;
+  border-radius: 7px;
+  box-shadow: 0 2px 8px rgb(38 33 24 / 12%);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-3px);
+  transition: opacity 130ms ease, transform 130ms ease, background 130ms ease;
+}
+
+.place-panel:hover .panel__toggle,
+.place-panel:focus-within .panel__toggle,
+.place-panel--collapsed .panel__toggle {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.panel__toggle:hover,
+.panel__toggle:focus-visible {
+  color: #173f4d;
+  background: #e4ebdf;
+  outline: 2px solid #b17925;
+  outline-offset: 2px;
+}
+
+.place-panel--collapsed {
+  width: 42px;
+  height: 42px;
+  max-height: 42px;
+  box-shadow: 0 4px 14px rgb(38 33 24 / 16%);
+}
+
+.place-panel--collapsed .panel__toggle {
+  top: 5px;
+  right: 5px;
 }
 
 .panel__title {
@@ -410,7 +468,7 @@ a:hover {
 
 .panel__place-header {
   position: relative;
-  padding-right: 4px;
+  padding-right: 34px;
 }
 
 .reference__link {
@@ -455,7 +513,33 @@ a:hover {
     left: 12px;
     width: auto;
     max-height: min(43%, 330px);
+  }
+
+  .panel__content {
+    max-height: min(43vh, 330px);
     padding: 17px;
+  }
+
+  .panel__toggle {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .place-panel--collapsed {
+    right: auto;
+    bottom: 54px;
+    left: 12px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .workspace--panel-collapsed .map-attribution {
+    bottom: 8px;
+  }
+
+  .workspace--panel-collapsed .map .maplibregl-ctrl-bottom-right {
+    bottom: 16px;
   }
 
   .map-attribution {

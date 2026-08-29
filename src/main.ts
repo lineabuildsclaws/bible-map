@@ -95,13 +95,38 @@ mapFrame.append(mapContainer, mapLoading, mapAttribution);
 const panel = element('aside', 'place-panel');
 panel.tabIndex = -1;
 panel.setAttribute('aria-live', 'polite');
+const panelToggle = element('button', 'panel__toggle', '−') as HTMLButtonElement;
+panelToggle.type = 'button';
+panelToggle.setAttribute('aria-controls', 'place-panel-content');
+panelToggle.setAttribute('aria-expanded', 'true');
+panelToggle.setAttribute('aria-label', 'Collapse place details');
+panelToggle.title = 'Collapse place details';
+const panelContent = element('div', 'panel__content');
+panelContent.id = 'place-panel-content';
+panel.append(panelToggle, panelContent);
 workspace.append(mapFrame, panel);
 shell.append(header, workspace);
 root.append(shell);
 
 function replacePanel(...nodes: Node[]): void {
-  panel.replaceChildren(...nodes);
+  panelContent.replaceChildren(...nodes);
 }
+
+function setPanelCollapsed(collapsed: boolean): void {
+  panel.classList.toggle('place-panel--collapsed', collapsed);
+  workspace.classList.toggle('workspace--panel-collapsed', collapsed);
+  panelContent.hidden = collapsed;
+  panelToggle.textContent = collapsed ? '+' : '−';
+  panelToggle.setAttribute('aria-expanded', String(!collapsed));
+
+  const action = collapsed ? 'Expand place details' : 'Collapse place details';
+  panelToggle.setAttribute('aria-label', action);
+  panelToggle.title = action;
+}
+
+panelToggle.addEventListener('click', () => {
+  setPanelCollapsed(!panel.classList.contains('place-panel--collapsed'));
+});
 
 function renderWelcomePanel(): void {
   const panelEyebrow = element('p', 'panel__eyebrow', 'Phase 1 · Genesis geography');
