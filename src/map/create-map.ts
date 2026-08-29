@@ -154,8 +154,10 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     maxWidth: 'none',
     offset: 24,
   });
+  let lastSelectedPlaceId: string | undefined;
 
   const selectPlace = (place: PlaceFeature, { move = true }: { move?: boolean } = {}): void => {
+    lastSelectedPlaceId = place.properties.id;
     const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
     selectedSource?.setData(featureForSource(place));
     setCandidateAreaVisibility(map, place.properties.status === 'uncertain');
@@ -173,6 +175,13 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     onPlaceSelected(place);
     detailPanel.classList.add('place-panel--anchored');
     detailPopup.setLngLat([longitude, latitude]).setDOMContent(detailPanel).addTo(map);
+  };
+
+  const clearSelection = (): void => {
+    const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
+    selectedSource?.setData(emptyFeatureCollection());
+    setCandidateAreaVisibility(map, false);
+    detailPopup.remove();
   };
 
   // Do not wait for every remote tile to finish before the app becomes useful.
@@ -347,11 +356,22 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     });
 
     map.on('click', (event: MapMouseEvent) => {
-      const feature = map.queryRenderedFeatures(event.point, { layers: [PLACE_HIT_LAYER_ID] })[0];
-      if (!feature) return;
+      const clickedPlaces = map
+        .queryRenderedFeatures(event.point, { layers: [PLACE_HIT_LAYER_ID] })
+        .map((feature) => {
+          const id = featureId(feature);
+          return id ? placesById.get(id) : undefined;
+        })
+        .filter((place): place is PlaceFeature => place !== undefined);
 
-      const id = featureId(feature);
-      const place = id ? placesById.get(id) : undefined;
+      if (clickedPlaces.length === 0) {
+        clearSelection();
+        return;
+      }
+
+      const place =
+        clickedPlaces.find((candidate) => candidate.properties.id === lastSelectedPlaceId) ??
+        clickedPlaces.sort((left, right) => right.properties.confidenceScore - left.properties.confidenceScore)[0];
       if (place) selectPlace(place);
     });
 

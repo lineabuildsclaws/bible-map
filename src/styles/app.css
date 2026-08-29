@@ -349,62 +349,6 @@ a:hover {
   border-radius: inherit;
 }
 
-.panel__toggle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 1;
-  display: grid;
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  place-items: center;
-  color: #345f59;
-  font-size: 1.25rem;
-  line-height: 1;
-  background: #f4efe3;
-  border: 1px solid #d4cbb9;
-  border-radius: 7px;
-  box-shadow: 0 2px 8px rgb(38 33 24 / 12%);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-3px);
-  transition: opacity 130ms ease, transform 130ms ease, background 130ms ease;
-}
-
-.place-panel:hover .panel__toggle,
-.place-panel:focus-within .panel__toggle,
-.place-panel--collapsed .panel__toggle {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.panel__toggle:hover,
-.panel__toggle:focus-visible {
-  color: #173f4d;
-  background: #e4ebdf;
-  outline: 2px solid #b17925;
-  outline-offset: 2px;
-}
-
-.place-panel--collapsed {
-  width: 42px;
-  height: 42px;
-  max-height: 42px;
-  box-shadow: 0 4px 14px rgb(38 33 24 / 16%);
-}
-
-.place-panel--anchored.place-panel--collapsed {
-  width: 42px;
-  height: 42px;
-}
-
-.place-panel--collapsed .panel__toggle {
-  top: 5px;
-  right: 5px;
-}
-
 .panel__title {
   margin: 4px 0 10px;
   color: #2d3934;
@@ -495,11 +439,6 @@ a:hover {
   line-height: 1.45;
 }
 
-.panel__place-header {
-  position: relative;
-  padding-right: 34px;
-}
-
 .reference__link {
   display: block;
   padding: 6px 8px;
@@ -551,41 +490,13 @@ a:hover {
     max-height: min(46vh, 330px);
   }
 
-  .place-panel.place-panel--anchored.place-panel--collapsed {
-    width: 42px;
-    height: 42px;
-    max-height: 42px;
-  }
-
   .panel__content {
     max-height: min(43vh, 330px);
     padding: 17px;
   }
 
-  .panel__toggle {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-
-  .place-panel--collapsed {
-    right: auto;
-    bottom: 54px;
-    left: 12px;
-    width: 42px;
-    height: 42px;
-  }
-
-  .workspace--panel-collapsed .map-attribution {
-    bottom: 8px;
-  }
-
   .workspace--panel-anchored .map-attribution {
     bottom: 8px;
-  }
-
-  .workspace--panel-collapsed .map .maplibregl-ctrl-bottom-right {
-    bottom: 16px;
   }
 
   .workspace--panel-anchored .map .maplibregl-ctrl-bottom-right {
