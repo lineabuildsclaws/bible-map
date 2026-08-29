@@ -1,6 +1,7 @@
 import {
   Map as MapLibreMap,
   NavigationControl,
+  Popup,
   setWorkerUrl,
   type ExpressionSpecification,
   type GeoJSONSource,
@@ -47,6 +48,7 @@ export interface BibleMapController {
 interface CreateBibleMapOptions {
   container: HTMLElement;
   data: PhaseData;
+  detailPanel: HTMLElement;
   onPlaceSelected: (place: PlaceFeature) => void;
   onReady: () => void;
 }
@@ -112,7 +114,7 @@ function setCandidateAreaVisibility(map: MapLibreMap, visible: boolean): void {
 }
 
 export function createBibleMap(options: CreateBibleMapOptions): BibleMapController {
-  const { container, data, onPlaceSelected, onReady } = options;
+  const { container, data, detailPanel, onPlaceSelected, onReady } = options;
   const placesById = new Map(data.places.map((place) => [place.properties.id, place]));
 
   const map = new MapLibreMap({
@@ -143,14 +145,25 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
   requestAnimationFrame(resizeMap);
   map.on('load', resizeMap);
 
+  const detailPopup = new Popup({
+    anchor: 'bottom',
+    className: 'place-details-popup',
+    closeButton: false,
+    closeOnClick: false,
+    focusAfterOpen: false,
+    maxWidth: 'none',
+    offset: 24,
+  });
+
   const selectPlace = (place: PlaceFeature, { move = true }: { move?: boolean } = {}): void => {
     const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
     selectedSource?.setData(featureForSource(place));
     setCandidateAreaVisibility(map, place.properties.status === 'uncertain');
 
+    const [longitude, latitude] = place.geometry.coordinates;
+    if (longitude === undefined || latitude === undefined) return;
+
     if (move) {
-      const [longitude, latitude] = place.geometry.coordinates;
-      if (longitude === undefined || latitude === undefined) return;
       map.jumpTo({
         center: [longitude, latitude],
         zoom: Math.max(map.getZoom(), 9.2),
@@ -158,6 +171,8 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     }
 
     onPlaceSelected(place);
+    detailPanel.classList.add('place-panel--anchored');
+    detailPopup.setLngLat([longitude, latitude]).setDOMContent(detailPanel).addTo(map);
   };
 
   // Do not wait for every remote tile to finish before the app becomes useful.
@@ -348,6 +363,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     destroy: () => {
       resizeObserver.disconnect();
       map.off('load', resizeMap);
+      detailPopup.remove();
       map.remove();
     },
   };

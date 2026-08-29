@@ -44,7 +44,7 @@ const header = element('header', 'topbar');
 const identity = element('div', 'identity');
 const eyebrow = element('p', 'eyebrow', 'Bible places in context');
 const title = element('h1', 'identity__title', 'Bible Map');
-identity.append(eyebrow, title);
+identity.append(title, eyebrow);
 
 const searchForm = element('form', 'search') as HTMLFormElement;
 searchForm.setAttribute('role', 'search');
@@ -131,7 +131,7 @@ panelToggle.addEventListener('click', () => {
 });
 
 function renderWelcomePanel(): void {
-  const panelEyebrow = element('p', 'panel__eyebrow', 'Phase 1 · Genesis geography');
+  const panelEyebrow = element('p', 'panel__eyebrow', 'Genesis geography');
   const panelTitle = element('h2', 'panel__title', 'See places in relation');
   const intro = element(
     'p',
@@ -144,7 +144,7 @@ function renderWelcomePanel(): void {
   const guideList = element('ul', 'legend');
   const guideItems: Array<[PlaceStatus, string]> = [
     ['confirmed', 'Well identified place'],
-    ['associated', 'Associated site'],
+    ['associated', 'Nearby biblical landmark'],
     ['uncertain', 'Competing candidate area'],
   ];
   for (const [status, label] of guideItems) {
@@ -153,21 +153,19 @@ function renderWelcomePanel(): void {
     guideList.append(item);
   }
 
-  const note = element(
-    'p',
-    'panel__note',
-    'Sodom and Gomorrah are intentionally shown with dashed proposal areas. They are not fixed historical dots.',
-  );
   const dataNote = element('p', 'panel__data-note');
   dataNote.append(document.createTextNode('Place data adapted from '));
   appendExternalLink(dataNote, 'https://www.openbible.info/geo/', 'OpenBible.info');
-  dataNote.append(document.createTextNode(' under CC BY 4.0.'));
+  dataNote.append(document.createTextNode(' under CC BY\u00a04.0.'));
 
   guide.append(guideList);
-  replacePanel(panelEyebrow, panelTitle, intro, guide, note, dataNote);
+  replacePanel(panelEyebrow, panelTitle, intro, guide, dataNote);
 }
 
 function renderPlacePanel(place: PlaceFeature): void {
+  setPanelCollapsed(false);
+  workspace.classList.add('workspace--panel-anchored');
+
   const { properties } = place;
   const headerRow = element('div', 'panel__place-header');
   const type = element('p', 'panel__eyebrow', properties.featureType);
@@ -258,7 +256,7 @@ function updateSearchResults(): PlaceFeature[] {
   }
 
   if (matches.length === 0) {
-    searchMessage.textContent = 'No Phase 1 place matches that search.';
+    searchMessage.textContent = 'No place matches that search.';
     hideSearchResults();
     return matches;
   }
@@ -335,6 +333,7 @@ void (async () => {
     mapController = createBibleMap({
       container: mapContainer,
       data: phaseData,
+      detailPanel: panel,
       onPlaceSelected: (place) => renderPlacePanel(place),
       onReady: () => {
         mapLoading.hidden = true;

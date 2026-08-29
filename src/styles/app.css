@@ -90,11 +90,12 @@ a:hover {
 }
 
 .topbar .eyebrow {
+  margin-top: 4px;
   color: #bed1ca;
 }
 
 .identity__title {
-  margin: 2px 0 0;
+  margin: 0;
   color: #fffdf7;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.5rem;
@@ -303,7 +304,7 @@ a:hover {
   top: 24px;
   left: clamp(20px, 4vw, 58px);
   z-index: 3;
-  width: min(358px, calc(100vw - 40px));
+  width: min(390px, calc(100vw - 40px));
   max-height: calc(100% - 48px);
   overflow: visible;
   background: rgb(255 253 247 / 96%);
@@ -317,6 +318,28 @@ a:hover {
 .place-panel:focus-visible {
   outline: 3px solid #d59d47;
   outline-offset: 3px;
+}
+
+.place-panel--anchored {
+  position: relative;
+  inset: auto;
+  width: min(390px, calc(100vw - 40px));
+  max-height: min(56vh, 430px);
+}
+
+.map .place-details-popup {
+  max-width: none !important;
+}
+
+.map .place-details-popup .maplibregl-popup-content {
+  padding: 0;
+  background: transparent;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.map .place-details-popup .maplibregl-popup-tip {
+  border-top-color: rgb(255 253 247 / 96%);
 }
 
 .panel__content {
@@ -370,6 +393,11 @@ a:hover {
   height: 42px;
   max-height: 42px;
   box-shadow: 0 4px 14px rgb(38 33 24 / 16%);
+}
+
+.place-panel--anchored.place-panel--collapsed {
+  width: 42px;
+  height: 42px;
 }
 
 .place-panel--collapsed .panel__toggle {
@@ -516,6 +544,19 @@ a:hover {
     max-height: min(43%, 330px);
   }
 
+  .place-panel.place-panel--anchored {
+    position: relative;
+    inset: auto;
+    width: min(360px, calc(100vw - 30px));
+    max-height: min(46vh, 330px);
+  }
+
+  .place-panel.place-panel--anchored.place-panel--collapsed {
+    width: 42px;
+    height: 42px;
+    max-height: 42px;
+  }
+
   .panel__content {
     max-height: min(43vh, 330px);
     padding: 17px;
@@ -539,7 +580,15 @@ a:hover {
     bottom: 8px;
   }
 
+  .workspace--panel-anchored .map-attribution {
+    bottom: 8px;
+  }
+
   .workspace--panel-collapsed .map .maplibregl-ctrl-bottom-right {
+    bottom: 16px;
+  }
+
+  .workspace--panel-anchored .map .maplibregl-ctrl-bottom-right {
     bottom: 16px;
   }
 
