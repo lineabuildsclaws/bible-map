@@ -57,11 +57,10 @@ describe('phase data parsing', () => {
 });
 
 describe('Bible reference links', () => {
-  it('opens a reference directly in the ESV passage reader', () => {
+  it('opens a reference directly in the STEP Bible ESV passage reader', () => {
     const url = new URL(bibleReferenceUrl('Genesis 12:6'));
-    expect(url.origin).toBe('https://www.biblegateway.com');
-    expect(url.pathname).toBe('/passage/');
-    expect(url.searchParams.get('search')).toBe('Genesis 12:6');
-    expect(url.searchParams.get('version')).toBe('ESV');
+    expect(url.origin).toBe('https://www.stepbible.org');
+    expect(url.searchParams.get('q')).toBe('reference=Genesis.12.6|version=ESV');
+    expect(url.searchParams.has('skipwelcome')).toBe(true);
   });
 });

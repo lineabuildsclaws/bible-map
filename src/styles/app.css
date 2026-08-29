@@ -174,6 +174,7 @@ a:hover {
 }
 
 .search-result:hover,
+.search-result--active,
 .search-result:focus-visible {
   background: #f2ead9;
   outline: none;

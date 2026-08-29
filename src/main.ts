@@ -57,8 +57,10 @@ searchInput.type = 'search';
 searchInput.placeholder = 'Find a biblical place';
 searchInput.autocomplete = 'off';
 searchInput.disabled = true;
+searchInput.setAttribute('role', 'combobox');
 searchInput.setAttribute('aria-autocomplete', 'list');
 searchInput.setAttribute('aria-controls', 'search-results');
+searchInput.setAttribute('aria-expanded', 'false');
 const searchButton = element('button', 'search__button', 'Search') as HTMLButtonElement;
 searchButton.type = 'submit';
 searchButton.disabled = true;
@@ -183,7 +185,7 @@ function renderPlacePanel(place: PlaceFeature): void {
     link.href = bibleReferenceUrl(reference);
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    link.setAttribute('aria-label', `Read ${reference} on BibleGateway`);
+    link.setAttribute('aria-label', `Read ${reference} on STEP Bible`);
     item.append(link);
     referenceList.append(item);
   }
@@ -205,10 +207,33 @@ function renderError(message: string): void {
 
 let phaseData: PhaseData | undefined;
 let mapController: BibleMapController | undefined;
+let currentSearchMatches: PlaceFeature[] = [];
+let searchResultOptions: HTMLButtonElement[] = [];
+let activeSearchResultIndex = -1;
+
+function setActiveSearchResult(index: number): void {
+  activeSearchResultIndex = index;
+
+  for (const [optionIndex, option] of searchResultOptions.entries()) {
+    const isActive = optionIndex === index;
+    option.classList.toggle('search-result--active', isActive);
+    option.setAttribute('aria-selected', String(isActive));
+  }
+
+  const activeOption = searchResultOptions[index];
+  if (activeOption) {
+    searchInput.setAttribute('aria-activedescendant', activeOption.id);
+  } else {
+    searchInput.removeAttribute('aria-activedescendant');
+  }
+}
 
 function hideSearchResults(): void {
   searchResults.hidden = true;
   searchResults.replaceChildren();
+  currentSearchMatches = [];
+  searchResultOptions = [];
+  setActiveSearchResult(-1);
   searchInput.setAttribute('aria-expanded', 'false');
 }
 
@@ -222,6 +247,9 @@ function choosePlace(place: PlaceFeature): void {
 function updateSearchResults(): PlaceFeature[] {
   const matches = phaseData ? findPlaces(phaseData.places, searchInput.value) : [];
   searchResults.replaceChildren();
+  currentSearchMatches = matches;
+  searchResultOptions = [];
+  setActiveSearchResult(-1);
 
   if (!searchInput.value.trim()) {
     searchMessage.textContent = '';
@@ -236,15 +264,20 @@ function updateSearchResults(): PlaceFeature[] {
   }
 
   searchMessage.textContent = `${matches.length} place${matches.length === 1 ? '' : 's'} found.`;
-  for (const place of matches) {
+  for (const [index, place] of matches.entries()) {
     const option = element('button', 'search-result') as HTMLButtonElement;
     option.type = 'button';
+    option.id = `search-result-${index}`;
+    option.tabIndex = -1;
     option.setAttribute('role', 'option');
+    option.setAttribute('aria-selected', 'false');
     option.append(
       element('span', 'search-result__name', place.properties.name),
       element('span', 'search-result__meta', place.properties.featureType),
     );
+    option.addEventListener('pointermove', () => setActiveSearchResult(index));
     option.addEventListener('click', () => choosePlace(place));
+    searchResultOptions.push(option);
     searchResults.append(option);
   }
 
@@ -262,6 +295,29 @@ searchInput.addEventListener('focus', () => {
 });
 
 searchInput.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    event.preventDefault();
+    if (searchResults.hidden || currentSearchMatches.length === 0) updateSearchResults();
+    if (currentSearchMatches.length === 0) return;
+
+    const direction = event.key === 'ArrowDown' ? 1 : -1;
+    const nextIndex =
+      activeSearchResultIndex === -1
+        ? direction === 1
+          ? 0
+          : currentSearchMatches.length - 1
+        : (activeSearchResultIndex + direction + currentSearchMatches.length) % currentSearchMatches.length;
+    setActiveSearchResult(nextIndex);
+    return;
+  }
+
+  if (event.key === 'Enter' && activeSearchResultIndex >= 0) {
+    event.preventDefault();
+    const activeMatch = currentSearchMatches[activeSearchResultIndex];
+    if (activeMatch) choosePlace(activeMatch);
+    return;
+  }
+
   if (event.key === 'Escape') hideSearchResults();
 });
 

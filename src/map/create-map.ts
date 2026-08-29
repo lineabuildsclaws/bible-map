@@ -1,4 +1,12 @@
-import { Map as MapLibreMap, NavigationControl, setWorkerUrl, type GeoJSONSource, type MapGeoJSONFeature, type MapMouseEvent } from 'maplibre-gl';
+import {
+  Map as MapLibreMap,
+  NavigationControl,
+  setWorkerUrl,
+  type ExpressionSpecification,
+  type GeoJSONSource,
+  type MapGeoJSONFeature,
+  type MapMouseEvent,
+} from 'maplibre-gl';
 import mapLibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import type { FeatureCollection } from 'geojson';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -17,6 +25,12 @@ const QUIET_BASEMAP_LABELS = [
   ['label_village', 11.25],
   ['label_other', 12],
 ] as const;
+const ENGLISH_BASEMAP_LABEL: ExpressionSpecification = [
+  'case',
+  ['has', 'name:nonlatin'],
+  ['coalesce', ['get', 'name_en'], ['get', 'name:latin']],
+  ['coalesce', ['get', 'name_en'], ['get', 'name']],
+];
 
 // MapLibre normally resolves its data worker beside its own module. Vite rolls
 // the main module into our application bundle, so that default URL would point
@@ -51,6 +65,15 @@ function featureId(feature: MapGeoJSONFeature): string | undefined {
 }
 
 function configureBasemapLabels(map: MapLibreMap): void {
+  for (const layer of map.getStyle().layers ?? []) {
+    if (layer.type !== 'symbol') continue;
+
+    const textField = layer.layout?.['text-field'];
+    if (JSON.stringify(textField).includes('name:nonlatin')) {
+      map.setLayoutProperty(layer.id, 'text-field', ENGLISH_BASEMAP_LABEL);
+    }
+  }
+
   for (const [layerId, minZoom] of QUIET_BASEMAP_LABELS) {
     if (map.getLayer(layerId)) map.setLayerZoomRange(layerId, minZoom, 24);
   }
