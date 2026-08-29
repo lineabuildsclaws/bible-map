@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Private design material; never include in the public build or repository.
+biblemapsketch_v1.jpg
+biblemap_genesis12_v1.kml
+biblemap_genesis12_v1.kmz
+biblemaphandoff_v1.md

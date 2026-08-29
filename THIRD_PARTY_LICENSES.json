@@ -1,0 +1,1069 @@
+{
+  "format": "bible-map-license-inventory/v1",
+  "lockfileVersion": 3,
+  "packageCount": 177,
+  "packages": [
+    {
+      "name": "@eslint-community/eslint-utils",
+      "version": "4.10.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@eslint-community/regexpp",
+      "version": "4.12.2",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@eslint/config-array",
+      "version": "0.23.5",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@eslint/config-helpers",
+      "version": "0.7.0",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@eslint/core",
+      "version": "1.2.1",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@eslint/js",
+      "version": "10.0.1",
+      "license": "MIT",
+      "dependencyKind": "direct-development"
+    },
+    {
+      "name": "@eslint/object-schema",
+      "version": "3.0.5",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@eslint/plugin-kit",
+      "version": "0.7.2",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@humanfs/core",
+      "version": "0.19.2",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@humanfs/node",
+      "version": "0.16.8",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@humanfs/types",
+      "version": "0.15.0",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@humanwhocodes/module-importer",
+      "version": "1.0.1",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@humanwhocodes/retry",
+      "version": "0.4.3",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@jridgewell/sourcemap-codec",
+      "version": "1.6.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@mapbox/jsonlint-lines-primitives",
+      "version": "2.0.3",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@mapbox/point-geometry",
+      "version": "1.1.0",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@mapbox/tiny-sdf",
+      "version": "2.2.0",
+      "license": "BSD-2-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@mapbox/unitbezier",
+      "version": "1.0.0",
+      "license": "BSD-2-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@mapbox/vector-tile",
+      "version": "3.0.0",
+      "license": "BSD-3-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@maplibre/geojson-vt",
+      "version": "6.1.1",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@maplibre/maplibre-gl-style-spec",
+      "version": "26.4.1",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@maplibre/mlt",
+      "version": "1.2.0",
+      "license": "(MIT OR Apache-2.0)",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@maplibre/vt-pbf",
+      "version": "4.3.2",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@oxc-project/types",
+      "version": "0.147.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-android-arm-eabi",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-android-arm64",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-darwin-arm64",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-darwin-x64",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-freebsd-x64",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-linux-arm-gnueabihf",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-linux-arm64-gnu",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-linux-arm64-musl",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-linux-ppc64-gnu",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-linux-s390x-gnu",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-linux-x64-musl",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-openharmony-arm64",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-win32-arm64-msvc",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/binding-win32-x64-msvc",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@rolldown/pluginutils",
+      "version": "1.0.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@standard-schema/spec",
+      "version": "1.1.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@types/chai",
+      "version": "5.2.3",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@types/deep-eql",
+      "version": "4.0.2",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@types/esrecurse",
+      "version": "4.3.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@types/estree",
+      "version": "1.0.9",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@types/geojson",
+      "version": "7946.0.16",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@types/json-schema",
+      "version": "7.0.15",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@typescript-eslint/eslint-plugin",
+      "version": "8.68.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@typescript-eslint/parser",
+      "version": "8.68.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@typescript-eslint/project-service",
+      "version": "8.68.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@typescript-eslint/scope-manager",
+      "version": "8.68.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@typescript-eslint/tsconfig-utils",
+      "version": "8.68.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@typescript-eslint/type-utils",
+      "version": "8.68.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@typescript-eslint/types",
+      "version": "8.68.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@typescript-eslint/typescript-estree",
+      "version": "8.68.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@typescript-eslint/utils",
+      "version": "8.68.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@typescript-eslint/visitor-keys",
+      "version": "8.68.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@vitest/expect",
+      "version": "4.1.11",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@vitest/mocker",
+      "version": "4.1.11",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@vitest/pretty-format",
+      "version": "4.1.11",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@vitest/runner",
+      "version": "4.1.11",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@vitest/snapshot",
+      "version": "4.1.11",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@vitest/spy",
+      "version": "4.1.11",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "@vitest/utils",
+      "version": "4.1.11",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "acorn",
+      "version": "8.18.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "acorn-jsx",
+      "version": "5.3.2",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "ajv",
+      "version": "6.15.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "assertion-error",
+      "version": "2.0.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "balanced-match",
+      "version": "4.0.4",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.9",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "chai",
+      "version": "6.2.2",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "convert-source-map",
+      "version": "2.0.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "cross-spawn",
+      "version": "7.0.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "debug",
+      "version": "4.4.3",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "deep-is",
+      "version": "0.1.4",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "detect-libc",
+      "version": "2.1.2",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "earcut",
+      "version": "3.2.3",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "es-module-lexer",
+      "version": "2.3.2",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "escape-string-regexp",
+      "version": "4.0.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "eslint",
+      "version": "10.9.1",
+      "license": "MIT",
+      "dependencyKind": "direct-development"
+    },
+    {
+      "name": "eslint-scope",
+      "version": "9.1.2",
+      "license": "BSD-2-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "eslint-visitor-keys",
+      "version": "3.4.3",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "eslint-visitor-keys",
+      "version": "5.0.1",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "espree",
+      "version": "11.2.0",
+      "license": "BSD-2-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "esquery",
+      "version": "1.7.0",
+      "license": "BSD-3-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "esrecurse",
+      "version": "4.3.0",
+      "license": "BSD-2-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "estraverse",
+      "version": "5.3.0",
+      "license": "BSD-2-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "estree-walker",
+      "version": "3.0.3",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "esutils",
+      "version": "2.0.3",
+      "license": "BSD-2-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "expect-type",
+      "version": "1.4.0",
+      "license": "Apache-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "fast-deep-equal",
+      "version": "3.1.3",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "fast-json-stable-stringify",
+      "version": "2.1.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "fast-levenshtein",
+      "version": "2.0.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "fdir",
+      "version": "6.5.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "file-entry-cache",
+      "version": "8.0.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "find-up",
+      "version": "5.0.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "flat-cache",
+      "version": "4.0.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "flatted",
+      "version": "3.4.4",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "fsevents",
+      "version": "2.3.3",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "gl-matrix",
+      "version": "3.4.4",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "glob-parent",
+      "version": "6.0.2",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "globals",
+      "version": "17.11.0",
+      "license": "MIT",
+      "dependencyKind": "direct-development"
+    },
+    {
+      "name": "ignore",
+      "version": "5.3.2",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "ignore",
+      "version": "7.0.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "imurmurhash",
+      "version": "0.1.4",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "is-extglob",
+      "version": "2.1.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "is-glob",
+      "version": "4.0.3",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "isexe",
+      "version": "2.0.0",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "json-buffer",
+      "version": "3.0.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "json-schema-traverse",
+      "version": "0.4.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "json-stable-stringify-without-jsonify",
+      "version": "1.0.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "json-stringify-pretty-compact",
+      "version": "4.0.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "kdbush",
+      "version": "4.1.0",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "keyv",
+      "version": "4.5.4",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "levn",
+      "version": "0.4.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss-android-arm64",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss-darwin-arm64",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss-darwin-x64",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss-freebsd-x64",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss-linux-arm-gnueabihf",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss-linux-arm64-gnu",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss-linux-arm64-musl",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss-linux-x64-gnu",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss-linux-x64-musl",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss-win32-arm64-msvc",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "lightningcss-win32-x64-msvc",
+      "version": "1.33.0",
+      "license": "MPL-2.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "locate-path",
+      "version": "6.0.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "magic-string",
+      "version": "0.30.21",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "maplibre-gl",
+      "version": "6.6.0",
+      "license": "BSD-3-Clause",
+      "dependencyKind": "direct-production"
+    },
+    {
+      "name": "minimatch",
+      "version": "10.2.6",
+      "license": "BlueOak-1.0.0",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "minimist",
+      "version": "1.2.8",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "ms",
+      "version": "2.1.3",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "murmurhash-js",
+      "version": "1.0.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "nanoid",
+      "version": "3.3.18",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "natural-compare",
+      "version": "1.4.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "obug",
+      "version": "2.1.4",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "optionator",
+      "version": "0.9.4",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "p-limit",
+      "version": "3.1.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "p-locate",
+      "version": "5.0.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "path-exists",
+      "version": "4.0.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "path-key",
+      "version": "3.1.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "pathe",
+      "version": "2.0.3",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "pbf",
+      "version": "5.1.2",
+      "license": "BSD-3-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "picocolors",
+      "version": "1.1.1",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "picomatch",
+      "version": "4.0.7",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.26",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "potpack",
+      "version": "2.1.0",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "prelude-ls",
+      "version": "1.2.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "protocol-buffers-schema",
+      "version": "3.6.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "punycode",
+      "version": "2.3.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "quickselect",
+      "version": "3.0.0",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "resolve-protobuf-schema",
+      "version": "2.1.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "rolldown",
+      "version": "1.2.6",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "semver",
+      "version": "7.8.5",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "shebang-command",
+      "version": "2.0.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "shebang-regex",
+      "version": "3.0.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "siginfo",
+      "version": "2.0.0",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "source-map-js",
+      "version": "1.2.1",
+      "license": "BSD-3-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "stackback",
+      "version": "0.0.2",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "std-env",
+      "version": "4.2.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "tinybench",
+      "version": "2.9.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "tinyexec",
+      "version": "1.3.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "tinyglobby",
+      "version": "0.2.17",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "tinyqueue",
+      "version": "3.0.0",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "tinyrainbow",
+      "version": "3.1.1",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "ts-api-utils",
+      "version": "2.5.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "type-check",
+      "version": "0.4.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "typescript",
+      "version": "5.9.3",
+      "license": "Apache-2.0",
+      "dependencyKind": "direct-development"
+    },
+    {
+      "name": "typescript-eslint",
+      "version": "8.68.0",
+      "license": "MIT",
+      "dependencyKind": "direct-development"
+    },
+    {
+      "name": "uri-js",
+      "version": "4.4.1",
+      "license": "BSD-2-Clause",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "vite",
+      "version": "8.2.2",
+      "license": "MIT",
+      "dependencyKind": "direct-development"
+    },
+    {
+      "name": "vitest",
+      "version": "4.1.11",
+      "license": "MIT",
+      "dependencyKind": "direct-development"
+    },
+    {
+      "name": "which",
+      "version": "2.0.2",
+      "license": "ISC",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "why-is-node-running",
+      "version": "2.3.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "word-wrap",
+      "version": "1.2.5",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    },
+    {
+      "name": "yocto-queue",
+      "version": "0.1.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
+    }
+  ]
+}
