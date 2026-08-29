@@ -52,6 +52,19 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     touchPitch: false,
   });
 
+  // The app shell uses a viewport-height grid. In some browsers MapLibre can
+  // initialize before that grid has resolved its final row height, leaving a
+  // correctly positioned control UI over a zero-sized drawing buffer. Resize
+  // after the first layout and whenever the frame changes so the canvas always
+  // matches the visible map area.
+  const resizeMap = (): void => {
+    map.resize();
+  };
+  const resizeObserver = new ResizeObserver(resizeMap);
+  resizeObserver.observe(container);
+  requestAnimationFrame(resizeMap);
+  map.on('load', resizeMap);
+
   const selectPlace = (place: PlaceFeature, { move = true }: { move?: boolean } = {}): void => {
     const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
     selectedSource?.setData(featureForSource(place));
@@ -245,6 +258,10 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
 
   return {
     selectPlace,
-    destroy: () => map.remove(),
+    destroy: () => {
+      resizeObserver.disconnect();
+      map.off('load', resizeMap);
+      map.remove();
+    },
   };
 }
