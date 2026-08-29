@@ -413,70 +413,23 @@ a:hover {
   padding-right: 4px;
 }
 
-.status {
-  display: inline-block;
-  padding: 4px 7px;
-  font-size: 0.71rem;
-  font-weight: 720;
-  line-height: 1;
-  border-radius: 999px;
-}
-
-.status--confirmed {
-  color: #194c3b;
-  background: #dcebe3;
-}
-
-.status--identified,
-.status--associated {
-  color: #315f54;
-  background: #dcebe7;
-}
-
-.status--uncertain {
-  color: #704b16;
-  background: #faedd1;
-}
-
-.facts {
-  display: grid;
-  grid-template-columns: minmax(100px, 0.8fr) minmax(0, 1.2fr);
-  gap: 8px 12px;
-  margin: 20px 0 0;
-  padding: 14px 0;
-  border-top: 1px solid #e5dfd2;
-  border-bottom: 1px solid #e5dfd2;
-}
-
-.facts dt {
-  color: #736d61;
-  font-size: 0.78rem;
-  font-weight: 750;
-}
-
-.facts dd {
-  margin: 0;
-  color: #3f3b33;
-  font-size: 0.84rem;
-  line-height: 1.35;
-}
-
-.reference {
-  padding: 5px 7px;
+.reference__link {
+  display: block;
+  padding: 6px 8px;
   color: #345f59;
   font-size: 0.76rem;
   font-weight: 650;
   background: #e6efea;
   border-radius: 4px;
+  text-decoration: none;
 }
 
-.panel__actions {
-  margin-top: 20px;
-}
-
-.panel__source-link {
-  font-size: 0.84rem;
-  font-weight: 650;
+.reference__link:hover,
+.reference__link:focus-visible {
+  color: #173f4d;
+  background: #d4e6dd;
+  outline: 2px solid #b17925;
+  outline-offset: 1px;
 }
 
 @media (max-width: 720px) {

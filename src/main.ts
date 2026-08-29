@@ -1,4 +1,5 @@
 import './styles/app.css';
+import { bibleReferenceUrl } from './bible/references';
 import { loadPhaseData } from './data';
 import { createBibleMap, type BibleMapController } from './map/create-map';
 import { findPlaces } from './search/places';
@@ -30,16 +31,6 @@ function appendExternalLink(parent: HTMLElement, url: string, text: string): voi
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
   parent.append(link);
-}
-
-function readableStatus(status: PlaceStatus): string {
-  const labels: Record<PlaceStatus, string> = {
-    confirmed: 'Well identified',
-    identified: 'Leading identification',
-    associated: 'Associated location',
-    uncertain: 'Uncertain identification',
-  };
-  return labels[status];
 }
 
 function markerForStatus(status: PlaceStatus): HTMLElement {
@@ -149,59 +140,31 @@ function renderWelcomePanel(): void {
   replacePanel(panelEyebrow, panelTitle, intro, guide, note, dataNote);
 }
 
-function sourceLinkFor(place: PlaceFeature): HTMLAnchorElement | undefined {
-  try {
-    const parsed = new URL(place.properties.sourceUrl);
-    if (parsed.protocol !== 'https:' || parsed.hostname !== 'www.openbible.info') return undefined;
-
-    const link = element('a', 'panel__source-link', 'View source record') as HTMLAnchorElement;
-    link.href = parsed.href;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    return link;
-  } catch {
-    return undefined;
-  }
-}
-
 function renderPlacePanel(place: PlaceFeature): void {
   const { properties } = place;
   const headerRow = element('div', 'panel__place-header');
   const type = element('p', 'panel__eyebrow', properties.featureType);
   const name = element('h2', 'panel__title', properties.name);
-  const status = element('span', `status status--${properties.status}`, readableStatus(properties.status));
-  headerRow.append(type, name, status);
+  headerRow.append(type, name);
 
   const description = element('p', 'panel__intro', properties.description);
-  const facts = element('dl', 'facts');
-  const confidenceTerm = element('dt', undefined, 'Confidence');
-  const confidenceDetail = element('dd', undefined, properties.confidence);
-  const modernTerm = element('dt', undefined, 'Modern association');
-  const modernDetail = element('dd', undefined, properties.modernName);
-  facts.append(confidenceTerm, confidenceDetail, modernTerm, modernDetail);
 
   const referenceSection = element('section', 'references');
   const referenceTitle = element('h3', 'panel__section-label', 'Bible references');
   const referenceList = element('ul', 'reference-list');
   for (const reference of properties.references) {
-    referenceList.append(element('li', 'reference', reference));
+    const item = element('li', 'reference');
+    const link = element('a', 'reference__link', reference);
+    link.href = bibleReferenceUrl(reference);
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute('aria-label', `Read ${reference} on BibleGateway`);
+    item.append(link);
+    referenceList.append(item);
   }
   referenceSection.append(referenceTitle, referenceList);
 
-  const source = sourceLinkFor(place);
-  const uncertainty =
-    properties.status === 'uncertain'
-      ? element(
-          'p',
-          'panel__note',
-          'This marker is a reference point for the current proposal. It does not assert a confirmed site.',
-        )
-      : undefined;
-
-  const actions = element('div', 'panel__actions');
-  if (source) actions.append(source);
-
-  replacePanel(headerRow, description, facts, referenceSection, ...(uncertainty ? [uncertainty] : []), actions);
+  replacePanel(headerRow, description, referenceSection);
 }
 
 function renderError(message: string): void {

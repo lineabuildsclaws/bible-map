@@ -74,7 +74,7 @@
         "confidenceScore": 1000,
         "modernName": "Tell Balatah",
         "references": ["Genesis 12:6", "Genesis 33:18", "Genesis 35:4", "Joshua 24:1"],
-        "description": "A major settlement in the central hill country. The current dataset resolves it to Tell Balatah.",
+        "description": "A major biblical settlement in the central hill country, near modern Nablus.",
         "sourceUrl": "https://www.openbible.info/geo/ancient/adf74d4/shechem"
       },
       "geometry": { "type": "Point", "coordinates": [35.281944, 32.213611] }
@@ -94,7 +94,7 @@
         "confidenceScore": 953,
         "modernName": "Tell Balatah area",
         "references": ["Genesis 12:6", "Deuteronomy 11:30"],
-        "description": "The source data associates the Oak of Moreh with the Shechem/Tell Balatah area; its label is deliberately offset so the relationship remains visible.",
+        "description": "The oak associated with Abram's arrival near Shechem.",
         "sourceUrl": "https://www.openbible.info/geo/ancient/a38ad9f/moreh-1"
       },
       "geometry": { "type": "Point", "coordinates": [35.281944, 32.213611] }
@@ -114,7 +114,7 @@
         "confidenceScore": 716,
         "modernName": "Beitin",
         "references": ["Genesis 12:8", "Genesis 13:3", "Genesis 28:19", "Genesis 35:1"],
-        "description": "The leading identification in the current source data is Beitin; alternative identifications remain recorded in the source dataset.",
+        "description": "A central hill-country settlement closely tied to Abraham, Jacob, and Israel's worship.",
         "sourceUrl": "https://www.openbible.info/geo/ancient/a64f355/bethel-1"
       },
       "geometry": { "type": "Point", "coordinates": [35.241389, 31.922778] }
@@ -134,7 +134,7 @@
         "confidenceScore": 522,
         "modernName": "Et Tell",
         "references": ["Genesis 12:8", "Genesis 13:3", "Joshua 7:2", "Joshua 8:1"],
-        "description": "Et Tell is the leading current candidate in the source data, alongside several lower-confidence alternatives.",
+        "description": "A hill-country settlement east of Bethel, prominent in Abraham's journey and Joshua's campaign.",
         "sourceUrl": "https://www.openbible.info/geo/ancient/a7e13e1/ai-1"
       },
       "geometry": { "type": "Point", "coordinates": [35.261111, 31.916944] }
@@ -154,7 +154,7 @@
         "confidenceScore": 1000,
         "modernName": "Tel Rumeida",
         "references": ["Genesis 13:18", "Genesis 23:2", "Genesis 23:19", "Genesis 35:27"],
-        "description": "A major hill-country settlement, resolved in the dataset to Tel Rumeida.",
+        "description": "A major hill-country settlement associated with Abraham, Sarah, and the patriarchal family.",
         "sourceUrl": "https://www.openbible.info/geo/ancient/a85151a/hebron"
       },
       "geometry": { "type": "Point", "coordinates": [35.10222, 31.525087] }
@@ -174,7 +174,7 @@
         "confidenceScore": 667,
         "modernName": "Ramat el Khalil",
         "references": ["Genesis 13:18", "Genesis 18:1", "Genesis 23:17", "Genesis 25:9"],
-        "description": "The leading current candidate is Ramat el Khalil. It is displayed close to Hebron while retaining its own offset label.",
+        "description": "The place near Hebron where Abraham lived and welcomed three visitors.",
         "sourceUrl": "https://www.openbible.info/geo/ancient/aeb9e97/mamre"
       },
       "geometry": { "type": "Point", "coordinates": [35.105336, 31.556536] }
@@ -194,7 +194,7 @@
         "confidenceScore": 386,
         "modernName": "No settled modern identification",
         "references": ["Genesis 10:19", "Genesis 13:10", "Genesis 14:2", "Genesis 19:24"],
-        "description": "The current source data records multiple, low-to-moderate confidence proposals. The dashed areas mark competing regions and do not assert a fixed site.",
+        "description": "A city of the plain remembered in Genesis; its precise location remains uncertain.",
         "sourceUrl": "https://www.openbible.info/geo/ancient/a0aa664/sodom"
       },
       "geometry": { "type": "Point", "coordinates": [35.449223, 31.20849] }
@@ -214,7 +214,7 @@
         "confidenceScore": 364,
         "modernName": "No settled modern identification",
         "references": ["Genesis 10:19", "Genesis 13:10", "Genesis 14:2", "Genesis 19:24"],
-        "description": "The current source data records competing proposals with no settled identification. The marker and dashed candidate areas intentionally communicate that uncertainty.",
+        "description": "A city of the plain remembered in Genesis; its precise location remains uncertain.",
         "sourceUrl": "https://www.openbible.info/geo/ancient/aa572e2/gomorrah"
       },
       "geometry": { "type": "Point", "coordinates": [35.462, 31.205] }

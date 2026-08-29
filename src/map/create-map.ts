@@ -8,6 +8,15 @@ import type { PhaseData, PlaceFeature } from '../types';
 const PHASE_SOURCE_ID = 'phase1-places';
 const SELECTED_SOURCE_ID = 'selected-place';
 const PLACE_HIT_LAYER_ID = 'place-hit-area';
+const LOCAL_CITY_LAYER_ID = 'label_city_local';
+const LOCAL_PLACE_MIN_ZOOM = 10.5;
+const OVERVIEW_CITY_MAX_RANK = 7;
+const CANDIDATE_AREA_LAYER_IDS = ['candidate-area-fill', 'candidate-area-outline'] as const;
+const QUIET_BASEMAP_LABELS = [
+  ['label_town', LOCAL_PLACE_MIN_ZOOM],
+  ['label_village', 11.25],
+  ['label_other', 12],
+] as const;
 
 // MapLibre normally resolves its data worker beside its own module. Vite rolls
 // the main module into our application bundle, so that default URL would point
@@ -39,6 +48,44 @@ function featureForSource(place: PlaceFeature): FeatureCollection {
 function featureId(feature: MapGeoJSONFeature): string | undefined {
   const id = feature.properties.id;
   return typeof id === 'string' ? id : undefined;
+}
+
+function configureBasemapLabels(map: MapLibreMap): void {
+  for (const [layerId, minZoom] of QUIET_BASEMAP_LABELS) {
+    if (map.getLayer(layerId)) map.setLayerZoomRange(layerId, minZoom, 24);
+  }
+
+  const cityLayer = map.getStyle().layers?.find((layer) => layer.id === 'label_city');
+  if (cityLayer?.type !== 'symbol' || map.getLayer(LOCAL_CITY_LAYER_ID)) return;
+
+  map.addLayer(
+    {
+      ...cityLayer,
+      id: LOCAL_CITY_LAYER_ID,
+      minzoom: LOCAL_PLACE_MIN_ZOOM,
+      filter: [
+        'all',
+        ['==', ['get', 'class'], 'city'],
+        ['!=', ['get', 'capital'], 2],
+        ['>', ['coalesce', ['get', 'rank'], 99], OVERVIEW_CITY_MAX_RANK],
+      ],
+    },
+    'label_city_capital',
+  );
+  map.setFilter('label_city', [
+    'all',
+    ['==', ['get', 'class'], 'city'],
+    ['!=', ['get', 'capital'], 2],
+    ['<=', ['coalesce', ['get', 'rank'], 99], OVERVIEW_CITY_MAX_RANK],
+  ]);
+}
+
+function setCandidateAreaVisibility(map: MapLibreMap, visible: boolean): void {
+  for (const layerId of CANDIDATE_AREA_LAYER_IDS) {
+    if (map.getLayer(layerId)) {
+      map.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
+    }
+  }
 }
 
 export function createBibleMap(options: CreateBibleMapOptions): BibleMapController {
@@ -76,6 +123,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
   const selectPlace = (place: PlaceFeature, { move = true }: { move?: boolean } = {}): void => {
     const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
     selectedSource?.setData(featureForSource(place));
+    setCandidateAreaVisibility(map, place.properties.status === 'uncertain');
 
     if (move) {
       const [longitude, latitude] = place.geometry.coordinates;
@@ -95,6 +143,8 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
   map.on('style.load', () => {
     if (map.getSource(PHASE_SOURCE_ID)) return;
 
+    configureBasemapLabels(map);
+
     map.addSource(PHASE_SOURCE_ID, { type: 'geojson', data: data.features });
     map.addSource(SELECTED_SOURCE_ID, { type: 'geojson', data: emptyFeatureCollection() });
 
@@ -103,6 +153,9 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       type: 'fill',
       source: PHASE_SOURCE_ID,
       filter: ['==', ['get', 'kind'], 'candidate-area'],
+      layout: {
+        visibility: 'none',
+      },
       paint: {
         'fill-color': '#b58b47',
         'fill-opacity': 0.11,
@@ -114,6 +167,9 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       type: 'line',
       source: PHASE_SOURCE_ID,
       filter: ['==', ['get', 'kind'], 'candidate-area'],
+      layout: {
+        visibility: 'none',
+      },
       paint: {
         'line-color': '#9b6a25',
         'line-width': 1.8,

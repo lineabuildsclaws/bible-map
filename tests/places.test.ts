@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { bibleReferenceUrl } from '../src/bible/references';
 import { parsePhaseData } from '../src/data';
 import { findPlaces, normalizeSearchTerm } from '../src/search/places';
 import type { PlaceFeature } from '../src/types';
@@ -52,5 +53,15 @@ describe('phase data parsing', () => {
 
   it('rejects malformed data', () => {
     expect(() => parsePhaseData({ type: 'FeatureCollection', features: [] })).toThrow('does not contain any searchable places');
+  });
+});
+
+describe('Bible reference links', () => {
+  it('opens a reference directly in the ESV passage reader', () => {
+    const url = new URL(bibleReferenceUrl('Genesis 12:6'));
+    expect(url.origin).toBe('https://www.biblegateway.com');
+    expect(url.pathname).toBe('/passage/');
+    expect(url.searchParams.get('search')).toBe('Genesis 12:6');
+    expect(url.searchParams.get('version')).toBe('ESV');
   });
 });
