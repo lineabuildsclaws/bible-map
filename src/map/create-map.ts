@@ -43,7 +43,7 @@ const ENGLISH_BASEMAP_LABEL: ExpressionSpecification = [
 setWorkerUrl(mapLibreWorkerUrl);
 
 export interface BibleMapController {
-  selectPlace: (place: PlaceFeature, options?: { move?: boolean }) => void;
+  selectPlace: (place: PlaceFeature, options?: { move?: boolean; preserveZoom?: boolean }) => void;
   destroy: () => void;
 }
 
@@ -159,7 +159,10 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
   });
   let lastSelectedPlaceId: string | undefined;
 
-  const selectPlace = (place: PlaceFeature, { move = true }: { move?: boolean } = {}): void => {
+  const selectPlace = (
+    place: PlaceFeature,
+    { move = true, preserveZoom = false }: { move?: boolean; preserveZoom?: boolean } = {},
+  ): void => {
     lastSelectedPlaceId = place.properties.id;
     const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
     selectedSource?.setData(featureForSource(place));
@@ -172,7 +175,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       const selectionZoom = place.properties.selectionZoom;
       map.jumpTo({
         center: [longitude, latitude],
-        zoom: selectionZoom <= 6.2 ? selectionZoom : Math.max(map.getZoom(), selectionZoom),
+        zoom: preserveZoom ? map.getZoom() : selectionZoom <= 6.2 ? selectionZoom : Math.max(map.getZoom(), selectionZoom),
       });
     }
 
@@ -423,7 +426,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       const place =
         clickedPlaces.find((candidate) => candidate.properties.id === lastSelectedPlaceId) ??
         clickedPlaces.sort((left, right) => right.properties.confidenceScore - left.properties.confidenceScore)[0];
-      if (place) selectPlace(place);
+      if (place) selectPlace(place, { preserveZoom: true });
     });
 
     onReady();
