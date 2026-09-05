@@ -1,9 +1,9 @@
 import './styles/app.css';
 import { bibleReferenceUrl } from './bible/references';
-import { loadPhaseData } from './data';
+import { loadMapData } from './data';
 import { createBibleMap, type BibleMapController } from './map/create-map';
-import { findPlaces } from './search/places';
-import type { PhaseData, PlaceFeature } from './types';
+import { findPlaces, normalizeSearchTerm } from './search/places';
+import type { BibleMapData, PlaceFeature } from './types';
 
 const root = document.querySelector<HTMLElement>('#app');
 
@@ -33,7 +33,7 @@ function appendExternalLink(parent: HTMLElement, url: string, text: string): voi
   parent.append(link);
 }
 
-type LegendMarkerKind = 'place' | 'basemap' | 'candidate';
+type LegendMarkerKind = 'place' | 'natural' | 'region' | 'basemap' | 'candidate';
 
 function markerForLegend(kind: LegendMarkerKind): HTMLElement {
   const marker = element('span', `legend-marker legend-marker--${kind}`);
@@ -111,20 +111,24 @@ function replacePanel(...nodes: Node[]): void {
   panelContent.replaceChildren(...nodes);
 }
 
-function renderWelcomePanel(): void {
+function renderWelcomePanel(data?: BibleMapData): void {
   const panelEyebrow = element('p', 'panel__eyebrow', 'Genesis geography');
   const panelTitle = element('h2', 'panel__title', 'See places in relation');
   const intro = element(
     'p',
     'panel__intro',
-    'Search or click a colored marker. Plain map labels provide geographic context only.',
+    data
+      ? `Explore ${data.places.length} mappable places mentioned across Genesis. Search a biblical or modern name, or click a colored marker.`
+      : 'Search a biblical or modern name, or click a colored marker. Plain map labels provide geographic context only.',
   );
   const guide = element('div', 'panel__guide');
   guide.append(element('p', 'panel__section-label', 'Map key'));
 
   const guideList = element('ul', 'legend');
   const guideItems: Array<[LegendMarkerKind, string]> = [
-    ['place', 'Biblical place or landmark — clickable'],
+    ['place', 'Settlement or built place — clickable'],
+    ['natural', 'River, valley, mountain, or other natural feature'],
+    ['region', 'Region or territory (marker is representative)'],
     ['basemap', 'Basemap label — context only (e.g. Jerusalem)'],
     ['candidate', 'Debated location area — shown when selected'],
   ];
@@ -140,7 +144,14 @@ function renderWelcomePanel(): void {
   dataNote.append(document.createTextNode(' under CC BY\u00a04.0.'));
 
   guide.append(guideList);
-  replacePanel(panelEyebrow, panelTitle, intro, guide, dataNote);
+  const unlocatedNote = data?.unlocatedPlaces.length
+    ? element(
+        'p',
+        'panel__note',
+        `${data.unlocatedPlaces.join(', ')} ${data.unlocatedPlaces.length === 1 ? 'is' : 'are'} mentioned in Genesis but not plotted because the source records no identifiable location.`,
+      )
+    : undefined;
+  replacePanel(panelEyebrow, panelTitle, intro, guide, ...(unlocatedNote ? [unlocatedNote] : []), dataNote);
 }
 
 function renderPlacePanel(place: PlaceFeature): void {
@@ -154,10 +165,25 @@ function renderPlacePanel(place: PlaceFeature): void {
 
   const description = element('p', 'panel__intro', properties.description);
 
+  const factList = element('dl', 'place-facts');
+  const facts: Array<[string, string]> = [
+    ['Confidence', properties.confidence],
+    [properties.locationRole, properties.modernName],
+  ];
+  if (properties.alternativeCount > 0) {
+    facts.push([
+      'Other proposals',
+      `${properties.alternativeCount} additional ${properties.alternativeCount === 1 ? 'association' : 'associations'} in the source data`,
+    ]);
+  }
+  for (const [term, detail] of facts) {
+    factList.append(element('dt', 'place-facts__term', term), element('dd', 'place-facts__detail', detail));
+  }
+
   const referenceSection = element('section', 'references');
   const referenceTitle = element('h3', 'panel__section-label', 'Bible references');
   const referenceList = element('ul', 'reference-list');
-  for (const reference of properties.references) {
+  const appendReference = (reference: string): void => {
     const item = element('li', 'reference');
     const link = element('a', 'reference__link', reference);
     link.href = bibleReferenceUrl(reference);
@@ -166,10 +192,32 @@ function renderPlacePanel(place: PlaceFeature): void {
     link.setAttribute('aria-label', `Read ${reference} on STEP Bible`);
     item.append(link);
     referenceList.append(item);
+  };
+  const initiallyVisibleReferences = properties.references.slice(0, 12);
+  for (const reference of initiallyVisibleReferences) {
+    appendReference(reference);
   }
   referenceSection.append(referenceTitle, referenceList);
+  if (properties.references.length > initiallyVisibleReferences.length) {
+    const showAllReferences = element(
+      'button',
+      'references__show-all',
+      `Show all ${properties.references.length} references`,
+    );
+    showAllReferences.type = 'button';
+    showAllReferences.addEventListener('click', () => {
+      for (const reference of properties.references.slice(initiallyVisibleReferences.length)) appendReference(reference);
+      showAllReferences.remove();
+    });
+    referenceSection.append(showAllReferences);
+  }
 
-  replacePanel(headerRow, description, referenceSection);
+  const sourceNote = element('p', 'panel__data-note');
+  sourceNote.append(document.createTextNode('Identification and confidence adapted from '));
+  appendExternalLink(sourceNote, properties.sourceUrl, 'OpenBible.info');
+  sourceNote.append(document.createTextNode('.'));
+
+  replacePanel(headerRow, description, factList, referenceSection, sourceNote);
 }
 
 function renderError(message: string): void {
@@ -183,7 +231,7 @@ function renderError(message: string): void {
   replacePanel(title, detail, note);
 }
 
-let phaseData: PhaseData | undefined;
+let mapData: BibleMapData | undefined;
 let mapController: BibleMapController | undefined;
 let currentSearchMatches: PlaceFeature[] = [];
 let searchResultOptions: HTMLButtonElement[] = [];
@@ -223,7 +271,7 @@ function choosePlace(place: PlaceFeature): void {
 }
 
 function updateSearchResults(): PlaceFeature[] {
-  const matches = phaseData ? findPlaces(phaseData.places, searchInput.value) : [];
+  const matches = mapData ? findPlaces(mapData.places, searchInput.value) : [];
   searchResults.replaceChildren();
   currentSearchMatches = matches;
   searchResultOptions = [];
@@ -236,7 +284,11 @@ function updateSearchResults(): PlaceFeature[] {
   }
 
   if (matches.length === 0) {
-    searchMessage.textContent = 'No place matches that search.';
+    const query = normalizeSearchTerm(searchInput.value);
+    const unlocatedPlace = mapData?.unlocatedPlaces.find((name) => normalizeSearchTerm(name) === query);
+    searchMessage.textContent = unlocatedPlace
+      ? `${unlocatedPlace} is mentioned in Genesis, but its location is unknown and cannot be plotted.`
+      : 'No place matches that search.';
     hideSearchResults();
     return matches;
   }
@@ -251,7 +303,7 @@ function updateSearchResults(): PlaceFeature[] {
     option.setAttribute('aria-selected', 'false');
     option.append(
       element('span', 'search-result__name', place.properties.name),
-      element('span', 'search-result__meta', place.properties.featureType),
+      element('span', 'search-result__meta', `${place.properties.featureType} · ${place.properties.confidence}`),
     );
     option.addEventListener('pointermove', () => setActiveSearchResult(index));
     option.addEventListener('click', () => choosePlace(place));
@@ -309,10 +361,11 @@ renderWelcomePanel();
 
 void (async () => {
   try {
-    phaseData = await loadPhaseData();
+    mapData = await loadMapData();
+    renderWelcomePanel(mapData);
     mapController = createBibleMap({
       container: mapContainer,
-      data: phaseData,
+      data: mapData,
       detailPanel: panel,
       onPlaceSelected: (place) => renderPlacePanel(place),
       onReady: () => {

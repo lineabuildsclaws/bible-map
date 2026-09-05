@@ -6,14 +6,18 @@ The original application code in this repository is licensed under the [MIT Lice
 
 ## Biblical geography data
 
-`public/data/phase1-places.geojson` is an intentionally small, adapted Phase 1
-selection derived from [OpenBible.info Bible Geocoding Data](https://github.com/openbibleinfo/Bible-Geocoding-Data),
-retrieved at commit `7eb18a5ee62f27b9b93bd6689ea272d76dd23b8f` on 2026-08-29.
+`public/data/genesis-places.geojson` is an adapted Genesis-wide selection
+derived from [OpenBible.info Bible Geocoding Data](https://github.com/openbibleinfo/Bible-Geocoding-Data),
+retrieved at commit `7eb18a5ee62f27b9b93bd6689ea272d76dd23b8f` on 2026-09-05.
 It is made available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-The source data was processed into a presentation-oriented GeoJSON subset:
+The source data was processed into presentation-oriented GeoJSON:
 
-- only the Phase 1 places and uncertainty candidates are included;
-- labels, concise reference lists, and interface descriptions were written for this application;
+- all 116 mappable ancient-place records with a Genesis reference are included;
+- the leading scored modern association supplies each representative point;
+- lower-confidence and competing identifications are visibly marked uncertain;
+- Nod is disclosed as unlocated rather than assigned speculative coordinates;
+- labels, Genesis reference lists, and interface descriptions were adapted for this application;
+- the original Phase 1 labels and descriptions remain curated overrides;
 - Sodom and Gomorrah are deliberately represented as uncertain proposal areas rather than fixed locations.
 
 Please credit “OpenBible.info Bible Geocoding Data, adapted” and link to the

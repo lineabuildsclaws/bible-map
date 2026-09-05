@@ -324,7 +324,12 @@ a:hover {
   position: relative;
   inset: auto;
   width: min(390px, calc(100vw - 40px));
-  max-height: min(56vh, 430px);
+  max-height: min(42vh, 280px);
+  overflow: hidden;
+}
+
+.place-panel--anchored .panel__content {
+  max-height: min(42vh, 280px);
 }
 
 .map .place-details-popup {
@@ -409,6 +414,18 @@ a:hover {
   box-shadow: 0 0 0 1px #3c6659;
 }
 
+.legend-marker--natural {
+  background: #477997;
+  border: 2px solid #f7f2e8;
+  box-shadow: 0 0 0 1px #477997;
+}
+
+.legend-marker--region {
+  background: #756b51;
+  border: 2px solid #f7f2e8;
+  box-shadow: 0 0 0 1px #756b51;
+}
+
 .legend-marker--basemap {
   width: 22px;
   color: #3d3d3b;
@@ -443,6 +460,32 @@ a:hover {
   line-height: 1.45;
 }
 
+.place-facts {
+  display: grid;
+  grid-template-columns: minmax(95px, auto) 1fr;
+  gap: 7px 12px;
+  padding: 13px 0;
+  margin: 17px 0 0;
+  border-top: 1px solid #e5ded0;
+  border-bottom: 1px solid #e5ded0;
+}
+
+.place-facts__term,
+.place-facts__detail {
+  margin: 0;
+  font-size: 0.79rem;
+  line-height: 1.42;
+}
+
+.place-facts__term {
+  color: #688782;
+  font-weight: 720;
+}
+
+.place-facts__detail {
+  color: #4e4a41;
+}
+
 .reference__link {
   display: block;
   padding: 6px 8px;
@@ -458,6 +501,25 @@ a:hover {
 .reference__link:focus-visible {
   color: #173f4d;
   background: #d4e6dd;
+  outline: 2px solid #b17925;
+  outline-offset: 1px;
+}
+
+.references__show-all {
+  padding: 7px 9px;
+  margin-top: 9px;
+  color: #345f59;
+  background: transparent;
+  border: 1px solid #9ab7ae;
+  border-radius: 4px;
+  font-size: 0.77rem;
+  font-weight: 680;
+}
+
+.references__show-all:hover,
+.references__show-all:focus-visible {
+  color: #173f4d;
+  background: #edf3ef;
   outline: 2px solid #b17925;
   outline-offset: 1px;
 }

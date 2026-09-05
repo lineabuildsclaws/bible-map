@@ -1,5 +1,5 @@
-import { PHASE_DATA_URL } from './config';
-import type { PhaseData, PhaseFeature, PhaseFeatureCollection, PlaceFeature, PlaceProperties, PlaceStatus } from './types';
+import { GENESIS_DATA_URL } from './config';
+import type { BibleMapData, MapFeature, MapFeatureCollection, PlaceFeature, PlaceProperties, PlaceStatus } from './types';
 
 const PLACE_STATUSES: ReadonlySet<string> = new Set(['confirmed', 'identified', 'associated', 'uncertain']);
 
@@ -23,21 +23,27 @@ function isPlaceProperties(value: unknown): value is PlaceProperties {
     typeof value.id === 'string' &&
     typeof value.name === 'string' &&
     typeof value.label === 'string' &&
+    isStringArray(value.alternateNames) &&
     isLabelOffset(value.labelOffset) &&
     typeof value.labelAnchor === 'string' &&
+    typeof value.labelMinZoom === 'number' &&
+    typeof value.labelPriority === 'number' &&
+    typeof value.selectionZoom === 'number' &&
     typeof value.featureType === 'string' &&
+    (value.locationRole === 'Leading identification' || value.locationRole === 'Representative point') &&
     typeof value.status === 'string' &&
     PLACE_STATUSES.has(value.status as PlaceStatus) &&
     typeof value.confidence === 'string' &&
     typeof value.confidenceScore === 'number' &&
     typeof value.modernName === 'string' &&
+    typeof value.alternativeCount === 'number' &&
     isStringArray(value.references) &&
     typeof value.description === 'string' &&
     typeof value.sourceUrl === 'string'
   );
 }
 
-function isPhaseFeature(value: unknown): value is PhaseFeature {
+function isMapFeature(value: unknown): value is MapFeature {
   return (
     isRecord(value) &&
     value.type === 'Feature' &&
@@ -47,37 +53,39 @@ function isPhaseFeature(value: unknown): value is PhaseFeature {
   );
 }
 
-function isPlaceFeature(value: PhaseFeature): value is PlaceFeature {
+function isPlaceFeature(value: MapFeature): value is PlaceFeature {
   return value.geometry.type === 'Point' && isPlaceProperties(value.properties);
 }
 
-export function parsePhaseData(value: unknown): PhaseData {
+export function parseMapData(value: unknown): BibleMapData {
   if (!isRecord(value) || value.type !== 'FeatureCollection' || !Array.isArray(value.features)) {
-    throw new Error('The Phase 1 map data is not a GeoJSON FeatureCollection.');
+    throw new Error('The Genesis map data is not a GeoJSON FeatureCollection.');
   }
 
-  if (!value.features.every(isPhaseFeature)) {
-    throw new Error('The Phase 1 map data contains an invalid feature.');
+  if (!value.features.every(isMapFeature)) {
+    throw new Error('The Genesis map data contains an invalid feature.');
   }
 
-  const features: PhaseFeatureCollection = {
+  const features: MapFeatureCollection = {
     type: 'FeatureCollection',
     features: value.features,
   };
   const places = features.features.filter(isPlaceFeature);
 
   if (places.length === 0) {
-    throw new Error('The Phase 1 map data does not contain any searchable places.');
+    throw new Error('The Genesis map data does not contain any searchable places.');
   }
 
-  return { features, places };
+  const metadata = isRecord(value.metadata) ? value.metadata : {};
+  const unlocatedPlaces = isStringArray(metadata.unlocatedPlaces) ? metadata.unlocatedPlaces : [];
+  return { features, places, unlocatedPlaces };
 }
 
-export async function loadPhaseData(): Promise<PhaseData> {
-  const response = await fetch(PHASE_DATA_URL, { credentials: 'same-origin' });
+export async function loadMapData(): Promise<BibleMapData> {
+  const response = await fetch(GENESIS_DATA_URL, { credentials: 'same-origin' });
   if (!response.ok) {
-    throw new Error(`The Phase 1 place data could not be loaded (${response.status}).`);
+    throw new Error(`The Genesis place data could not be loaded (${response.status}).`);
   }
 
-  return parsePhaseData(await response.json());
+  return parseMapData(await response.json());
 }

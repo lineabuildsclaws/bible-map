@@ -1,7 +1,7 @@
 {
   "format": "bible-map-license-inventory/v1",
   "lockfileVersion": 3,
-  "packageCount": 177,
+  "packageCount": 179,
   "packages": [
     {
       "name": "@eslint-community/eslint-utils",
@@ -284,6 +284,12 @@
       "version": "7.0.15",
       "license": "MIT",
       "dependencyKind": "transitive"
+    },
+    {
+      "name": "@types/node",
+      "version": "22.20.1",
+      "license": "MIT",
+      "dependencyKind": "direct-development"
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
@@ -1022,6 +1028,12 @@
       "version": "8.68.0",
       "license": "MIT",
       "dependencyKind": "direct-development"
+    },
+    {
+      "name": "undici-types",
+      "version": "6.21.0",
+      "license": "MIT",
+      "dependencyKind": "transitive"
     },
     {
       "name": "uri-js",

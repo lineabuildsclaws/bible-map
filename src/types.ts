@@ -7,23 +7,30 @@ export interface PlaceProperties extends Record<string, unknown> {
   kind: 'place';
   name: string;
   label: string;
+  alternateNames: string[];
   labelOffset: [number, number];
   labelAnchor: 'left' | 'right' | 'top' | 'bottom' | 'center';
+  labelMinZoom: number;
+  labelPriority: number;
+  selectionZoom: number;
   featureType: string;
+  locationRole: 'Leading identification' | 'Representative point';
   status: PlaceStatus;
   confidence: string;
   confidenceScore: number;
   modernName: string;
+  alternativeCount: number;
   references: string[];
   description: string;
   sourceUrl: string;
 }
 
 export type PlaceFeature = Feature<Point, PlaceProperties>;
-export type PhaseFeature = Feature<Geometry, Record<string, unknown>>;
-export type PhaseFeatureCollection = FeatureCollection<Geometry, Record<string, unknown>>;
+export type MapFeature = Feature<Geometry, Record<string, unknown>>;
+export type MapFeatureCollection = FeatureCollection<Geometry, Record<string, unknown>>;
 
-export interface PhaseData {
-  features: PhaseFeatureCollection;
+export interface BibleMapData {
+  features: MapFeatureCollection;
   places: PlaceFeature[];
+  unlocatedPlaces: string[];
 }

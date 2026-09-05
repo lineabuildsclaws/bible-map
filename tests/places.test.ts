@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
 import { bibleReferenceUrl } from '../src/bible/references';
-import { parsePhaseData } from '../src/data';
+import { parseMapData } from '../src/data';
 import { findPlaces, normalizeSearchTerm } from '../src/search/places';
 import type { PlaceFeature } from '../src/types';
 
@@ -12,13 +13,19 @@ function place(name: string, modernName: string): PlaceFeature {
       kind: 'place',
       name,
       label: name,
+      alternateNames: [],
       labelOffset: [0, 0],
       labelAnchor: 'center',
+      labelMinZoom: 6.2,
+      labelPriority: 100,
+      selectionZoom: 9.2,
       featureType: 'Settlement',
+      locationRole: 'Leading identification',
       status: 'identified',
       confidence: 'Test confidence',
       confidenceScore: 1,
       modernName,
+      alternativeCount: 0,
       references: ['Genesis 1:1'],
       description: 'Test place.',
       sourceUrl: 'https://www.openbible.info/geo/',
@@ -46,14 +53,38 @@ describe('place search', () => {
 describe('phase data parsing', () => {
   it('accepts a valid searchable place feature', () => {
     const item = place('Shechem', 'Tell Balatah');
-    const data = parsePhaseData({ type: 'FeatureCollection', features: [item] });
+    const data = parseMapData({ type: 'FeatureCollection', features: [item] });
     expect(data.places).toHaveLength(1);
     expect(data.places[0]?.properties.name).toBe('Shechem');
   });
 
   it('rejects malformed data', () => {
-    expect(() => parsePhaseData({ type: 'FeatureCollection', features: [] })).toThrow('does not contain any searchable places');
+    expect(() => parseMapData({ type: 'FeatureCollection', features: [] })).toThrow('does not contain any searchable places');
   });
+});
+
+describe('Genesis map coverage', () => {
+  const source = JSON.parse(
+    readFileSync(new URL('../public/data/genesis-places.geojson', import.meta.url), 'utf8'),
+  ) as unknown;
+  const data = parseMapData(source);
+
+  it('contains every mappable Genesis record from the source snapshot', () => {
+    expect(data.places).toHaveLength(116);
+    expect(data.unlocatedPlaces).toEqual(['Nod']);
+    expect(new Set(data.places.map((item) => item.properties.id)).size).toBe(data.places.length);
+  });
+
+  it('contains only Genesis references', () => {
+    expect(data.places.every((item) => item.properties.references.every((reference) => reference.startsWith('Genesis ')))).toBe(true);
+  });
+
+  it.each(['Ararat', 'Babel', 'Beersheba', 'Dothan', 'Egypt', 'Haran', 'Ur'])(
+    'finds %s by its biblical name',
+    (name) => {
+      expect(findPlaces(data.places, name)[0]?.properties.name).toBe(name);
+    },
+  );
 });
 
 describe('Bible reference links', () => {

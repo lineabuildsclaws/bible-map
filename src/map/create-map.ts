@@ -12,15 +12,17 @@ import mapLibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&ur
 import type { FeatureCollection } from 'geojson';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { INITIAL_VIEW, MAP_BOUNDS, MAP_STYLE_URL } from '../config';
-import type { PhaseData, PlaceFeature } from '../types';
+import type { BibleMapData, PlaceFeature } from '../types';
 
-const PHASE_SOURCE_ID = 'phase1-places';
+const MAP_SOURCE_ID = 'genesis-places';
 const SELECTED_SOURCE_ID = 'selected-place';
-const PLACE_HIT_LAYER_ID = 'place-hit-area';
 const LOCAL_CITY_LAYER_ID = 'label_city_local';
 const LOCAL_PLACE_MIN_ZOOM = 10.5;
 const OVERVIEW_CITY_MAX_RANK = 7;
 const CANDIDATE_AREA_LAYER_IDS = ['candidate-area-fill', 'candidate-area-outline'] as const;
+const CANDIDATE_PLACE_IDS = new Set(['a0aa664', 'aa572e2']);
+const LABEL_TIERS = [3.8, 4.5, 5.2, 6.2, 8.2] as const;
+const PLACE_HIT_LAYER_IDS = LABEL_TIERS.map((tier) => `place-hit-area-${tier}`);
 const QUIET_BASEMAP_LABELS = [
   ['label_town', LOCAL_PLACE_MIN_ZOOM],
   ['label_village', 11.25],
@@ -47,7 +49,7 @@ export interface BibleMapController {
 
 interface CreateBibleMapOptions {
   container: HTMLElement;
-  data: PhaseData;
+  data: BibleMapData;
   detailPanel: HTMLElement;
   onPlaceSelected: (place: PlaceFeature) => void;
   onReady: () => void;
@@ -105,7 +107,8 @@ function configureBasemapLabels(map: MapLibreMap): void {
   ]);
 }
 
-function setCandidateAreaVisibility(map: MapLibreMap, visible: boolean): void {
+function setCandidateAreaVisibility(map: MapLibreMap, placeId?: string): void {
+  const visible = placeId !== undefined && CANDIDATE_PLACE_IDS.has(placeId);
   for (const layerId of CANDIDATE_AREA_LAYER_IDS) {
     if (map.getLayer(layerId)) {
       map.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
@@ -122,7 +125,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     style: MAP_STYLE_URL,
     center: INITIAL_VIEW.center,
     zoom: INITIAL_VIEW.zoom,
-    minZoom: 6.2,
+    minZoom: 3.2,
     maxZoom: 13.5,
     maxBounds: MAP_BOUNDS,
     renderWorldCopies: false,
@@ -160,15 +163,16 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     lastSelectedPlaceId = place.properties.id;
     const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
     selectedSource?.setData(featureForSource(place));
-    setCandidateAreaVisibility(map, place.properties.status === 'uncertain');
+    setCandidateAreaVisibility(map, place.properties.id);
 
     const [longitude, latitude] = place.geometry.coordinates;
     if (longitude === undefined || latitude === undefined) return;
 
     if (move) {
+      const selectionZoom = place.properties.selectionZoom;
       map.jumpTo({
         center: [longitude, latitude],
-        zoom: Math.max(map.getZoom(), 9.2),
+        zoom: selectionZoom <= 6.2 ? selectionZoom : Math.max(map.getZoom(), selectionZoom),
       });
     }
 
@@ -180,7 +184,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
   const clearSelection = (): void => {
     const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
     selectedSource?.setData(emptyFeatureCollection());
-    setCandidateAreaVisibility(map, false);
+    setCandidateAreaVisibility(map);
     detailPopup.remove();
   };
 
@@ -188,17 +192,17 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
   // `style.load` is sufficient to add our self-contained GeoJSON layers and keeps
   // search available if a provider is briefly slow to return vector tiles.
   map.on('style.load', () => {
-    if (map.getSource(PHASE_SOURCE_ID)) return;
+    if (map.getSource(MAP_SOURCE_ID)) return;
 
     configureBasemapLabels(map);
 
-    map.addSource(PHASE_SOURCE_ID, { type: 'geojson', data: data.features });
+    map.addSource(MAP_SOURCE_ID, { type: 'geojson', data: data.features });
     map.addSource(SELECTED_SOURCE_ID, { type: 'geojson', data: emptyFeatureCollection() });
 
     map.addLayer({
       id: 'candidate-area-fill',
       type: 'fill',
-      source: PHASE_SOURCE_ID,
+      source: MAP_SOURCE_ID,
       filter: ['==', ['get', 'kind'], 'candidate-area'],
       layout: {
         visibility: 'none',
@@ -212,7 +216,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     map.addLayer({
       id: 'candidate-area-outline',
       type: 'line',
-      source: PHASE_SOURCE_ID,
+      source: MAP_SOURCE_ID,
       filter: ['==', ['get', 'kind'], 'candidate-area'],
       layout: {
         visibility: 'none',
@@ -225,47 +229,91 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       },
     });
 
-    map.addLayer({
-      id: 'place-markers',
-      type: 'circle',
-      source: PHASE_SOURCE_ID,
-      filter: ['==', ['get', 'kind'], 'place'],
-      paint: {
-        'circle-radius': ['match', ['get', 'status'], 'uncertain', 7.5, 5.4],
-        'circle-color': ['match', ['get', 'status'], 'uncertain', '#f5efe1', '#3c6659'],
-        'circle-stroke-color': ['match', ['get', 'status'], 'uncertain', '#9b6a25', '#f7f2e8'],
-        'circle-stroke-width': ['match', ['get', 'status'], 'uncertain', 2, 1.5],
-        'circle-opacity': 1,
-      },
-    });
+    for (const tier of LABEL_TIERS) {
+      const tierFilter: ExpressionSpecification = [
+        'all',
+        ['==', ['get', 'kind'], 'place'],
+        ['==', ['get', 'labelMinZoom'], tier],
+      ];
 
-    map.addLayer({
-      id: 'place-labels',
-      type: 'symbol',
-      source: PHASE_SOURCE_ID,
-      filter: ['==', ['get', 'kind'], 'place'],
-      layout: {
-        'text-field': ['get', 'label'],
-        'text-font': ['Noto Sans Regular'],
-        'text-size': ['match', ['get', 'status'], 'uncertain', 13, 14],
-        'text-offset': ['get', 'labelOffset'],
-        'text-anchor': ['get', 'labelAnchor'],
-        'text-justify': 'auto',
-        'text-line-height': 1.12,
-        'text-allow-overlap': true,
-        'text-ignore-placement': true,
-      },
-      paint: {
-        'text-color': ['match', ['get', 'status'], 'uncertain', '#84531d', 'associated', '#315f54', '#28231d'],
-        'text-halo-color': '#faf8f2',
-        'text-halo-width': 1.8,
-      },
-    });
+      map.addLayer({
+        id: `place-markers-${tier}`,
+        type: 'circle',
+        source: MAP_SOURCE_ID,
+        minzoom: tier,
+        filter: tierFilter,
+        paint: {
+          'circle-radius': ['match', ['get', 'status'], 'uncertain', 7.2, ['match', ['get', 'featureType'], 'Region', 6.2, 5.2]],
+          'circle-color': [
+            'case',
+            ['==', ['get', 'status'], 'uncertain'],
+            '#f5efe1',
+            [
+              'match',
+              ['get', 'featureType'],
+              ['River', 'Body of water', 'Valley', 'Mountain range', 'Natural area', 'Hill'],
+              '#477997',
+              'Region',
+              '#756b51',
+              '#3c6659',
+            ],
+          ],
+          'circle-stroke-color': ['match', ['get', 'status'], 'uncertain', '#9b6a25', '#f7f2e8'],
+          'circle-stroke-width': ['match', ['get', 'status'], 'uncertain', 2, 1.5],
+          'circle-opacity': 1,
+        },
+      });
+    }
+
+    for (const tier of LABEL_TIERS) {
+      map.addLayer({
+        id: `place-labels-${tier}`,
+        type: 'symbol',
+        source: MAP_SOURCE_ID,
+        minzoom: tier,
+        filter: ['all', ['==', ['get', 'kind'], 'place'], ['==', ['get', 'labelMinZoom'], tier]],
+        layout: {
+          'text-field': ['get', 'label'],
+          'text-font': ['Noto Sans Regular'],
+          'text-size': ['match', ['get', 'status'], 'uncertain', 12.5, ['match', ['get', 'featureType'], 'Region', 14.5, 13.5]],
+          'text-offset': ['get', 'labelOffset'],
+          'text-anchor': ['get', 'labelAnchor'],
+          'text-justify': 'auto',
+          'text-line-height': 1.12,
+          'text-allow-overlap': false,
+          'text-ignore-placement': false,
+          'text-optional': true,
+          'symbol-sort-key': ['*', -1, ['get', 'labelPriority']],
+        },
+        paint: {
+          'text-color': [
+            'match',
+            ['get', 'status'],
+            'uncertain',
+            '#84531d',
+            'associated',
+            '#315f54',
+            [
+              'match',
+              ['get', 'featureType'],
+              ['River', 'Body of water', 'Valley', 'Mountain range', 'Natural area', 'Hill'],
+              '#315f79',
+              'Region',
+              '#5e563f',
+              '#28231d',
+            ],
+          ],
+          'text-halo-color': '#faf8f2',
+          'text-halo-width': 1.8,
+        },
+      });
+    }
 
     map.addLayer({
       id: 'water-anchor-labels',
       type: 'symbol',
-      source: PHASE_SOURCE_ID,
+      source: MAP_SOURCE_ID,
+      minzoom: 6,
       filter: ['==', ['get', 'kind'], 'anchor'],
       layout: {
         'text-field': ['get', 'label'],
@@ -332,22 +380,25 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       },
     });
 
-    map.addLayer({
-      id: PLACE_HIT_LAYER_ID,
-      type: 'circle',
-      source: PHASE_SOURCE_ID,
-      filter: ['==', ['get', 'kind'], 'place'],
-      paint: {
-        'circle-radius': 18,
-        'circle-opacity': 0,
-        'circle-stroke-opacity': 0,
-      },
-    });
+    for (const tier of LABEL_TIERS) {
+      map.addLayer({
+        id: `place-hit-area-${tier}`,
+        type: 'circle',
+        source: MAP_SOURCE_ID,
+        minzoom: tier,
+        filter: ['all', ['==', ['get', 'kind'], 'place'], ['==', ['get', 'labelMinZoom'], tier]],
+        paint: {
+          'circle-radius': 18,
+          'circle-opacity': 0,
+          'circle-stroke-opacity': 0,
+        },
+      });
+    }
 
     map.addControl(new NavigationControl({ showCompass: false }), 'bottom-right');
 
     map.on('mousemove', (event: MapMouseEvent) => {
-      const isOverPlace = map.queryRenderedFeatures(event.point, { layers: [PLACE_HIT_LAYER_ID] }).length > 0;
+      const isOverPlace = map.queryRenderedFeatures(event.point, { layers: PLACE_HIT_LAYER_IDS }).length > 0;
       map.getCanvas().style.cursor = isOverPlace ? 'pointer' : '';
     });
 
@@ -357,7 +408,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
 
     map.on('click', (event: MapMouseEvent) => {
       const clickedPlaces = map
-        .queryRenderedFeatures(event.point, { layers: [PLACE_HIT_LAYER_ID] })
+        .queryRenderedFeatures(event.point, { layers: PLACE_HIT_LAYER_IDS })
         .map((feature) => {
           const id = featureId(feature);
           return id ? placesById.get(id) : undefined;

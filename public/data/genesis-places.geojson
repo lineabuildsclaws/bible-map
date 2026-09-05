@@ -1,0 +1,5137 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "title": "Bible Map — Genesis places",
+    "scope": "Every mappable place record with a Genesis reference in the source dataset",
+    "source": "Adapted from OpenBible.info Bible Geocoding Data (CC BY 4.0)",
+    "sourceCommit": "7eb18a5ee62f27b9b93bd6689ea272d76dd23b8f",
+    "retrieved": "2026-09-05",
+    "mappablePlaceCount": 116,
+    "unlocatedPlaces": [
+      "Nod"
+    ],
+    "method": "Each ancient place is shown at the highest-scoring modern association with coordinates. Lower-confidence and competing identifications are marked uncertain."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "mediterranean-sea",
+        "kind": "anchor",
+        "name": "Mediterranean Sea",
+        "label": "MEDITERRANEAN\nSEA",
+        "labelOffset": [
+          0,
+          0
+        ],
+        "labelAnchor": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.63,
+          32.1
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dead-sea",
+        "kind": "anchor",
+        "name": "Dead Sea",
+        "label": "DEAD SEA",
+        "labelOffset": [
+          0,
+          0
+        ],
+        "labelAnchor": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.51,
+          31.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "southern-basin-proposal",
+        "kind": "candidate-area",
+        "label": "",
+        "candidateFor": "Sodom and Gomorrah",
+        "description": "One of several candidate regions in current data; this boundary is a visual guide, not a claim of an exact ancient location.",
+        "candidateForIds": [
+          "a0aa664",
+          "aa572e2"
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.35,
+              31.08
+            ],
+            [
+              35.49,
+              31.02
+            ],
+            [
+              35.62,
+              31.1
+            ],
+            [
+              35.59,
+              31.31
+            ],
+            [
+              35.43,
+              31.35
+            ],
+            [
+              35.35,
+              31.22
+            ],
+            [
+              35.35,
+              31.08
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "northern-dead-sea-proposal",
+        "kind": "candidate-area",
+        "label": "",
+        "candidateFor": "Sodom and Gomorrah",
+        "description": "A second, competing candidate region shown to preserve the uncertainty in the underlying data.",
+        "candidateForIds": [
+          "a0aa664",
+          "aa572e2"
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.49,
+              31.67
+            ],
+            [
+              35.6,
+              31.67
+            ],
+            [
+              35.67,
+              31.79
+            ],
+            [
+              35.58,
+              31.9
+            ],
+            [
+              35.49,
+              31.84
+            ],
+            [
+              35.49,
+              31.67
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a70ac98",
+        "kind": "place",
+        "name": "Abel-mizraim",
+        "label": "Abel-mizraim",
+        "alternateNames": [
+          "Abel Mizraim",
+          "Abel-Mizraim"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 156,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 660,
+        "modernName": "near the mouth of the Jordan River",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 50:11"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at near the mouth of the Jordan River, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a70ac98/abel-mizraim"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.530445,
+          31.914888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a8b7a6b",
+        "kind": "place",
+        "name": "Accad",
+        "label": "Accad",
+        "alternateNames": [
+          "Akkad"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 72,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 241,
+        "modernName": "Tell Sheshubar",
+        "alternativeCount": 6,
+        "references": [
+          "Genesis 10:10"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tell Sheshubar, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a8b7a6b/accad"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.391944,
+          33.025556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a41a054",
+        "kind": "place",
+        "name": "Admah",
+        "label": "Admah",
+        "alternateNames": [
+          "Adman"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 6.2,
+        "labelPriority": 136,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 318,
+        "modernName": "south of the Lisan",
+        "alternativeCount": 5,
+        "references": [
+          "Genesis 10:19",
+          "Genesis 14:2",
+          "Genesis 14:8"
+        ],
+        "description": "A settlement mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a41a054/admah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.449223,
+          31.20849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "af82614",
+        "kind": "place",
+        "name": "Adullam",
+        "label": "Adullam",
+        "alternateNames": [
+          "Adullamite"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 171,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 737,
+        "modernName": "Khirbet esh Sheikh Madhkur",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 38:1"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Khirbet esh Sheikh Madhkur, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/af82614/adullam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.001667,
+          31.651667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a7e13e1",
+        "kind": "place",
+        "name": "Ai",
+        "label": "Ai",
+        "alternateNames": [
+          "Hai"
+        ],
+        "labelOffset": [
+          0.85,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 6.2,
+        "labelPriority": 152,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 522,
+        "modernName": "Et Tell",
+        "alternativeCount": 4,
+        "references": [
+          "Genesis 12:8",
+          "Genesis 13:3"
+        ],
+        "description": "A hill-country settlement east of Bethel, prominent in Abraham's journey and Joshua's campaign.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a7e13e1/ai-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.261111,
+          31.916944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "af9a894",
+        "kind": "place",
+        "name": "Allon-bacuth",
+        "label": "Allon-bacuth",
+        "alternateNames": [
+          "Allon Bachuth",
+          "Allon Bakuth",
+          "Allon-Bacuth",
+          "Allon-bachuth",
+          "Oak of Weeping"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 167,
+        "selectionZoom": 9.2,
+        "featureType": "Tree",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 716,
+        "modernName": "Beitin",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 35:8"
+        ],
+        "description": "A tree mentioned in Genesis, mapped at Beitin, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/af9a894/allon-bacuth"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.241389,
+          31.922778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a6046fa",
+        "kind": "place",
+        "name": "Ammonites",
+        "label": "Ammonites",
+        "alternateNames": [
+          "Ammon",
+          "Ammonite",
+          "Ammonitess"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Amman",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 19:38"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a6046fa/ammon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.9343,
+          31.9547
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ab89be9",
+        "kind": "place",
+        "name": "Ararat",
+        "label": "Ararat",
+        "alternateNames": [
+          "Armenia"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Urartu",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 8:4"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ab89be9/ararat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.300381,
+          39.702761
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "afe4be0",
+        "kind": "place",
+        "name": "Ashteroth-karnaim",
+        "label": "Ashteroth-karnaim",
+        "alternateNames": [
+          "Ashteroth Karnaim",
+          "Ashteroth-Karnaim"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 157,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 664,
+        "modernName": "Tell Ashtara",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 14:5"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tell Ashtara, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/afe4be0/ashteroth-karnaim"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.015833,
+          32.804167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a3d1321",
+        "kind": "place",
+        "name": "Assyria",
+        "label": "Assyria",
+        "alternateNames": [
+          "Ashur",
+          "Asshur",
+          "Assur",
+          "Assyrian",
+          "Assyrians"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 4.5,
+        "labelPriority": 312,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Nineveh",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 2:14",
+          "Genesis 10:11",
+          "Genesis 25:18"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a3d1321/assyria"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1528,
+          36.3594
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a2f186d",
+        "kind": "place",
+        "name": "Atad",
+        "label": "Atad",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 6.2,
+        "labelPriority": 180,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 660,
+        "modernName": "near the mouth of the Jordan River",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 50:10",
+          "Genesis 50:11"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at near the mouth of the Jordan River, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a2f186d/atad"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.530445,
+          31.914888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aae8a95",
+        "kind": "place",
+        "name": "Avith",
+        "label": "Avith",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 79,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 277,
+        "modernName": "Rujum al Juththa",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 36:35"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Rujum al Juththa, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aae8a95/avith"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.601921,
+          30.206
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ab8fdbc",
+        "kind": "place",
+        "name": "Babel",
+        "label": "Babel",
+        "alternateNames": [
+          "Babylon"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 6.2,
+        "labelPriority": 210,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 810,
+        "modernName": "Babylon",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 10:10",
+          "Genesis 11:9"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Babylon, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ab8fdbc/babel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.422222,
+          32.543333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a70e842",
+        "kind": "place",
+        "name": "Beer-lahai-roi",
+        "label": "Beer-lahai-roi",
+        "alternateNames": [
+          "Beer Lahai Roi",
+          "Beer-Lahai-Roi",
+          "Lahai-roi"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 6.2,
+        "labelPriority": 124,
+        "selectionZoom": 9.2,
+        "featureType": "Well",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 258,
+        "modernName": "Ain Muweileh",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 16:14",
+          "Genesis 24:62",
+          "Genesis 25:11"
+        ],
+        "description": "A well mentioned in Genesis, mapped at Ain Muweileh, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a70e842/beer-lahai-roi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.333333,
+          30.6875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a075d61",
+        "kind": "place",
+        "name": "Beersheba",
+        "label": "Beersheba",
+        "alternateNames": [
+          "Beer Sheba",
+          "Beer-sheba",
+          "Desert of Beersheba",
+          "Sheba",
+          "Shebah",
+          "Shibah",
+          "Wilderness of Beer-sheba",
+          "Wilderness of Beersheba"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 3.8,
+        "labelPriority": 307,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Competing proposals",
+        "confidenceScore": 334,
+        "modernName": "Tel Beer Sheva",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 21:14",
+          "Genesis 21:31",
+          "Genesis 21:32",
+          "Genesis 21:33",
+          "Genesis 22:19",
+          "Genesis 26:23",
+          "Genesis 26:33",
+          "Genesis 28:10",
+          "Genesis 46:1",
+          "Genesis 46:5"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tel Beer Sheva, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a075d61/beersheba-2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.840833,
+          31.244722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aa3ff18",
+        "kind": "place",
+        "name": "Bered",
+        "label": "Bered",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 116,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Competing proposals",
+        "confidenceScore": 459,
+        "modernName": "Haluza",
+        "alternativeCount": 4,
+        "references": [
+          "Genesis 16:14"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Haluza, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aa3ff18/bered"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.652,
+          31.097
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a64f355",
+        "kind": "place",
+        "name": "Bethel",
+        "label": "Bethel",
+        "alternateNames": [
+          "Beth-el",
+          "Beth-elite",
+          "Bethelite"
+        ],
+        "labelOffset": [
+          -0.85,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 3.8,
+        "labelPriority": 431,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 716,
+        "modernName": "Beitin",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 12:8",
+          "Genesis 13:3",
+          "Genesis 28:19",
+          "Genesis 31:13",
+          "Genesis 35:1",
+          "Genesis 35:3",
+          "Genesis 35:6",
+          "Genesis 35:7",
+          "Genesis 35:8",
+          "Genesis 35:9",
+          "Genesis 35:15",
+          "Genesis 35:16"
+        ],
+        "description": "A central hill-country settlement closely tied to Abraham, Jacob, and Israel's worship.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a64f355/bethel-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.241389,
+          31.922778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a112427",
+        "kind": "place",
+        "name": "Bethlehem",
+        "label": "Bethlehem",
+        "alternateNames": [
+          "Beth-lehem",
+          "Beth-lehem Ephratah",
+          "Beth-lehem-judah",
+          "Beth-lehemite",
+          "Bethlehem Ephrathah",
+          "Bethlehem of Ephrathah",
+          "Bethlehemite"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 6.2,
+        "labelPriority": 288,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Bethlehem",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 35:19",
+          "Genesis 48:7"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Bethlehem, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a112427/bethlehem-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.207639,
+          31.704306
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a871210",
+        "kind": "place",
+        "name": "Bozrah",
+        "label": "Bozrah",
+        "alternateNames": [],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 240,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 880,
+        "modernName": "Buseira",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 36:33"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Buseira, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a871210/bozrah-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.603919,
+          30.745843
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ae1f807",
+        "kind": "place",
+        "name": "Calah",
+        "label": "Calah",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 6.2,
+        "labelPriority": 288,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Nimrud",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 10:11",
+          "Genesis 10:12"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Nimrud, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ae1f807/calah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.328889,
+          36.098056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aee80af",
+        "kind": "place",
+        "name": "Calneh",
+        "label": "Calneh",
+        "alternateNames": [
+          "Kalneh"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 58,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Highly uncertain",
+        "confidenceScore": 168,
+        "modernName": "Nippur",
+        "alternativeCount": 4,
+        "references": [
+          "Genesis 10:10"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Nippur, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aee80af/calneh-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.230833,
+          32.126111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a581f0c",
+        "kind": "place",
+        "name": "Canaan",
+        "label": "Canaan",
+        "alternateNames": [
+          "Beautiful Land",
+          "Canaanite",
+          "Canaanites",
+          "Chanaan",
+          "Gentile",
+          "Glorious Land",
+          "Phoenicia",
+          "Phoenician"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 3.8,
+        "labelPriority": 720,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Canaan",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 10:19",
+          "Genesis 11:31",
+          "Genesis 12:5",
+          "Genesis 12:10",
+          "Genesis 13:12",
+          "Genesis 16:3",
+          "Genesis 17:8",
+          "Genesis 23:2",
+          "Genesis 23:19",
+          "Genesis 28:1",
+          "Genesis 28:6",
+          "Genesis 28:8",
+          "Genesis 31:18",
+          "Genesis 33:18",
+          "Genesis 35:6",
+          "Genesis 36:2",
+          "Genesis 36:5",
+          "Genesis 36:6",
+          "Genesis 37:1",
+          "Genesis 42:5",
+          "Genesis 42:7",
+          "Genesis 42:13",
+          "Genesis 42:29",
+          "Genesis 42:32",
+          "Genesis 43:1",
+          "Genesis 44:8",
+          "Genesis 45:17",
+          "Genesis 45:25",
+          "Genesis 46:6",
+          "Genesis 46:12",
+          "Genesis 46:31",
+          "Genesis 47:1",
+          "Genesis 47:4",
+          "Genesis 47:13",
+          "Genesis 47:14",
+          "Genesis 47:15",
+          "Genesis 48:3",
+          "Genesis 48:4",
+          "Genesis 48:7",
+          "Genesis 48:21",
+          "Genesis 49:30",
+          "Genesis 50:5",
+          "Genesis 50:13"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a581f0c/canaan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.333333,
+          32.766667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a329990",
+        "kind": "place",
+        "name": "Caphtor",
+        "label": "Caphtor",
+        "alternateNames": [
+          "Caphthorim",
+          "Caphtorim",
+          "Caphtorims",
+          "Caphtorites",
+          "Crete"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 175,
+        "selectionZoom": 9.2,
+        "featureType": "Island",
+        "locationRole": "Representative point",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 757,
+        "modernName": "Crete",
+        "alternativeCount": 5,
+        "references": [
+          "Genesis 10:14"
+        ],
+        "description": "A island mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a329990/caphtor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.893333,
+          35.309722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a32a4f8",
+        "kind": "place",
+        "name": "Chaldeans",
+        "label": "Chaldeans",
+        "alternateNames": [
+          "Chaldea",
+          "Babylon",
+          "Babylonia",
+          "Babylonian",
+          "Babylonians",
+          "Chaldaeans",
+          "Chaldean",
+          "Chaldees"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 4.5,
+        "labelPriority": 312,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Tell el Muqayyar",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 11:28",
+          "Genesis 11:31",
+          "Genesis 15:7"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a32a4f8/chaldea"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.104444,
+          30.962222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ab41e6b",
+        "kind": "place",
+        "name": "Chezib",
+        "label": "Chezib",
+        "alternateNames": [
+          "Kezib"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 111,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 437,
+        "modernName": "Tel el Beida",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 38:5"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tel el Beida, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ab41e6b/chezib"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.953019,
+          31.642074
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a74ee0d",
+        "kind": "place",
+        "name": "Cush",
+        "label": "Cush",
+        "alternateNames": [
+          "Ethiopia"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 126,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 510,
+        "modernName": "Babylon",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 2:13"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a74ee0d/cush-2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.422222,
+          32.543333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a69c1d4",
+        "kind": "place",
+        "name": "Damascus",
+        "label": "Damascus",
+        "alternateNames": [
+          "Desert of Damascus",
+          "Syria-damascus",
+          "Wilderness of Damascus"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 6.2,
+        "labelPriority": 288,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Damascus",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 14:15",
+          "Genesis 15:2"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Damascus, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a69c1d4/damascus"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.30639,
+          33.511112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a513646",
+        "kind": "place",
+        "name": "Dan",
+        "label": "Dan",
+        "alternateNames": [
+          "Dan Jaan",
+          "Dan-jaan",
+          "Laish",
+          "Leshem",
+          "Vedan"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Tel Dan",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 14:14"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tel Dan, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a513646/dan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.652,
+          33.249
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "abed304",
+        "kind": "place",
+        "name": "Dead Sea",
+        "label": "Dead Sea",
+        "alternateNames": [
+          "Salt Sea",
+          "Dead Sea Valley",
+          "Sea",
+          "Sea of Arabah",
+          "Sea of the Arabah",
+          "sea of Arabah",
+          "sea of the Arabah"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 6.2,
+        "featureType": "Body of water",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Dead Sea",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 14:3"
+        ],
+        "description": "A body of water mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/abed304/salt-sea"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5,
+          31.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ae28fc7",
+        "kind": "place",
+        "name": "Dinhabah",
+        "label": "Dinhabah",
+        "alternateNames": [],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 24,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Highly uncertain",
+        "confidenceScore": -76,
+        "modernName": "Khirbet el Muhatta",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 36:32"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Khirbet el Muhatta, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ae28fc7/dinhabah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.722377,
+          31.798459
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ab635e4",
+        "kind": "place",
+        "name": "Dothan",
+        "label": "Dothan",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 239,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 877,
+        "modernName": "Tel Dotan",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 37:17"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tel Dotan, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ab635e4/dothan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.239861,
+          32.413528
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ab0b2dd",
+        "kind": "place",
+        "name": "East",
+        "label": "East",
+        "alternateNames": [
+          "Easterners"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 4.5,
+        "labelPriority": 288,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Amman",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 25:6",
+          "Genesis 29:1"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ab0b2dd/east"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.9343,
+          31.9547
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "af3daeb",
+        "kind": "place",
+        "name": "Eden",
+        "label": "Eden",
+        "alternateNames": [
+          "Garden of Eden"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 5.2,
+        "labelPriority": 180,
+        "selectionZoom": 9.2,
+        "featureType": "Garden",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Competing proposals",
+        "confidenceScore": 178,
+        "modernName": "Armenia",
+        "alternativeCount": 4,
+        "references": [
+          "Genesis 2:8",
+          "Genesis 2:10",
+          "Genesis 2:15",
+          "Genesis 3:23",
+          "Genesis 3:24",
+          "Genesis 4:16"
+        ],
+        "description": "A garden mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/af3daeb/eden-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.95,
+          40.383333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ab80fa1",
+        "kind": "place",
+        "name": "Eder",
+        "label": "Eder",
+        "alternateNames": [
+          "Edar",
+          "Migdal Eder",
+          "Migdal-eder",
+          "Tower of Eder"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 150,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 632,
+        "modernName": "Khirbet es Siyar el Ghanam",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 35:21"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Khirbet es Siyar el Ghanam, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ab80fa1/eder-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.230111,
+          31.707306
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a2735ff",
+        "kind": "place",
+        "name": "Edom",
+        "label": "Edom",
+        "alternateNames": [
+          "Aram",
+          "Arameans",
+          "Desert of Edom",
+          "Edomite",
+          "Edomites",
+          "Esau",
+          "Idumea",
+          "Syria",
+          "Syrians",
+          "Wilderness of Edom"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 3.8,
+        "labelPriority": 456,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 880,
+        "modernName": "Buseira",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 32:3",
+          "Genesis 36:9",
+          "Genesis 36:16",
+          "Genesis 36:17",
+          "Genesis 36:20",
+          "Genesis 36:21",
+          "Genesis 36:31",
+          "Genesis 36:32",
+          "Genesis 36:40",
+          "Genesis 36:43"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a2735ff/edom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.603919,
+          30.745843
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "af301ca",
+        "kind": "place",
+        "name": "Egypt",
+        "label": "Egypt",
+        "alternateNames": [
+          "Brook of Egypt",
+          "Egyptian",
+          "Egyptians",
+          "Lower",
+          "Lower Egypt",
+          "Nile",
+          "Proud",
+          "Proud One",
+          "Rahab",
+          "Rahab-Hem-Shebeth",
+          "River of Egypt",
+          "Wadi of Egypt",
+          "northern Egypt"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 3.8,
+        "labelPriority": 720,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Ain Shams",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 12:10",
+          "Genesis 12:11",
+          "Genesis 12:14",
+          "Genesis 13:1",
+          "Genesis 13:10",
+          "Genesis 15:18",
+          "Genesis 21:21",
+          "Genesis 25:18",
+          "Genesis 26:2",
+          "Genesis 37:25",
+          "Genesis 37:28",
+          "Genesis 37:36",
+          "Genesis 39:1",
+          "Genesis 40:1",
+          "Genesis 40:5",
+          "Genesis 41:8",
+          "Genesis 41:19",
+          "Genesis 41:29",
+          "Genesis 41:30",
+          "Genesis 41:33",
+          "Genesis 41:34",
+          "Genesis 41:36",
+          "Genesis 41:41",
+          "Genesis 41:43",
+          "Genesis 41:44",
+          "Genesis 41:45",
+          "Genesis 41:46",
+          "Genesis 41:48",
+          "Genesis 41:53",
+          "Genesis 41:54",
+          "Genesis 41:55",
+          "Genesis 41:56",
+          "Genesis 41:57",
+          "Genesis 42:1",
+          "Genesis 42:2",
+          "Genesis 42:3",
+          "Genesis 42:5",
+          "Genesis 42:6",
+          "Genesis 42:15",
+          "Genesis 43:2",
+          "Genesis 43:15",
+          "Genesis 43:20",
+          "Genesis 45:4",
+          "Genesis 45:8",
+          "Genesis 45:9",
+          "Genesis 45:13",
+          "Genesis 45:18",
+          "Genesis 45:19",
+          "Genesis 45:20",
+          "Genesis 45:23",
+          "Genesis 45:25",
+          "Genesis 45:26",
+          "Genesis 46:1",
+          "Genesis 46:3",
+          "Genesis 46:4",
+          "Genesis 46:5",
+          "Genesis 46:6",
+          "Genesis 46:7",
+          "Genesis 46:8",
+          "Genesis 46:20",
+          "Genesis 46:26",
+          "Genesis 46:27",
+          "Genesis 47:4",
+          "Genesis 47:6",
+          "Genesis 47:11",
+          "Genesis 47:13",
+          "Genesis 47:14",
+          "Genesis 47:15",
+          "Genesis 47:20",
+          "Genesis 47:21",
+          "Genesis 47:26",
+          "Genesis 47:27",
+          "Genesis 47:28",
+          "Genesis 47:29",
+          "Genesis 47:30",
+          "Genesis 48:5",
+          "Genesis 48:9",
+          "Genesis 50:7",
+          "Genesis 50:14",
+          "Genesis 50:22",
+          "Genesis 50:24",
+          "Genesis 50:26"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/af301ca/egypt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.3075,
+          30.129444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a30b045",
+        "kind": "place",
+        "name": "El-bethel",
+        "label": "El-bethel",
+        "alternateNames": [
+          "El Bethel",
+          "El-Bethel",
+          "El-beth-el"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 167,
+        "selectionZoom": 9.2,
+        "featureType": "Altar",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 716,
+        "modernName": "Beitin",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 35:7"
+        ],
+        "description": "A altar mentioned in Genesis, mapped at Beitin, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a30b045/el-bethel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.241389,
+          31.922778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a738bf1",
+        "kind": "place",
+        "name": "El-paran",
+        "label": "El-paran",
+        "alternateNames": [
+          "El Paran",
+          "El-Paran"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 92,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 340,
+        "modernName": "Aqaba",
+        "alternativeCount": 6,
+        "references": [
+          "Genesis 14:6"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Aqaba, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a738bf1/el-paran"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.999999,
+          29.530676
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a7e3a59",
+        "kind": "place",
+        "name": "Elam",
+        "label": "Elam",
+        "alternateNames": [
+          "Elamites"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 4.5,
+        "labelPriority": 288,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Shush",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 14:1",
+          "Genesis 14:9"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a7e3a59/elam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          48.25778,
+          32.18922
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a6f4a6d",
+        "kind": "place",
+        "name": "Ellasar",
+        "label": "Ellasar",
+        "alternateNames": [],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 6.2,
+        "labelPriority": 91,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 215,
+        "modernName": "Assur",
+        "alternativeCount": 10,
+        "references": [
+          "Genesis 14:1",
+          "Genesis 14:9"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Assur, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a6f4a6d/ellasar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.2625,
+          35.456667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a59fdf2",
+        "kind": "place",
+        "name": "Enaim",
+        "label": "Enaim",
+        "alternateNames": [
+          "Eynayim"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 6.2,
+        "labelPriority": 59,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Highly uncertain",
+        "confidenceScore": 54,
+        "modernName": "Khirbet Beit Ika",
+        "alternativeCount": 5,
+        "references": [
+          "Genesis 38:14",
+          "Genesis 38:21"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Khirbet Beit Ika, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a59fdf2/enaim"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.012365,
+          31.68768
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "af4e985",
+        "kind": "place",
+        "name": "Ephrath",
+        "label": "Ephrath",
+        "alternateNames": [],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 6.2,
+        "labelPriority": 312,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Bethlehem",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 35:16",
+          "Genesis 35:19",
+          "Genesis 48:7"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Bethlehem, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/af4e985/ephrath"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.207639,
+          31.704306
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a5db1a6",
+        "kind": "place",
+        "name": "Erech",
+        "label": "Erech",
+        "alternateNames": [
+          "Archevites",
+          "Erechites",
+          "Erechs",
+          "Uruk"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Uruk",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 10:10"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Uruk, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a5db1a6/erech"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.636111,
+          31.322222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a43608b",
+        "kind": "place",
+        "name": "Esek",
+        "label": "Esek",
+        "alternateNames": [],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 119,
+        "selectionZoom": 9.2,
+        "featureType": "Well",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 476,
+        "modernName": "between Gerar and Beersheba",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 26:20"
+        ],
+        "description": "A well mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a43608b/esek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6062,
+          31.424497
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a62dec4",
+        "kind": "place",
+        "name": "Euphrates (Genesis 2)",
+        "label": "Euphrates (Genesis 2)",
+        "alternateNames": [
+          "Euphrates",
+          "Euphrates River",
+          "Great River",
+          "Perath",
+          "River",
+          "River Euphrates"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 4.5,
+        "labelPriority": 312,
+        "selectionZoom": 6.2,
+        "featureType": "River",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Euphrates River",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 2:14",
+          "Genesis 15:18",
+          "Genesis 31:21"
+        ],
+        "description": "A river mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a62dec4/euphrates"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.442,
+          31.0043
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a3bb384",
+        "kind": "place",
+        "name": "Euphrates (Genesis 36)",
+        "label": "Euphrates (Genesis 36)",
+        "alternateNames": [
+          "River",
+          "Euphrates",
+          "Euphrates River",
+          "Rehoboth-by-the-River",
+          "Rehoboth-on-the-River"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 77,
+        "selectionZoom": 6.2,
+        "featureType": "River",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 267,
+        "modernName": "Wadi al Hasa",
+        "alternativeCount": 7,
+        "references": [
+          "Genesis 36:37"
+        ],
+        "description": "A river mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a3bb384/river-3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.48533,
+          31.02701
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a694ea2",
+        "kind": "place",
+        "name": "Galeed",
+        "label": "Galeed",
+        "alternateNames": [
+          "Mizpah",
+          "Jegar Sahadutha",
+          "Jegar-sahadutha"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 6.2,
+        "labelPriority": 88,
+        "selectionZoom": 9.2,
+        "featureType": "Stone heap",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Highly uncertain",
+        "confidenceScore": 82,
+        "modernName": "Jel‘ad",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 31:47",
+          "Genesis 31:48",
+          "Genesis 31:49"
+        ],
+        "description": "A stone heap mentioned in Genesis, mapped at Jel‘ad, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a694ea2/mizpah-4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.77702,
+          32.118511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aa8edd2",
+        "kind": "place",
+        "name": "Gaza",
+        "label": "Gaza",
+        "alternateNames": [
+          "Azzah",
+          "Gazathites",
+          "Gazite",
+          "Gazites"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Tell Harube",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 10:19"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tell Harube, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aa8edd2/gaza"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4644,
+          31.504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a3f5814",
+        "kind": "place",
+        "name": "Gerar",
+        "label": "Gerar",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 5.2,
+        "labelPriority": 307,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 694,
+        "modernName": "Tel Haror",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 10:19",
+          "Genesis 20:1",
+          "Genesis 20:2",
+          "Genesis 26:1",
+          "Genesis 26:6",
+          "Genesis 26:20",
+          "Genesis 26:26"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tel Haror, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a3f5814/gerar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6065,
+          31.3821
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a816ed9",
+        "kind": "place",
+        "name": "Gerar Valley",
+        "label": "Gerar Valley",
+        "alternateNames": [
+          "Valley of Gerar",
+          "valley of Gerar"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 4.5,
+        "labelPriority": 187,
+        "selectionZoom": 6.2,
+        "featureType": "Valley",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 694,
+        "modernName": "Tel Haror",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 26:17",
+          "Genesis 26:19"
+        ],
+        "description": "A valley mentioned in Genesis, mapped at Tel Haror, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a816ed9/valley-of-gerar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6065,
+          31.3821
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a71d79b",
+        "kind": "place",
+        "name": "Gihon",
+        "label": "Gihon",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 63,
+        "selectionZoom": 6.2,
+        "featureType": "River",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Competing proposals",
+        "confidenceScore": 193,
+        "modernName": "Nile River",
+        "alternativeCount": 7,
+        "references": [
+          "Genesis 2:13"
+        ],
+        "description": "A river mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a71d79b/gihon-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3667,
+          31.4653
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ae73b90",
+        "kind": "place",
+        "name": "Gilead",
+        "label": "Gilead",
+        "alternateNames": [
+          "Gileadite",
+          "Gileadites",
+          "Mount Gilead"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 4.5,
+        "labelPriority": 235,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 694,
+        "modernName": "Tell edh Dhahab esh Sherqiyeh",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 31:21",
+          "Genesis 31:23",
+          "Genesis 31:25",
+          "Genesis 37:25"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ae73b90/gilead-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.69211,
+          32.187016
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a9796ee",
+        "kind": "place",
+        "name": "Goiim",
+        "label": "Goiim",
+        "alternateNames": [
+          "Goyim"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 4.5,
+        "labelPriority": 102,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 269,
+        "modernName": "Damascus",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 14:1",
+          "Genesis 14:9"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a9796ee/goiim-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.30639,
+          33.511112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aa572e2",
+        "kind": "place",
+        "name": "Gomorrah",
+        "label": "Gomorrah\nuncertain",
+        "alternateNames": [
+          "Gomorrha"
+        ],
+        "labelOffset": [
+          1.15,
+          1.3
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 3.8,
+        "labelPriority": 263,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Several competing proposals",
+        "confidenceScore": 236,
+        "modernName": "south of the Lisan",
+        "alternativeCount": 5,
+        "references": [
+          "Genesis 10:19",
+          "Genesis 13:10",
+          "Genesis 14:2",
+          "Genesis 14:8",
+          "Genesis 14:10",
+          "Genesis 14:11",
+          "Genesis 18:20",
+          "Genesis 19:24",
+          "Genesis 19:28"
+        ],
+        "description": "A city of the plain remembered in Genesis; its precise location remains uncertain.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aa572e2/gomorrah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.449223,
+          31.20849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a60f092",
+        "kind": "place",
+        "name": "Goshen",
+        "label": "Goshen",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 3.8,
+        "labelPriority": 320,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 519,
+        "modernName": "Qantir",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 45:10",
+          "Genesis 46:28",
+          "Genesis 46:29",
+          "Genesis 46:34",
+          "Genesis 47:1",
+          "Genesis 47:4",
+          "Genesis 47:6",
+          "Genesis 47:27",
+          "Genesis 50:8"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a60f092/goshen-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.834217,
+          30.79937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a7a5f29",
+        "kind": "place",
+        "name": "Ham",
+        "label": "Ham",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 144,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 599,
+        "modernName": "Tell Ham",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 14:5"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tell Ham, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a7a5f29/ham-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.812384,
+          32.514213
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a6d9af3",
+        "kind": "place",
+        "name": "Haran",
+        "label": "Haran",
+        "alternateNames": [
+          "Charran",
+          "Harran"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 5.2,
+        "labelPriority": 392,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 922,
+        "modernName": "Harran",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 11:31",
+          "Genesis 11:32",
+          "Genesis 12:4",
+          "Genesis 12:5",
+          "Genesis 27:43",
+          "Genesis 28:10",
+          "Genesis 29:4"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Harran, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a6d9af3/haran"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.032778,
+          36.864444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ad7e819",
+        "kind": "place",
+        "name": "Havilah (Genesis 2)",
+        "label": "Havilah (Genesis 2)",
+        "alternateNames": [
+          "Havilah"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 90,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 328,
+        "modernName": "Babylon",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 2:11"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ad7e819/havilah-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.422222,
+          32.543333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ac5e5c4",
+        "kind": "place",
+        "name": "Havilah (Genesis 25)",
+        "label": "Havilah (Genesis 25)",
+        "alternateNames": [
+          "Havilah"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 128,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 519,
+        "modernName": "Arabian Peninsula",
+        "alternativeCount": 4,
+        "references": [
+          "Genesis 25:18"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ac5e5c4/havilah-2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46,
+          23
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a4d6a38",
+        "kind": "place",
+        "name": "Hazazon-tamar",
+        "label": "Hazazon-tamar",
+        "alternateNames": [
+          "Hazazon-Tamar",
+          "Hazezon Tamar",
+          "Hazezon-tamar"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 89,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 325,
+        "modernName": "En Hazeva",
+        "alternativeCount": 4,
+        "references": [
+          "Genesis 14:7"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at En Hazeva, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a4d6a38/hazazon-tamar-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2459,
+          30.8087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a85151a",
+        "kind": "place",
+        "name": "Hebron",
+        "label": "Hebron",
+        "alternateNames": [
+          "Arba",
+          "Arbah",
+          "Kiriath Arba",
+          "Kiriath-Arba",
+          "Kiriath-arba",
+          "Kirjath Arba",
+          "Kirjath-arba"
+        ],
+        "labelOffset": [
+          -1.25,
+          -0.2
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 5.2,
+        "labelPriority": 336,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Tel Rumeida",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 13:18",
+          "Genesis 23:2",
+          "Genesis 23:19",
+          "Genesis 35:27"
+        ],
+        "description": "A major hill-country settlement associated with Abraham, Sarah, and the patriarchal family.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a85151a/hebron"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.10222,
+          31.525087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a6779cd",
+        "kind": "place",
+        "name": "Hobah",
+        "label": "Hobah",
+        "alternateNames": [],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 56,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Competing proposals",
+        "confidenceScore": 158,
+        "modernName": "Hoba",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 14:15"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Hoba, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a6779cd/hobah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.066667,
+          34.25
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aca7bd9",
+        "kind": "place",
+        "name": "Jabbok",
+        "label": "Jabbok",
+        "alternateNames": [
+          "Jabbok River",
+          "Jabbok Valley",
+          "River Jabbok",
+          "Wadi Jabbok"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 6.2,
+        "featureType": "River",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Zarqa River",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 32:22"
+        ],
+        "description": "A river mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aca7bd9/jabbok"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.543056,
+          32.11525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ae686c9",
+        "kind": "place",
+        "name": "Jordan",
+        "label": "Jordan",
+        "alternateNames": [
+          "Jordan River",
+          "Jordan Valley",
+          "Transjordan",
+          "Transjordanian"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 4.5,
+        "labelPriority": 312,
+        "selectionZoom": 6.2,
+        "featureType": "River",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Jordan River",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 32:10",
+          "Genesis 50:10",
+          "Genesis 50:11"
+        ],
+        "description": "A river mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ae686c9/jordan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.558333,
+          31.761389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ac2cef0",
+        "kind": "place",
+        "name": "Kadesh",
+        "label": "Kadesh",
+        "alternateNames": [
+          "Kadesh-barnea",
+          "En Mishpat",
+          "En-Mishpat",
+          "En-mishpat",
+          "Kadesh Barnea",
+          "Meribah Kadesh",
+          "Meribah-Kadesh",
+          "Meribath-kadesh",
+          "Waters of Meribah-kadesh"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 6.2,
+        "labelPriority": 285,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 864,
+        "modernName": "Ain el Qudeirat",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 14:7",
+          "Genesis 16:14",
+          "Genesis 20:1"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Ain el Qudeirat, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ac2cef0/kadesh-barnea"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.422222,
+          30.648333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ac9f98d",
+        "kind": "place",
+        "name": "King’s Valley",
+        "label": "King’s Valley",
+        "alternateNames": [
+          "Valley of the King"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 115,
+        "selectionZoom": 6.2,
+        "featureType": "Valley",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 456,
+        "modernName": "intersection of Kidron Valley and Valley of Hinnom",
+        "alternativeCount": 4,
+        "references": [
+          "Genesis 14:17"
+        ],
+        "description": "A valley mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ac9f98d/kings-valley"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.235985,
+          31.767198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "adaef13",
+        "kind": "place",
+        "name": "Lasha",
+        "label": "Lasha",
+        "alternateNames": [],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 91,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 335,
+        "modernName": "Callirrhoe",
+        "alternativeCount": 12,
+        "references": [
+          "Genesis 10:19"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Callirrhoe, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/adaef13/lasha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.559306,
+          31.597
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a397042",
+        "kind": "place",
+        "name": "Luz",
+        "label": "Luz",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 6.2,
+        "labelPriority": 215,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 716,
+        "modernName": "Beitin",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 28:19",
+          "Genesis 35:6",
+          "Genesis 48:3"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Beitin, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a397042/luz-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.241389,
+          31.922778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ae00861",
+        "kind": "place",
+        "name": "Machpelah",
+        "label": "Machpelah",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 5.2,
+        "labelPriority": 384,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Cave of the Patriarchs",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 23:9",
+          "Genesis 23:17",
+          "Genesis 23:19",
+          "Genesis 25:9",
+          "Genesis 49:30",
+          "Genesis 50:13"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Cave of the Patriarchs, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ae00861/machpelah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.110758,
+          31.524672
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ae5bfe9",
+        "kind": "place",
+        "name": "Mahanaim",
+        "label": "Mahanaim",
+        "alternateNames": [],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 155,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 654,
+        "modernName": "Tell edh Dhahab el Gharbi",
+        "alternativeCount": 5,
+        "references": [
+          "Genesis 32:2"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tell edh Dhahab el Gharbi, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ae5bfe9/mahanaim"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.68667,
+          32.18575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a57e0a0",
+        "kind": "place",
+        "name": "Masrekah",
+        "label": "Masrekah",
+        "alternateNames": [],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 131,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 537,
+        "modernName": "Jebel el Musraq",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 36:36"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Jebel el Musraq, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a57e0a0/masrekah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.463611,
+          29.946944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a6b4fb2",
+        "kind": "place",
+        "name": "Mesha",
+        "label": "Mesha",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 73,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 246,
+        "modernName": "Massa",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 10:30"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a6b4fb2/mesha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          41.552048,
+          29.61094
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a43f60f",
+        "kind": "place",
+        "name": "Mesopotamia",
+        "label": "Mesopotamia",
+        "alternateNames": [
+          "Aram",
+          "Aram Naharaim",
+          "Aram-Naharaim",
+          "Aram-naharaim",
+          "Armon",
+          "Armon Haraim"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 248,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 922,
+        "modernName": "Harran",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 24:10"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a43f60f/mesopotamia"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.032778,
+          36.864444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a3498b5",
+        "kind": "place",
+        "name": "Mezahab",
+        "label": "Mezahab",
+        "alternateNames": [
+          "Me-Zahab",
+          "Me-zahab"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 38,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Highly uncertain",
+        "confidenceScore": 72,
+        "modernName": "Ad Duhaybah",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 36:39"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Ad Duhaybah, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a3498b5/mezahab"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.050752,
+          31.806601
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "acc6d8e",
+        "kind": "place",
+        "name": "Midian",
+        "label": "Midian",
+        "alternateNames": [
+          "Madian",
+          "Midianite",
+          "Midianites"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Al Bad",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 36:35"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/acc6d8e/midian"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.0122,
+          28.4947
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aa0b1d6",
+        "kind": "place",
+        "name": "Moab",
+        "label": "Moab",
+        "alternateNames": [
+          "Moabite",
+          "Moabites",
+          "Wilderness of Moab"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 185,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 805,
+        "modernName": "Kerak",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 36:35"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aa0b1d6/moab-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.701389,
+          31.180556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "adaf385",
+        "kind": "place",
+        "name": "Moriah",
+        "label": "Moriah",
+        "alternateNames": [],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 89,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 325,
+        "modernName": "Mount Moriah",
+        "alternativeCount": 6,
+        "references": [
+          "Genesis 22:2"
+        ],
+        "description": "A region mentioned in Genesis, mapped at Mount Moriah, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/adaf385/moriah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.235556,
+          31.777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aff43ac",
+        "kind": "place",
+        "name": "Nahor",
+        "label": "Nahor",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 118,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 468,
+        "modernName": "Harran",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 24:10"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Harran, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aff43ac/nahor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.032778,
+          36.864444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a1cb244",
+        "kind": "place",
+        "name": "Negev",
+        "label": "Negev",
+        "alternateNames": [
+          "Negeb",
+          "Ramoth-negev",
+          "South",
+          "southern Judah",
+          "southern part of Judah"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 4.5,
+        "labelPriority": 309,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 823,
+        "modernName": "Tel Beer Sheva",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 12:9",
+          "Genesis 13:1",
+          "Genesis 13:3",
+          "Genesis 20:1",
+          "Genesis 24:62",
+          "Genesis 25:11"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a1cb244/negeb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.840833,
+          31.244722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a012705",
+        "kind": "place",
+        "name": "Nile",
+        "label": "Nile",
+        "alternateNames": [
+          "Nile River",
+          "River",
+          "Shihor",
+          "Sihor"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 4.5,
+        "labelPriority": 384,
+        "selectionZoom": 6.2,
+        "featureType": "River",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Nile River",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 41:1",
+          "Genesis 41:2",
+          "Genesis 41:3",
+          "Genesis 41:17",
+          "Genesis 41:18",
+          "Genesis 41:19"
+        ],
+        "description": "A river mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a012705/nile"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.3667,
+          31.4653
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a70fd5d",
+        "kind": "place",
+        "name": "Nineveh",
+        "label": "Nineveh",
+        "alternateNames": [
+          "Huzzab",
+          "Nineve",
+          "Ninevites"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 6.2,
+        "labelPriority": 288,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Nineveh",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 10:11",
+          "Genesis 10:12"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Nineveh, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a70fd5d/nineveh"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1528,
+          36.3594
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aeb9e97",
+        "kind": "place",
+        "name": "Oak of Mamre",
+        "label": "Oak of Mamre",
+        "alternateNames": [
+          "Mamre"
+        ],
+        "labelOffset": [
+          1.05,
+          0.7
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 5.2,
+        "labelPriority": 277,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 667,
+        "modernName": "Ramat el Khalil",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 23:17",
+          "Genesis 23:19",
+          "Genesis 25:9",
+          "Genesis 35:27",
+          "Genesis 49:30",
+          "Genesis 50:13"
+        ],
+        "description": "The place near Hebron where Abraham lived and welcomed three visitors.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aeb9e97/mamre"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.105336,
+          31.556536
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a38ad9f",
+        "kind": "place",
+        "name": "Oak of Moreh",
+        "label": "Oak of Moreh",
+        "alternateNames": [
+          "Moreh"
+        ],
+        "labelOffset": [
+          1.05,
+          1.2
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 215,
+        "selectionZoom": 9.2,
+        "featureType": "Tree",
+        "locationRole": "Leading identification",
+        "status": "associated",
+        "confidence": "Associated with Shechem",
+        "confidenceScore": 953,
+        "modernName": "Tell Balatah",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 12:6"
+        ],
+        "description": "The oak associated with Abram's arrival near Shechem.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a38ad9f/moreh-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.281944,
+          32.213611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "acd9137",
+        "kind": "place",
+        "name": "On",
+        "label": "On",
+        "alternateNames": [
+          "Heliopolis",
+          "Aven",
+          "Beth Shemesh",
+          "Beth-shemesh"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 6.2,
+        "labelPriority": 312,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Ain Shams",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 41:45",
+          "Genesis 41:50",
+          "Genesis 46:20"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Ain Shams, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/acd9137/heliopolis"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.3075,
+          30.129444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a8ec7ba",
+        "kind": "place",
+        "name": "Paddan-aram",
+        "label": "Paddan-aram",
+        "alternateNames": [
+          "Padan",
+          "Padan Aram",
+          "Padan-aram",
+          "Paddan",
+          "Paddan Aram",
+          "Paddan-Aram"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 3.8,
+        "labelPriority": 369,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 527,
+        "modernName": "Harran",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 25:20",
+          "Genesis 28:2",
+          "Genesis 28:5",
+          "Genesis 28:6",
+          "Genesis 28:7",
+          "Genesis 31:18",
+          "Genesis 33:18",
+          "Genesis 35:9",
+          "Genesis 35:26",
+          "Genesis 46:15",
+          "Genesis 48:7"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a8ec7ba/paddan-aram"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.032778,
+          36.864444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aa6b19b",
+        "kind": "place",
+        "name": "Paran",
+        "label": "Paran",
+        "alternateNames": [
+          "Desert of Paran",
+          "Maon",
+          "Wilderness of Paran"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Paran",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 21:21"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aa6b19b/paran"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.776667,
+          30.303218
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a880de2",
+        "kind": "place",
+        "name": "Pau",
+        "label": "Pau",
+        "alternateNames": [
+          "Pai"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 97,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 367,
+        "modernName": "Wadi Fai",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 36:39"
+        ],
+        "description": "A settlement mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a880de2/pau"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.19,
+          31.121389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a8a9ff9",
+        "kind": "place",
+        "name": "Penuel",
+        "label": "Penuel",
+        "alternateNames": [
+          "Peniel"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 6.2,
+        "labelPriority": 187,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 694,
+        "modernName": "Tell edh Dhahab esh Sherqiyeh",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 32:30",
+          "Genesis 32:31"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tell edh Dhahab esh Sherqiyeh, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a8a9ff9/penuel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.69211,
+          32.187016
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a19b076",
+        "kind": "place",
+        "name": "Pishon",
+        "label": "Pishon",
+        "alternateNames": [
+          "Pison"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 53,
+        "selectionZoom": 6.2,
+        "featureType": "River",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Competing proposals",
+        "confidenceScore": 145,
+        "modernName": "Wadi Baysh",
+        "alternativeCount": 10,
+        "references": [
+          "Genesis 2:11"
+        ],
+        "description": "A river mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a19b076/pishon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.416389,
+          17.119722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aa54aa4",
+        "kind": "place",
+        "name": "plain of the Jordan",
+        "label": "plain of the Jordan",
+        "alternateNames": [
+          "Jordan Valley",
+          "Jordan",
+          "Jordan plain",
+          "Plain",
+          "plain of Jordan",
+          "region of the Jordan",
+          "vicinity of the Jordan"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 4.5,
+        "labelPriority": 408,
+        "selectionZoom": 6.2,
+        "featureType": "Valley",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Jordan Valley",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 13:10",
+          "Genesis 13:11",
+          "Genesis 13:12",
+          "Genesis 19:17",
+          "Genesis 19:25",
+          "Genesis 19:28",
+          "Genesis 19:29"
+        ],
+        "description": "A valley mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aa54aa4/jordan-valley"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.57,
+          32.317222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a079b21",
+        "kind": "place",
+        "name": "Rameses",
+        "label": "Rameses",
+        "alternateNames": [
+          "Raamses"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 126,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 509,
+        "modernName": "Qantir",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 47:11"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Qantir, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a079b21/rameses"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.834217,
+          30.79937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ab1d954",
+        "kind": "place",
+        "name": "Rehoboth (Genesis 26)",
+        "label": "Rehoboth (Genesis 26)",
+        "alternateNames": [
+          "Rehoboth"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 135,
+        "selectionZoom": 9.2,
+        "featureType": "Well",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 556,
+        "modernName": "Ruheibeh",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 26:22"
+        ],
+        "description": "A well mentioned in Genesis, mapped at Ruheibeh, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ab1d954/rehoboth-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.565833,
+          31.031111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a17e154",
+        "kind": "place",
+        "name": "Rehoboth (Genesis 36)",
+        "label": "Rehoboth (Genesis 36)",
+        "alternateNames": [
+          "Rehoboth",
+          "Rehoboth-by-the-River",
+          "Rehoboth-on-the-River"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 108,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 421,
+        "modernName": "Ras Rihab",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 36:37"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Ras Rihab, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a17e154/rehoboth-2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.610889,
+          30.93318
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a260ff1",
+        "kind": "place",
+        "name": "Rehoboth Ir",
+        "label": "Rehoboth Ir",
+        "alternateNames": [
+          "Rehoboth-Ir",
+          "Rehoboth",
+          "Rehoboth-ir"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 128,
+        "selectionZoom": 9.2,
+        "featureType": "District in settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 519,
+        "modernName": "Nineveh",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 10:11"
+        ],
+        "description": "A district in settlement mentioned in Genesis, mapped at Nineveh, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a260ff1/rehoboth-ir"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1528,
+          36.3594
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "abd8ada",
+        "kind": "place",
+        "name": "Resen",
+        "label": "Resen",
+        "alternateNames": [],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 59,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Highly uncertain",
+        "confidenceScore": 176,
+        "modernName": "Qaryat as Salamiyah",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 10:12"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Qaryat as Salamiyah, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/abd8ada/resen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.31452,
+          36.1437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aad7e4e",
+        "kind": "place",
+        "name": "Salem",
+        "label": "Salem",
+        "alternateNames": [
+          "Jerusalem"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Jerusalem",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 14:18"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Jerusalem, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aad7e4e/salem"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.234167,
+          31.776667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ae981db",
+        "kind": "place",
+        "name": "Seir",
+        "label": "Seir",
+        "alternateNames": [
+          "Mount Seir",
+          "Edom",
+          "Edomites",
+          "Seirites",
+          "hill country of Seir",
+          "mountain of Seir"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 4.5,
+        "labelPriority": 323,
+        "selectionZoom": 6.2,
+        "featureType": "Mountain range",
+        "locationRole": "Representative point",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 775,
+        "modernName": "Jebel esh Shera",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 14:6",
+          "Genesis 32:3",
+          "Genesis 33:14",
+          "Genesis 33:16",
+          "Genesis 36:8",
+          "Genesis 36:9",
+          "Genesis 36:30"
+        ],
+        "description": "A mountain range mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/ae981db/mount-seir-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3166,
+          30.1843
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a3cae2c",
+        "kind": "place",
+        "name": "Sephar",
+        "label": "Sephar",
+        "alternateNames": [],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 91,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Competing proposals",
+        "confidenceScore": 335,
+        "modernName": "Zafar",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 10:30"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Zafar, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a3cae2c/sephar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.402874,
+          14.213898
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a86d49f",
+        "kind": "place",
+        "name": "Shaveh-kiriathaim",
+        "label": "Shaveh-kiriathaim",
+        "alternateNames": [
+          "Shaveh Kiriathaim",
+          "Shaveh-Kiriathaim"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 85,
+        "selectionZoom": 9.2,
+        "featureType": "Natural area",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 306,
+        "modernName": "Al Qurayyat",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 14:5"
+        ],
+        "description": "A natural area mentioned in Genesis, mapped at Al Qurayyat, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a86d49f/shaveh-kiriathaim"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.686111,
+          31.540556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "adf74d4",
+        "kind": "place",
+        "name": "Shechem",
+        "label": "Shechem",
+        "alternateNames": [
+          "Shechemites",
+          "Sichem",
+          "Sychem"
+        ],
+        "labelOffset": [
+          1.05,
+          -0.2
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 5.2,
+        "labelPriority": 384,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Tell Balatah",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 12:6",
+          "Genesis 33:18",
+          "Genesis 35:4",
+          "Genesis 37:12",
+          "Genesis 37:13",
+          "Genesis 37:14"
+        ],
+        "description": "A major biblical settlement in the central hill country, near modern Nablus.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/adf74d4/shechem"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.281944,
+          32.213611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aa4680a",
+        "kind": "place",
+        "name": "Shiloh",
+        "label": "Shiloh",
+        "alternateNames": [
+          "Shilonite"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Khirbet Seilun",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 49:10"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Khirbet Seilun, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aa4680a/shiloh"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.289536,
+          32.055703
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "af725b1",
+        "kind": "place",
+        "name": "Shinar",
+        "label": "Shinar",
+        "alternateNames": [
+          "Babylon",
+          "Babylonia",
+          "Babylonian",
+          "Babylonish"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 4.5,
+        "labelPriority": 336,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Babylon",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 10:10",
+          "Genesis 11:2",
+          "Genesis 14:1",
+          "Genesis 14:9"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/af725b1/shinar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.422222,
+          32.543333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "acdbce0",
+        "kind": "place",
+        "name": "Shur",
+        "label": "Shur",
+        "alternateNames": [
+          "Desert of Shur",
+          "Wilderness of Shur"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 4.5,
+        "labelPriority": 183,
+        "selectionZoom": 5.4,
+        "featureType": "Region",
+        "locationRole": "Representative point",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 554,
+        "modernName": "Ar Ruwaysat",
+        "alternativeCount": 2,
+        "references": [
+          "Genesis 16:7",
+          "Genesis 20:1",
+          "Genesis 25:18"
+        ],
+        "description": "A region mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/acdbce0/shur"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.956667,
+          30.493333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a98e4d7",
+        "kind": "place",
+        "name": "Sidon",
+        "label": "Sidon",
+        "alternateNames": [
+          "Great Sidon",
+          "Greater Sidon",
+          "Sidon the Great",
+          "Sidonian",
+          "Sidonians",
+          "Zidon",
+          "Zidonians",
+          "great Zidon",
+          "greater Sidon"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 6.2,
+        "labelPriority": 288,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Sandikli archaeological site in Sidon",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 10:19",
+          "Genesis 49:13"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Sandikli archaeological site in Sidon, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a98e4d7/sidon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.371944,
+          33.560985
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aa454f7",
+        "kind": "place",
+        "name": "Sitnah",
+        "label": "Sitnah",
+        "alternateNames": [],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 8.2,
+        "labelPriority": 59,
+        "selectionZoom": 9.2,
+        "featureType": "Well",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Competing proposals",
+        "confidenceScore": 173,
+        "modernName": "Sutnet er Ruheibeh",
+        "alternativeCount": 7,
+        "references": [
+          "Genesis 26:21"
+        ],
+        "description": "A well mentioned in Genesis, mapped at Sutnet er Ruheibeh, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aa454f7/sitnah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.572534,
+          31.031128
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a0aa664",
+        "kind": "place",
+        "name": "Sodom",
+        "label": "Sodom\nuncertain",
+        "alternateNames": [
+          "Sodoma"
+        ],
+        "labelOffset": [
+          -1.1,
+          -0.4
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 3.8,
+        "labelPriority": 530,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Several competing proposals",
+        "confidenceScore": 250,
+        "modernName": "south of the Lisan",
+        "alternativeCount": 4,
+        "references": [
+          "Genesis 10:19",
+          "Genesis 13:10",
+          "Genesis 13:12",
+          "Genesis 13:13",
+          "Genesis 14:2",
+          "Genesis 14:8",
+          "Genesis 14:10",
+          "Genesis 14:11",
+          "Genesis 14:12",
+          "Genesis 14:17",
+          "Genesis 14:21",
+          "Genesis 14:22",
+          "Genesis 18:16",
+          "Genesis 18:20",
+          "Genesis 18:22",
+          "Genesis 18:26",
+          "Genesis 19:1",
+          "Genesis 19:4",
+          "Genesis 19:24",
+          "Genesis 19:28"
+        ],
+        "description": "A city of the plain remembered in Genesis; its precise location remains uncertain.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a0aa664/sodom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.449223,
+          31.20849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a0905b5",
+        "kind": "place",
+        "name": "Succoth",
+        "label": "Succoth",
+        "alternateNames": [
+          "Sukkoth"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 144,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 600,
+        "modernName": "Tell Deir Alla",
+        "alternativeCount": 1,
+        "references": [
+          "Genesis 33:17"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tell Deir Alla, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a0905b5/succoth-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.62118,
+          32.1966
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a559399",
+        "kind": "place",
+        "name": "The Lord Will Provide",
+        "label": "The Lord Will Provide",
+        "alternateNames": [
+          "Jehovah-jireh",
+          "Mount",
+          "The Lord provides",
+          "The Lord will provide",
+          "The-Lord-Will-Provide",
+          "Yahweh will provide",
+          "Yahweh-Yireh"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 113,
+        "selectionZoom": 9.2,
+        "featureType": "Hill",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 444,
+        "modernName": "Mount Moriah",
+        "alternativeCount": 4,
+        "references": [
+          "Genesis 22:14"
+        ],
+        "description": "A hill mentioned in Genesis, mapped at Mount Moriah, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a559399/the-lord-will-provide"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.235556,
+          31.777778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a38ebfd",
+        "kind": "place",
+        "name": "Tigris",
+        "label": "Tigris",
+        "alternateNames": [
+          "Hiddekel",
+          "Tigris River"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 6.2,
+        "featureType": "River",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Tigris River",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 2:14"
+        ],
+        "description": "A river mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a38ebfd/tigris"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.4421,
+          31.0043
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a17c178",
+        "kind": "place",
+        "name": "Timnah",
+        "label": "Timnah",
+        "alternateNames": [
+          "Timnath"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 6.2,
+        "labelPriority": 120,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Competing proposals",
+        "confidenceScore": 238,
+        "modernName": "Tel Batash",
+        "alternativeCount": 7,
+        "references": [
+          "Genesis 38:12",
+          "Genesis 38:13",
+          "Genesis 38:14"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tel Batash, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a17c178/timnah-3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.910297,
+          31.784831
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a6cf75c",
+        "kind": "place",
+        "name": "Ur",
+        "label": "Ur",
+        "alternateNames": [],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 6.2,
+        "labelPriority": 213,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "identified",
+        "confidence": "Strong candidate",
+        "confidenceScore": 703,
+        "modernName": "Tell el Muqayyar",
+        "alternativeCount": 3,
+        "references": [
+          "Genesis 11:28",
+          "Genesis 11:31",
+          "Genesis 15:7"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Tell el Muqayyar, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a6cf75c/ur-1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.104444,
+          30.962222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a375f5a",
+        "kind": "place",
+        "name": "valley of Hebron",
+        "label": "valley of Hebron",
+        "alternateNames": [
+          "Valley of Hebron",
+          "Hebron",
+          "Hebron Valley"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 8.2,
+        "labelPriority": 264,
+        "selectionZoom": 6.2,
+        "featureType": "Valley",
+        "locationRole": "Representative point",
+        "status": "confirmed",
+        "confidence": "High confidence",
+        "confidenceScore": 1000,
+        "modernName": "Tel Rumeida",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 37:14"
+        ],
+        "description": "A valley mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a375f5a/valley-of-hebron"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.10222,
+          31.525087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a402ee4",
+        "kind": "place",
+        "name": "Valley of Shaveh",
+        "label": "Valley of Shaveh",
+        "alternateNames": [
+          "Shaveh Valley",
+          "valley of Shaveh"
+        ],
+        "labelOffset": [
+          0,
+          -1.05
+        ],
+        "labelAnchor": "bottom",
+        "labelMinZoom": 8.2,
+        "labelPriority": 115,
+        "selectionZoom": 6.2,
+        "featureType": "Valley",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 456,
+        "modernName": "intersection of Kidron Valley and Valley of Hinnom",
+        "alternativeCount": 4,
+        "references": [
+          "Genesis 14:17"
+        ],
+        "description": "A valley mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a402ee4/valley-of-shaveh"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.235985,
+          31.767198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a4a5cce",
+        "kind": "place",
+        "name": "Valley of Siddim",
+        "label": "Valley of Siddim",
+        "alternateNames": [
+          "Siddim",
+          "Siddim Valley",
+          "valley of Siddim",
+          "valley of the Dead Sea"
+        ],
+        "labelOffset": [
+          0,
+          1.05
+        ],
+        "labelAnchor": "top",
+        "labelMinZoom": 4.5,
+        "labelPriority": 201,
+        "selectionZoom": 6.2,
+        "featureType": "Valley",
+        "locationRole": "Representative point",
+        "status": "identified",
+        "confidence": "Leading candidate",
+        "confidenceScore": 647,
+        "modernName": "south of the Lisan",
+        "alternativeCount": 0,
+        "references": [
+          "Genesis 14:3",
+          "Genesis 14:8",
+          "Genesis 14:10"
+        ],
+        "description": "A valley mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/a4a5cce/valley-of-siddim"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.449223,
+          31.20849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "abfbfb9",
+        "kind": "place",
+        "name": "Zeboiim",
+        "label": "Zeboiim",
+        "alternateNames": [
+          "Zeboim",
+          "Zeboyim"
+        ],
+        "labelOffset": [
+          0.9,
+          0
+        ],
+        "labelAnchor": "left",
+        "labelMinZoom": 6.2,
+        "labelPriority": 141,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Representative point",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 343,
+        "modernName": "south of the Lisan",
+        "alternativeCount": 4,
+        "references": [
+          "Genesis 10:19",
+          "Genesis 14:2",
+          "Genesis 14:8"
+        ],
+        "description": "A settlement mentioned in Genesis, shown with a representative point for its broader geographic area.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/abfbfb9/zeboiim"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.449223,
+          31.20849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aacfcda",
+        "kind": "place",
+        "name": "Zoar",
+        "label": "Zoar",
+        "alternateNames": [
+          "Bela"
+        ],
+        "labelOffset": [
+          -0.9,
+          0
+        ],
+        "labelAnchor": "right",
+        "labelMinZoom": 5.2,
+        "labelPriority": 213,
+        "selectionZoom": 9.2,
+        "featureType": "Settlement",
+        "locationRole": "Leading identification",
+        "status": "uncertain",
+        "confidence": "Tentative identification",
+        "confidenceScore": 347,
+        "modernName": "Al Safi",
+        "alternativeCount": 8,
+        "references": [
+          "Genesis 13:10",
+          "Genesis 14:2",
+          "Genesis 14:8",
+          "Genesis 19:22",
+          "Genesis 19:23",
+          "Genesis 19:30"
+        ],
+        "description": "A settlement mentioned in Genesis, mapped at Al Safi, the leading identification in the OpenBible.info dataset.",
+        "sourceUrl": "https://www.openbible.info/geo/ancient/aacfcda/zoar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.487657,
+          31.036904
+        ]
+      }
+    }
+  ]
+}
