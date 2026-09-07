@@ -13,6 +13,7 @@ import type { FeatureCollection } from 'geojson';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { INITIAL_VIEW, MAP_BOUNDS, MAP_STYLE_URL } from '../config';
 import type { BibleMapData, PlaceFeature } from '../types';
+import { enableMiddleMousePan } from './middle-mouse-pan';
 
 const MAP_SOURCE_ID = 'genesis-places';
 const SELECTED_SOURCE_ID = 'selected-place';
@@ -134,6 +135,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     dragRotate: false,
     touchPitch: false,
   });
+  const disableMiddleMousePan = enableMiddleMousePan(map);
 
   // The app shell uses a viewport-height grid. In some browsers MapLibre can
   // initialize before that grid has resolved its final row height, leaving a
@@ -443,6 +445,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
   return {
     selectPlace,
     destroy: () => {
+      disableMiddleMousePan();
       resizeObserver.disconnect();
       map.off('load', resizeMap);
       detailPopup.remove();
