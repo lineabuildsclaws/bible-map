@@ -423,6 +423,14 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
         return;
       }
 
+      const selectedPlaceWasClicked = clickedPlaces.some(
+        (candidate) => candidate.properties.id === lastSelectedPlaceId,
+      );
+      if (selectedPlaceWasClicked && detailPopup.isOpen()) {
+        clearSelection();
+        return;
+      }
+
       const place =
         clickedPlaces.find((candidate) => candidate.properties.id === lastSelectedPlaceId) ??
         clickedPlaces.sort((left, right) => right.properties.confidenceScore - left.properties.confidenceScore)[0];
