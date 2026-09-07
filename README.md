@@ -11,7 +11,7 @@ unknown in the source data.
 - searches biblical names, translation variants, and leading modern associations;
 - uses zoom-aware label tiers to keep continent and local views readable;
 - searches and immediately centers a selected place, with no cinematic flight;
-- compares two mapped places with an approximate straight-line distance;
+- measures an ordered path through up to seven mapped places using approximate straight-line distances;
 - uses an appropriate selection zoom for broad regions and precise sites;
 - explains feature type, confidence, modern association, Genesis references,
   source, and alternative proposals;
@@ -24,6 +24,14 @@ Requires Node 22+ and npm 10+.
 ```sh
 npm ci
 npm run dev
+```
+
+This checkout uses the versioned `.githooks/post-commit` hook to push each
+successful local commit to its branch's configured remote automatically. Enable
+it in a new clone with:
+
+```sh
+git config core.hooksPath .githooks
 ```
 
 Quality checks:

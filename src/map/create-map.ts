@@ -65,7 +65,7 @@ setWorkerUrl(mapLibreWorkerUrl);
 
 export interface BibleMapController {
   selectPlace: (place: PlaceFeature, options?: { move?: boolean; preserveZoom?: boolean }) => void;
-  showDistance: (from: PlaceFeature, to: PlaceFeature) => void;
+  showDistance: (places: readonly PlaceFeature[]) => void;
   clearDistance: () => void;
   destroy: () => void;
 }
@@ -87,7 +87,7 @@ function featureForSource(place: PlaceFeature): FeatureCollection {
   return { type: 'FeatureCollection', features: [place] };
 }
 
-function distanceFeatures(from: PlaceFeature, to: PlaceFeature): FeatureCollection {
+function distanceFeatures(places: readonly PlaceFeature[]): FeatureCollection {
   return {
     type: 'FeatureCollection',
     features: [
@@ -96,19 +96,19 @@ function distanceFeatures(from: PlaceFeature, to: PlaceFeature): FeatureCollecti
         properties: { kind: 'distance-line' },
         geometry: {
           type: 'LineString',
-          coordinates: [from.geometry.coordinates, to.geometry.coordinates],
+          coordinates: places.map((place) => place.geometry.coordinates),
         },
       },
-      {
-        type: 'Feature',
-        properties: { kind: 'distance-endpoint', endpoint: 'from', label: from.properties.name },
-        geometry: from.geometry,
-      },
-      {
-        type: 'Feature',
-        properties: { kind: 'distance-endpoint', endpoint: 'to', label: to.properties.name },
-        geometry: to.geometry,
-      },
+      ...places.map((place, index) => ({
+        type: 'Feature' as const,
+        properties: {
+          kind: 'distance-endpoint',
+          endpoint: index === 0 ? 'from' : index === places.length - 1 ? 'to' : 'via',
+          label: place.properties.name,
+          order: index + 1,
+        },
+        geometry: place.geometry,
+      })),
     ],
   };
 }
@@ -291,31 +291,30 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     onPlaceCleared?.();
   };
 
-  const showDistance = (from: PlaceFeature, to: PlaceFeature): void => {
+  const showDistance = (places: readonly PlaceFeature[]): void => {
+    if (places.length < 2) return;
     clearSelection();
     const distanceSource = map.getSource(DISTANCE_SOURCE_ID) as GeoJSONSource | undefined;
-    distanceSource?.setData(distanceFeatures(from, to));
+    distanceSource?.setData(distanceFeatures(places));
 
-    const [fromLongitude, fromLatitude] = from.geometry.coordinates;
-    const [toLongitude, toLatitude] = to.geometry.coordinates;
-    if (
-      fromLongitude === undefined ||
-      fromLatitude === undefined ||
-      toLongitude === undefined ||
-      toLatitude === undefined
-    ) {
-      return;
-    }
+    const coordinates = places.map((place) => place.geometry.coordinates);
+    if (coordinates.some(([longitude, latitude]) => longitude === undefined || latitude === undefined)) return;
+    const longitudes = coordinates.map(([longitude]) => longitude ?? 0);
+    const latitudes = coordinates.map(([, latitude]) => latitude ?? 0);
+    const west = Math.min(...longitudes);
+    const east = Math.max(...longitudes);
+    const south = Math.min(...latitudes);
+    const north = Math.max(...latitudes);
 
-    if (fromLongitude === toLongitude && fromLatitude === toLatitude) {
-      map.jumpTo({ center: [fromLongitude, fromLatitude], zoom: Math.max(map.getZoom(), 9.5) });
+    if (west === east && south === north) {
+      map.jumpTo({ center: [west, south], zoom: Math.max(map.getZoom(), 9.5) });
       return;
     }
 
     map.fitBounds(
       [
-        [Math.min(fromLongitude, toLongitude), Math.min(fromLatitude, toLatitude)],
-        [Math.max(fromLongitude, toLongitude), Math.max(fromLatitude, toLatitude)],
+        [west, south],
+        [east, north],
       ],
       { padding: 80, maxZoom: 9.5, duration: 0 },
     );
@@ -544,10 +543,10 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       source: DISTANCE_SOURCE_ID,
       filter: ['==', ['get', 'kind'], 'distance-endpoint'],
       paint: {
-        'circle-radius': 5.5,
-        'circle-color': ['match', ['get', 'endpoint'], 'from', '#47796d', '#b17925'],
-        'circle-stroke-color': '#fffaf0',
-        'circle-stroke-width': 1.5,
+        'circle-radius': ['match', ['get', 'endpoint'], 'via', 4.5, 5.5],
+        'circle-color': ['match', ['get', 'endpoint'], 'from', '#47796d', 'to', '#b17925', '#fffaf0'],
+        'circle-stroke-color': ['match', ['get', 'endpoint'], 'via', '#a96e1b', '#fffaf0'],
+        'circle-stroke-width': ['match', ['get', 'endpoint'], 'via', 2, 1.5],
       },
     });
 
@@ -557,11 +556,21 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       source: DISTANCE_SOURCE_ID,
       filter: ['==', ['get', 'kind'], 'distance-endpoint'],
       layout: {
-        'text-field': ['get', 'label'],
+        'text-field': ['concat', ['to-string', ['get', 'order']], '. ', ['get', 'label']],
         'text-font': ['Noto Sans Bold'],
-        'text-size': 14,
-        'text-offset': [0, 1.35],
-        'text-anchor': 'top',
+        'text-size': 13,
+        'text-offset': [
+          'match',
+          ['%', ['get', 'order'], 4],
+          0,
+          ['literal', [-1.25, 0]],
+          1,
+          ['literal', [0, 1.35]],
+          2,
+          ['literal', [1.25, 0]],
+          ['literal', [0, -1.35]],
+        ],
+        'text-anchor': ['match', ['%', ['get', 'order'], 4], 0, 'right', 1, 'top', 2, 'left', 'bottom'],
         'text-allow-overlap': true,
         'text-ignore-placement': true,
       },

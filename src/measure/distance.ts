@@ -34,7 +34,19 @@ export function approximateDistance(
   from: GeographicCoordinate,
   to: GeographicCoordinate,
 ): { kilometers: number; miles: number } {
-  const kilometers = greatCircleDistanceKm(from, to);
+  return approximateRouteDistance([from, to]);
+}
+
+export function approximateRouteDistance(
+  coordinates: readonly GeographicCoordinate[],
+): { kilometers: number; miles: number } {
+  let kilometers = 0;
+  for (let index = 1; index < coordinates.length; index += 1) {
+    const from = coordinates[index - 1];
+    const to = coordinates[index];
+    if (from && to) kilometers += greatCircleDistanceKm(from, to);
+  }
+
   return {
     kilometers: roundForApproximation(kilometers),
     miles: roundForApproximation(kilometers / KILOMETERS_PER_MILE),

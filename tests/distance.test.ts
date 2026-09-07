@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { approximateDistance, greatCircleDistanceKm } from '../src/measure/distance';
+import { approximateDistance, approximateRouteDistance, greatCircleDistanceKm } from '../src/measure/distance';
 
 describe('straight-line distance', () => {
   it('returns zero for the same point', () => {
@@ -21,5 +21,17 @@ describe('straight-line distance', () => {
       kilometers: 2,
       miles: 1.2,
     });
+  });
+
+  it('adds consecutive legs for a multi-place measurement', () => {
+    const route = approximateRouteDistance([
+      [35.241389, 31.922778],
+      [35.261111, 31.916944],
+      [34.840833, 31.244722],
+    ]);
+    const firstLeg = greatCircleDistanceKm([35.241389, 31.922778], [35.261111, 31.916944]);
+    const secondLeg = greatCircleDistanceKm([35.261111, 31.916944], [34.840833, 31.244722]);
+
+    expect(route.kilometers).toBe(Math.round(firstLeg + secondLeg));
   });
 });

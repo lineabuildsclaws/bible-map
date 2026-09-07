@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Keep the checked-out branch's remote counterpart synchronized after every
+# successful local commit. Detached HEAD states are intentionally ignored.
+branch=$(git symbolic-ref --quiet --short HEAD) || exit 0
+remote=$(git config --get "branch.${branch}.remote")
+[ -n "$remote" ] || remote=origin
+[ "$remote" != "." ] || exit 0
+
+merge_ref=$(git config --get "branch.${branch}.merge")
+if [ -n "$merge_ref" ]; then
+  remote_branch=${merge_ref#refs/heads/}
+else
+  remote_branch=$branch
+fi
+
+echo "Auto-pushing ${branch} to ${remote}/${remote_branch}..."
+git push "$remote" "HEAD:refs/heads/${remote_branch}"

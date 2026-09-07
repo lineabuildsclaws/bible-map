@@ -2,7 +2,7 @@ import './styles/app.css';
 import { bibleReferenceUrl } from './bible/references';
 import { loadMapData } from './data';
 import { createBibleMap, type BibleMapController } from './map/create-map';
-import { approximateDistance } from './measure/distance';
+import { approximateRouteDistance } from './measure/distance';
 import { findPlaces, normalizeSearchTerm } from './search/places';
 import type { BibleMapData, PlaceFeature } from './types';
 
@@ -112,36 +112,18 @@ distanceTool.hidden = true;
 const distanceIntro = element(
   'p',
   'distance-tool__intro',
-  'Compare two mapped places by straight-line distance.',
+  'Measure an ordered path through up to seven mapped places.',
 );
 const distanceForm = element('form', 'distance-form') as HTMLFormElement;
 const placeOptions = element('datalist');
 placeOptions.id = 'distance-place-options';
-
-function distanceField(id: string, label: string, placeholder: string): [HTMLDivElement, HTMLInputElement] {
-  const field = element('div', 'distance-field');
-  const fieldLabel = element('label', 'distance-field__label', label);
-  fieldLabel.htmlFor = id;
-  const input = element('input', 'distance-field__input') as HTMLInputElement;
-  input.id = id;
-  input.name = id;
-  input.type = 'search';
-  input.placeholder = placeholder;
-  input.autocomplete = 'off';
-  input.setAttribute('list', placeOptions.id);
-  input.required = true;
-  input.disabled = true;
-  field.append(fieldLabel, input);
-  return [field, input];
-}
-
-const [distanceFromField, distanceFromInput] = distanceField('distance-from', 'From', 'Choose a biblical place');
-const [distanceToField, distanceToInput] = distanceField('distance-to', 'To', 'Choose another place');
 const distanceFields = element('div', 'distance-fields');
-distanceFields.append(distanceFromField, distanceToField);
-const swapDistanceButton = element('button', 'distance-swap', 'Swap places') as HTMLButtonElement;
-swapDistanceButton.type = 'button';
-swapDistanceButton.setAttribute('aria-label', 'Swap starting and ending places');
+const distanceActions = element('div', 'distance-actions');
+const addDistanceButton = element('button', 'distance-add', 'Add place') as HTMLButtonElement;
+addDistanceButton.type = 'button';
+const distancePlaceCount = element('span', 'distance-place-count');
+distancePlaceCount.setAttribute('aria-live', 'polite');
+distanceActions.append(addDistanceButton, distancePlaceCount);
 const measureButton = element('button', 'distance-submit', 'Measure distance') as HTMLButtonElement;
 measureButton.type = 'submit';
 measureButton.disabled = true;
@@ -150,7 +132,83 @@ distanceMessage.setAttribute('aria-live', 'polite');
 const distanceResult = element('section', 'distance-result');
 distanceResult.setAttribute('aria-live', 'polite');
 distanceResult.hidden = true;
-distanceForm.append(distanceFields, swapDistanceButton, measureButton, placeOptions, distanceMessage);
+
+interface DistanceFieldEntry {
+  field: HTMLDivElement;
+  input: HTMLInputElement;
+  label: HTMLLabelElement;
+  removeButton: HTMLButtonElement;
+}
+
+const MAX_DISTANCE_PLACES = 7;
+const distanceFieldEntries: DistanceFieldEntry[] = [];
+let distanceFieldId = 0;
+
+function updateDistanceFields(): void {
+  for (const [index, entry] of distanceFieldEntries.entries()) {
+    const isFirst = index === 0;
+    const isLast = index === distanceFieldEntries.length - 1;
+    const label = isFirst ? 'From' : isLast ? 'To' : `Stop ${index + 1}`;
+    entry.label.textContent = label;
+    entry.input.placeholder = isFirst ? 'Choose a starting place' : isLast ? 'Choose a final place' : 'Choose a stop';
+    entry.field.dataset.position = isFirst ? 'start' : isLast ? 'end' : 'stop';
+    entry.removeButton.hidden = distanceFieldEntries.length <= 2;
+    entry.removeButton.setAttribute('aria-label', `Remove ${label.toLocaleLowerCase()}`);
+  }
+
+  addDistanceButton.disabled = distanceFieldEntries.length >= MAX_DISTANCE_PLACES;
+  distancePlaceCount.textContent = `${distanceFieldEntries.length} / ${MAX_DISTANCE_PLACES}`;
+}
+
+function clearDistanceMeasurement(): void {
+  distanceMessage.textContent = '';
+  distanceResult.hidden = true;
+  mapController?.clearDistance();
+}
+
+function createDistanceField(): DistanceFieldEntry {
+  distanceFieldId += 1;
+  const id = `distance-place-${distanceFieldId}`;
+  const field = element('div', 'distance-field');
+  const fieldLabel = element('label', 'distance-field__label') as HTMLLabelElement;
+  fieldLabel.htmlFor = id;
+  const input = element('input', 'distance-field__input') as HTMLInputElement;
+  input.id = id;
+  input.name = id;
+  input.type = 'search';
+  input.autocomplete = 'off';
+  input.setAttribute('list', placeOptions.id);
+  input.required = true;
+  input.disabled = true;
+  input.addEventListener('input', clearDistanceMeasurement);
+
+  const removeButton = element('button', 'distance-remove', 'Remove') as HTMLButtonElement;
+  removeButton.type = 'button';
+  removeButton.addEventListener('click', () => {
+    if (distanceFieldEntries.length <= 2) return;
+    const index = distanceFieldEntries.findIndex((entry) => entry.field === field);
+    if (index < 0) return;
+    distanceFieldEntries.splice(index, 1);
+    field.remove();
+    updateDistanceFields();
+    clearDistanceMeasurement();
+  });
+
+  field.append(fieldLabel, input, removeButton);
+  return { field, input, label: fieldLabel, removeButton };
+}
+
+function addDistanceField(): HTMLInputElement {
+  const entry = createDistanceField();
+  distanceFieldEntries.push(entry);
+  distanceFields.append(entry.field);
+  updateDistanceFields();
+  return entry.input;
+}
+
+addDistanceField();
+addDistanceField();
+distanceForm.append(distanceFields, distanceActions, measureButton, placeOptions, distanceMessage);
 distanceTool.append(distanceIntro, distanceForm, distanceResult);
 tools.append(searchTool, distanceTool);
 
@@ -320,6 +378,7 @@ function showTool(tool: 'search' | 'distance'): void {
   searchTool.hidden = !showingSearch;
   distanceTool.hidden = showingSearch;
   panel.hidden = !showingSearch;
+  sidebar.classList.toggle('sidebar--distance', !showingSearch);
   searchTab.classList.toggle('tool-tab--active', showingSearch);
   distanceTab.classList.toggle('tool-tab--active', !showingSearch);
   searchTab.setAttribute('aria-selected', String(showingSearch));
@@ -329,8 +388,8 @@ function showTool(tool: 'search' | 'distance'): void {
   if (!showingSearch) hideSearchResults();
   if (showingSearch) mapController?.clearDistance();
 
-  const input = showingSearch ? searchInput : distanceFromInput;
-  if (!input.disabled) input.focus({ preventScroll: true });
+  const input = showingSearch ? searchInput : distanceFieldEntries[0]?.input;
+  if (input && !input.disabled) input.focus({ preventScroll: true });
 }
 
 function resolvePlace(rawQuery: string): PlaceFeature | undefined {
@@ -349,36 +408,39 @@ function resolvePlace(rawQuery: string): PlaceFeature | undefined {
   return exactMatch ?? findPlaces(mapData.places, rawQuery, 1)[0];
 }
 
-function renderDistance(from: PlaceFeature, to: PlaceFeature): void {
-  const [fromLongitude, fromLatitude] = from.geometry.coordinates;
-  const [toLongitude, toLatitude] = to.geometry.coordinates;
-  if (
-    fromLongitude === undefined ||
-    fromLatitude === undefined ||
-    toLongitude === undefined ||
-    toLatitude === undefined
-  ) {
+function renderDistance(places: readonly PlaceFeature[]): void {
+  const coordinates = places.map((place) => place.geometry.coordinates);
+  if (coordinates.some(([longitude, latitude]) => longitude === undefined || latitude === undefined)) {
     distanceMessage.textContent = 'Coordinates are unavailable for one of these places.';
     distanceResult.hidden = true;
     return;
   }
 
-  const { kilometers, miles } = approximateDistance(
-    [fromLongitude, fromLatitude],
-    [toLongitude, toLatitude],
+  const { kilometers, miles } = approximateRouteDistance(
+    coordinates.map(([longitude, latitude]) => [longitude ?? 0, latitude ?? 0]),
   );
-  const route = element('p', 'distance-result__route', `${from.properties.name} to ${to.properties.name}`);
+  const route = element(
+    'p',
+    'distance-result__route',
+    `${places.length}-place measurement`,
+  );
   const value = element('p', 'distance-result__value', `About ${kilometers.toLocaleString()} km`);
-  const secondaryValue = element('p', 'distance-result__secondary', `${miles.toLocaleString()} miles straight-line`);
+  const secondaryValue = element(
+    'p',
+    'distance-result__secondary',
+    `${miles.toLocaleString()} miles across ${places.length - 1} straight-line ${places.length === 2 ? 'leg' : 'legs'}`,
+  );
+  const stopList = element('ol', 'distance-result__stops');
+  for (const place of places) stopList.append(element('li', undefined, place.properties.name));
   const caveat = element(
     'p',
     'distance-result__note',
-    'This is an approximate great-circle distance between the mapped locations—not an ancient travel route.',
+    'This adds the approximate great-circle distance between each consecutive location—not an ancient travel route.',
   );
-  distanceResult.replaceChildren(route, value, secondaryValue, caveat);
+  distanceResult.replaceChildren(route, value, secondaryValue, stopList, caveat);
   distanceResult.hidden = false;
   distanceMessage.textContent = '';
-  mapController?.showDistance(from, to);
+  mapController?.showDistance(places);
 }
 
 function setActiveSearchResult(index: number): void {
@@ -417,44 +479,34 @@ toolTabs.addEventListener('keydown', (event) => {
   (nextTool === 'search' ? searchTab : distanceTab).focus();
 });
 
-swapDistanceButton.addEventListener('click', () => {
-  const previousFrom = distanceFromInput.value;
-  distanceFromInput.value = distanceToInput.value;
-  distanceToInput.value = previousFrom;
-  distanceMessage.textContent = '';
-  if (distanceFromInput.value.trim() && distanceToInput.value.trim()) {
-    distanceForm.requestSubmit();
-  } else {
-    distanceResult.hidden = true;
-    mapController?.clearDistance();
-  }
+addDistanceButton.addEventListener('click', () => {
+  if (distanceFieldEntries.length >= MAX_DISTANCE_PLACES) return;
+  const input = addDistanceField();
+  input.disabled = mapData === undefined;
+  input.focus();
+  clearDistanceMeasurement();
 });
-
-for (const input of [distanceFromInput, distanceToInput]) {
-  input.addEventListener('input', () => {
-    distanceMessage.textContent = '';
-    distanceResult.hidden = true;
-    mapController?.clearDistance();
-  });
-}
 
 distanceForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  const from = resolvePlace(distanceFromInput.value);
-  const to = resolvePlace(distanceToInput.value);
+  const places = distanceFieldEntries.map((entry) => resolvePlace(entry.input.value));
   const missing: string[] = [];
-  if (!from) missing.push(`“${distanceFromInput.value.trim()}”`);
-  if (!to) missing.push(`“${distanceToInput.value.trim()}”`);
-  if (!from || !to) {
+  for (const [index, place] of places.entries()) {
+    if (!place) missing.push(`“${distanceFieldEntries[index]?.input.value.trim() ?? ''}”`);
+  }
+  if (missing.length > 0) {
     distanceMessage.textContent = `No mapped place matches ${missing.join(' or ')}.`;
     distanceResult.hidden = true;
     mapController?.clearDistance();
     return;
   }
 
-  distanceFromInput.value = from.properties.name;
-  distanceToInput.value = to.properties.name;
-  renderDistance(from, to);
+  const resolvedPlaces = places.filter((place): place is PlaceFeature => place !== undefined);
+  for (const [index, place] of resolvedPlaces.entries()) {
+    const entry = distanceFieldEntries[index];
+    if (entry) entry.input.value = place.properties.name;
+  }
+  renderDistance(resolvedPlaces);
 });
 
 function choosePlace(place: PlaceFeature): void {
@@ -576,8 +628,7 @@ void (async () => {
         mapLoading.hidden = true;
         searchInput.disabled = false;
         searchButton.disabled = false;
-        distanceFromInput.disabled = false;
-        distanceToInput.disabled = false;
+        for (const entry of distanceFieldEntries) entry.input.disabled = false;
         measureButton.disabled = false;
         searchInput.focus({ preventScroll: true });
       },
