@@ -1,7 +1,6 @@
 import {
   Map as MapLibreMap,
   NavigationControl,
-  Popup,
   setWorkerUrl,
   type ExpressionSpecification,
   type GeoJSONSource,
@@ -17,6 +16,7 @@ import { enableMiddleMousePan } from './middle-mouse-pan';
 
 const MAP_SOURCE_ID = 'genesis-places';
 const SELECTED_SOURCE_ID = 'selected-place';
+const DISTANCE_SOURCE_ID = 'distance-measurement';
 const LOCAL_CITY_LAYER_ID = 'label_city_local';
 const LOCAL_PLACE_MIN_ZOOM = 10.5;
 const OVERVIEW_CITY_MAX_RANK = 7;
@@ -24,6 +24,26 @@ const CANDIDATE_AREA_LAYER_IDS = ['candidate-area-fill', 'candidate-area-outline
 const CANDIDATE_PLACE_IDS = new Set(['a0aa664', 'aa572e2']);
 const LABEL_TIERS = [3.8, 4.5, 5.2, 6.2, 8.2] as const;
 const PLACE_HIT_LAYER_IDS = LABEL_TIERS.map((tier) => `place-hit-area-${tier}`);
+const MARKER_IMAGE_NAMES = {
+  place: 'marker-place',
+  natural: 'marker-natural',
+  region: 'marker-region',
+  uncertain: 'marker-uncertain',
+} as const;
+const PLACE_MARKER_ICON: ExpressionSpecification = [
+  'case',
+  ['==', ['get', 'status'], 'uncertain'],
+  MARKER_IMAGE_NAMES.uncertain,
+  [
+    'match',
+    ['get', 'featureType'],
+    ['River', 'Body of water', 'Valley', 'Mountain range', 'Natural area', 'Hill'],
+    MARKER_IMAGE_NAMES.natural,
+    'Region',
+    MARKER_IMAGE_NAMES.region,
+    MARKER_IMAGE_NAMES.place,
+  ],
+];
 const QUIET_BASEMAP_LABELS = [
   ['label_town', LOCAL_PLACE_MIN_ZOOM],
   ['label_village', 11.25],
@@ -45,6 +65,8 @@ setWorkerUrl(mapLibreWorkerUrl);
 
 export interface BibleMapController {
   selectPlace: (place: PlaceFeature, options?: { move?: boolean; preserveZoom?: boolean }) => void;
+  showDistance: (from: PlaceFeature, to: PlaceFeature) => void;
+  clearDistance: () => void;
   destroy: () => void;
 }
 
@@ -53,6 +75,7 @@ interface CreateBibleMapOptions {
   data: BibleMapData;
   detailPanel: HTMLElement;
   onPlaceSelected: (place: PlaceFeature) => void;
+  onPlaceCleared?: () => void;
   onReady: () => void;
 }
 
@@ -64,9 +87,87 @@ function featureForSource(place: PlaceFeature): FeatureCollection {
   return { type: 'FeatureCollection', features: [place] };
 }
 
+function distanceFeatures(from: PlaceFeature, to: PlaceFeature): FeatureCollection {
+  return {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        properties: { kind: 'distance-line' },
+        geometry: {
+          type: 'LineString',
+          coordinates: [from.geometry.coordinates, to.geometry.coordinates],
+        },
+      },
+      {
+        type: 'Feature',
+        properties: { kind: 'distance-endpoint', endpoint: 'from', label: from.properties.name },
+        geometry: from.geometry,
+      },
+      {
+        type: 'Feature',
+        properties: { kind: 'distance-endpoint', endpoint: 'to', label: to.properties.name },
+        geometry: to.geometry,
+      },
+    ],
+  };
+}
+
 function featureId(feature: MapGeoJSONFeature): string | undefined {
   const id = feature.properties.id;
   return typeof id === 'string' ? id : undefined;
+}
+
+type MarkerShape = 'circle' | 'diamond' | 'hexagon' | 'uncertain';
+
+function createMarkerImage(shape: MarkerShape, color: string): ImageData {
+  const canvas = document.createElement('canvas');
+  canvas.width = 32;
+  canvas.height = 32;
+  const context = canvas.getContext('2d');
+  if (!context) throw new Error('The browser could not prepare map marker images.');
+
+  context.fillStyle = color;
+  context.strokeStyle = shape === 'uncertain' ? '#9b6a25' : '#f7f2e8';
+  context.lineWidth = 3;
+  context.lineJoin = 'round';
+  context.beginPath();
+
+  if (shape === 'circle' || shape === 'uncertain') {
+    context.arc(16, 16, shape === 'uncertain' ? 11.5 : 9.5, 0, Math.PI * 2);
+    if (shape === 'uncertain') context.setLineDash([4, 3]);
+  } else if (shape === 'diamond') {
+    context.moveTo(16, 3);
+    context.lineTo(29, 16);
+    context.lineTo(16, 29);
+    context.lineTo(3, 16);
+    context.closePath();
+  } else {
+    context.moveTo(16, 3);
+    context.lineTo(27.5, 9.5);
+    context.lineTo(27.5, 22.5);
+    context.lineTo(16, 29);
+    context.lineTo(4.5, 22.5);
+    context.lineTo(4.5, 9.5);
+    context.closePath();
+  }
+
+  context.fill();
+  context.stroke();
+  return context.getImageData(0, 0, canvas.width, canvas.height);
+}
+
+function addMarkerImages(map: MapLibreMap): void {
+  const markerImages: Array<[string, MarkerShape, string]> = [
+    [MARKER_IMAGE_NAMES.place, 'circle', '#3c6659'],
+    [MARKER_IMAGE_NAMES.natural, 'diamond', '#477997'],
+    [MARKER_IMAGE_NAMES.region, 'hexagon', '#756b51'],
+    [MARKER_IMAGE_NAMES.uncertain, 'uncertain', '#f5efe1'],
+  ];
+
+  for (const [name, shape, color] of markerImages) {
+    if (!map.hasImage(name)) map.addImage(name, createMarkerImage(shape, color), { pixelRatio: 2 });
+  }
 }
 
 function configureBasemapLabels(map: MapLibreMap): void {
@@ -118,7 +219,7 @@ function setCandidateAreaVisibility(map: MapLibreMap, placeId?: string): void {
 }
 
 export function createBibleMap(options: CreateBibleMapOptions): BibleMapController {
-  const { container, data, detailPanel, onPlaceSelected, onReady } = options;
+  const { container, data, detailPanel, onPlaceSelected, onPlaceCleared, onReady } = options;
   const placesById = new Map(data.places.map((place) => [place.properties.id, place]));
 
   const map = new MapLibreMap({
@@ -150,21 +251,18 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
   requestAnimationFrame(resizeMap);
   map.on('load', resizeMap);
 
-  const detailPopup = new Popup({
-    anchor: 'bottom',
-    className: 'place-details-popup',
-    closeButton: false,
-    closeOnClick: false,
-    focusAfterOpen: false,
-    maxWidth: 'none',
-    offset: 24,
-  });
   let lastSelectedPlaceId: string | undefined;
+
+  const clearDistance = (): void => {
+    const distanceSource = map.getSource(DISTANCE_SOURCE_ID) as GeoJSONSource | undefined;
+    distanceSource?.setData(emptyFeatureCollection());
+  };
 
   const selectPlace = (
     place: PlaceFeature,
     { move = true, preserveZoom = false }: { move?: boolean; preserveZoom?: boolean } = {},
   ): void => {
+    clearDistance();
     lastSelectedPlaceId = place.properties.id;
     const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
     selectedSource?.setData(featureForSource(place));
@@ -182,15 +280,45 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     }
 
     onPlaceSelected(place);
-    detailPanel.classList.add('place-panel--anchored');
-    detailPopup.setLngLat([longitude, latitude]).setDOMContent(detailPanel).addTo(map);
+    detailPanel.focus({ preventScroll: true });
   };
 
   const clearSelection = (): void => {
     const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
     selectedSource?.setData(emptyFeatureCollection());
     setCandidateAreaVisibility(map);
-    detailPopup.remove();
+    lastSelectedPlaceId = undefined;
+    onPlaceCleared?.();
+  };
+
+  const showDistance = (from: PlaceFeature, to: PlaceFeature): void => {
+    clearSelection();
+    const distanceSource = map.getSource(DISTANCE_SOURCE_ID) as GeoJSONSource | undefined;
+    distanceSource?.setData(distanceFeatures(from, to));
+
+    const [fromLongitude, fromLatitude] = from.geometry.coordinates;
+    const [toLongitude, toLatitude] = to.geometry.coordinates;
+    if (
+      fromLongitude === undefined ||
+      fromLatitude === undefined ||
+      toLongitude === undefined ||
+      toLatitude === undefined
+    ) {
+      return;
+    }
+
+    if (fromLongitude === toLongitude && fromLatitude === toLatitude) {
+      map.jumpTo({ center: [fromLongitude, fromLatitude], zoom: Math.max(map.getZoom(), 9.5) });
+      return;
+    }
+
+    map.fitBounds(
+      [
+        [Math.min(fromLongitude, toLongitude), Math.min(fromLatitude, toLatitude)],
+        [Math.max(fromLongitude, toLongitude), Math.max(fromLatitude, toLatitude)],
+      ],
+      { padding: 80, maxZoom: 9.5, duration: 0 },
+    );
   };
 
   // Do not wait for every remote tile to finish before the app becomes useful.
@@ -200,9 +328,11 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     if (map.getSource(MAP_SOURCE_ID)) return;
 
     configureBasemapLabels(map);
+    addMarkerImages(map);
 
     map.addSource(MAP_SOURCE_ID, { type: 'geojson', data: data.features });
     map.addSource(SELECTED_SOURCE_ID, { type: 'geojson', data: emptyFeatureCollection() });
+    map.addSource(DISTANCE_SOURCE_ID, { type: 'geojson', data: emptyFeatureCollection() });
 
     map.addLayer({
       id: 'candidate-area-fill',
@@ -234,6 +364,30 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       },
     });
 
+    map.addLayer({
+      id: 'distance-line-casing',
+      type: 'line',
+      source: DISTANCE_SOURCE_ID,
+      filter: ['==', ['get', 'kind'], 'distance-line'],
+      paint: {
+        'line-color': '#fffaf0',
+        'line-width': 6,
+        'line-opacity': 0.9,
+      },
+    });
+
+    map.addLayer({
+      id: 'distance-line',
+      type: 'line',
+      source: DISTANCE_SOURCE_ID,
+      filter: ['==', ['get', 'kind'], 'distance-line'],
+      paint: {
+        'line-color': '#a96e1b',
+        'line-width': 2.5,
+        'line-dasharray': [2.2, 1.35],
+      },
+    });
+
     for (const tier of LABEL_TIERS) {
       const tierFilter: ExpressionSpecification = [
         'all',
@@ -243,29 +397,14 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
 
       map.addLayer({
         id: `place-markers-${tier}`,
-        type: 'circle',
+        type: 'symbol',
         source: MAP_SOURCE_ID,
         minzoom: tier,
         filter: tierFilter,
-        paint: {
-          'circle-radius': ['match', ['get', 'status'], 'uncertain', 7.2, ['match', ['get', 'featureType'], 'Region', 6.2, 5.2]],
-          'circle-color': [
-            'case',
-            ['==', ['get', 'status'], 'uncertain'],
-            '#f5efe1',
-            [
-              'match',
-              ['get', 'featureType'],
-              ['River', 'Body of water', 'Valley', 'Mountain range', 'Natural area', 'Hill'],
-              '#477997',
-              'Region',
-              '#756b51',
-              '#3c6659',
-            ],
-          ],
-          'circle-stroke-color': ['match', ['get', 'status'], 'uncertain', '#9b6a25', '#f7f2e8'],
-          'circle-stroke-width': ['match', ['get', 'status'], 'uncertain', 2, 1.5],
-          'circle-opacity': 1,
+        layout: {
+          'icon-image': PLACE_MARKER_ICON,
+          'icon-allow-overlap': true,
+          'icon-ignore-placement': true,
         },
       });
     }
@@ -385,6 +524,54 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       },
     });
 
+    map.addLayer({
+      id: 'distance-endpoint-halo',
+      type: 'circle',
+      source: DISTANCE_SOURCE_ID,
+      filter: ['==', ['get', 'kind'], 'distance-endpoint'],
+      paint: {
+        'circle-radius': 11,
+        'circle-color': '#fffaf0',
+        'circle-opacity': 0.92,
+        'circle-stroke-color': '#a96e1b',
+        'circle-stroke-width': 1.5,
+      },
+    });
+
+    map.addLayer({
+      id: 'distance-endpoint-marker',
+      type: 'circle',
+      source: DISTANCE_SOURCE_ID,
+      filter: ['==', ['get', 'kind'], 'distance-endpoint'],
+      paint: {
+        'circle-radius': 5.5,
+        'circle-color': ['match', ['get', 'endpoint'], 'from', '#47796d', '#b17925'],
+        'circle-stroke-color': '#fffaf0',
+        'circle-stroke-width': 1.5,
+      },
+    });
+
+    map.addLayer({
+      id: 'distance-endpoint-label',
+      type: 'symbol',
+      source: DISTANCE_SOURCE_ID,
+      filter: ['==', ['get', 'kind'], 'distance-endpoint'],
+      layout: {
+        'text-field': ['get', 'label'],
+        'text-font': ['Noto Sans Bold'],
+        'text-size': 14,
+        'text-offset': [0, 1.35],
+        'text-anchor': 'top',
+        'text-allow-overlap': true,
+        'text-ignore-placement': true,
+      },
+      paint: {
+        'text-color': '#5a3a0d',
+        'text-halo-color': '#fffaf0',
+        'text-halo-width': 2.5,
+      },
+    });
+
     for (const tier of LABEL_TIERS) {
       map.addLayer({
         id: `place-hit-area-${tier}`,
@@ -428,7 +615,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       const selectedPlaceWasClicked = clickedPlaces.some(
         (candidate) => candidate.properties.id === lastSelectedPlaceId,
       );
-      if (selectedPlaceWasClicked && detailPopup.isOpen()) {
+      if (selectedPlaceWasClicked) {
         clearSelection();
         return;
       }
@@ -444,11 +631,12 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
 
   return {
     selectPlace,
+    showDistance,
+    clearDistance,
     destroy: () => {
       disableMiddleMousePan();
       resizeObserver.disconnect();
       map.off('load', resizeMap);
-      detailPopup.remove();
       map.remove();
     },
   };

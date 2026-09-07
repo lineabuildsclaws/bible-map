@@ -2,6 +2,7 @@ import './styles/app.css';
 import { bibleReferenceUrl } from './bible/references';
 import { loadMapData } from './data';
 import { createBibleMap, type BibleMapController } from './map/create-map';
+import { approximateDistance } from './measure/distance';
 import { findPlaces, normalizeSearchTerm } from './search/places';
 import type { BibleMapData, PlaceFeature } from './types';
 
@@ -43,11 +44,38 @@ function markerForLegend(kind: LegendMarkerKind): HTMLElement {
 }
 
 const shell = element('div', 'app-shell');
-const header = element('header', 'topbar');
+const sidebar = element('aside', 'sidebar');
+sidebar.setAttribute('aria-label', 'Bible Map tools and place information');
+const header = element('header', 'sidebar__header');
 const identity = element('div', 'identity');
 const eyebrow = element('p', 'eyebrow', 'Bible places in context');
 const title = element('h1', 'identity__title', 'Bible Map');
 identity.append(title, eyebrow);
+header.append(identity);
+
+const toolTabs = element('div', 'tool-tabs');
+toolTabs.setAttribute('role', 'tablist');
+toolTabs.setAttribute('aria-label', 'Map tools');
+const searchTab = element('button', 'tool-tab tool-tab--active', 'Search') as HTMLButtonElement;
+searchTab.type = 'button';
+searchTab.id = 'search-tab';
+searchTab.setAttribute('role', 'tab');
+searchTab.setAttribute('aria-selected', 'true');
+searchTab.setAttribute('aria-controls', 'search-tool');
+const distanceTab = element('button', 'tool-tab', 'Distance') as HTMLButtonElement;
+distanceTab.type = 'button';
+distanceTab.id = 'distance-tab';
+distanceTab.setAttribute('role', 'tab');
+distanceTab.setAttribute('aria-selected', 'false');
+distanceTab.setAttribute('aria-controls', 'distance-tool');
+distanceTab.tabIndex = -1;
+toolTabs.append(searchTab, distanceTab);
+
+const tools = element('div', 'sidebar__tools');
+const searchTool = element('section', 'tool-pane');
+searchTool.id = 'search-tool';
+searchTool.setAttribute('role', 'tabpanel');
+searchTool.setAttribute('aria-labelledby', searchTab.id);
 
 const searchForm = element('form', 'search') as HTMLFormElement;
 searchForm.setAttribute('role', 'search');
@@ -74,7 +102,57 @@ searchResults.hidden = true;
 const searchMessage = element('p', 'search__message');
 searchMessage.setAttribute('aria-live', 'polite');
 searchForm.append(searchLabel, searchInput, searchButton, searchResults, searchMessage);
-header.append(identity, searchForm);
+searchTool.append(searchForm);
+
+const distanceTool = element('section', 'tool-pane distance-tool');
+distanceTool.id = 'distance-tool';
+distanceTool.setAttribute('role', 'tabpanel');
+distanceTool.setAttribute('aria-labelledby', distanceTab.id);
+distanceTool.hidden = true;
+const distanceIntro = element(
+  'p',
+  'distance-tool__intro',
+  'Compare two mapped places by straight-line distance.',
+);
+const distanceForm = element('form', 'distance-form') as HTMLFormElement;
+const placeOptions = element('datalist');
+placeOptions.id = 'distance-place-options';
+
+function distanceField(id: string, label: string, placeholder: string): [HTMLDivElement, HTMLInputElement] {
+  const field = element('div', 'distance-field');
+  const fieldLabel = element('label', 'distance-field__label', label);
+  fieldLabel.htmlFor = id;
+  const input = element('input', 'distance-field__input') as HTMLInputElement;
+  input.id = id;
+  input.name = id;
+  input.type = 'search';
+  input.placeholder = placeholder;
+  input.autocomplete = 'off';
+  input.setAttribute('list', placeOptions.id);
+  input.required = true;
+  input.disabled = true;
+  field.append(fieldLabel, input);
+  return [field, input];
+}
+
+const [distanceFromField, distanceFromInput] = distanceField('distance-from', 'From', 'Choose a biblical place');
+const [distanceToField, distanceToInput] = distanceField('distance-to', 'To', 'Choose another place');
+const distanceFields = element('div', 'distance-fields');
+distanceFields.append(distanceFromField, distanceToField);
+const swapDistanceButton = element('button', 'distance-swap', 'Swap places') as HTMLButtonElement;
+swapDistanceButton.type = 'button';
+swapDistanceButton.setAttribute('aria-label', 'Swap starting and ending places');
+const measureButton = element('button', 'distance-submit', 'Measure distance') as HTMLButtonElement;
+measureButton.type = 'submit';
+measureButton.disabled = true;
+const distanceMessage = element('p', 'distance-message');
+distanceMessage.setAttribute('aria-live', 'polite');
+const distanceResult = element('section', 'distance-result');
+distanceResult.setAttribute('aria-live', 'polite');
+distanceResult.hidden = true;
+distanceForm.append(distanceFields, swapDistanceButton, measureButton, placeOptions, distanceMessage);
+distanceTool.append(distanceIntro, distanceForm, distanceResult);
+tools.append(searchTool, distanceTool);
 
 const workspace = element('main', 'workspace');
 const mapFrame = element('section', 'map-frame');
@@ -97,14 +175,16 @@ appendExternalLink(mapAttribution, 'https://www.openbible.info/geo/', 'OpenBible
 
 mapFrame.append(mapContainer, mapLoading, mapAttribution);
 
-const panel = element('aside', 'place-panel');
+const panel = element('section', 'place-panel');
 panel.tabIndex = -1;
+panel.setAttribute('aria-label', 'Place information');
 panel.setAttribute('aria-live', 'polite');
 const panelContent = element('div', 'panel__content');
 panelContent.id = 'place-panel-content';
 panel.append(panelContent);
-workspace.append(mapFrame, panel);
-shell.append(header, workspace);
+sidebar.append(header, toolTabs, tools, panel);
+workspace.append(mapFrame);
+shell.append(sidebar, workspace);
 root.append(shell);
 
 function replacePanel(...nodes: Node[]): void {
@@ -155,8 +235,6 @@ function renderWelcomePanel(data?: BibleMapData): void {
 }
 
 function renderPlacePanel(place: PlaceFeature): void {
-  workspace.classList.add('workspace--panel-anchored');
-
   const { properties } = place;
   const headerRow = element('div', 'panel__place-header');
   const type = element('p', 'panel__eyebrow', properties.featureType);
@@ -237,6 +315,72 @@ let currentSearchMatches: PlaceFeature[] = [];
 let searchResultOptions: HTMLButtonElement[] = [];
 let activeSearchResultIndex = -1;
 
+function showTool(tool: 'search' | 'distance'): void {
+  const showingSearch = tool === 'search';
+  searchTool.hidden = !showingSearch;
+  distanceTool.hidden = showingSearch;
+  panel.hidden = !showingSearch;
+  searchTab.classList.toggle('tool-tab--active', showingSearch);
+  distanceTab.classList.toggle('tool-tab--active', !showingSearch);
+  searchTab.setAttribute('aria-selected', String(showingSearch));
+  distanceTab.setAttribute('aria-selected', String(!showingSearch));
+  searchTab.tabIndex = showingSearch ? 0 : -1;
+  distanceTab.tabIndex = showingSearch ? -1 : 0;
+  if (!showingSearch) hideSearchResults();
+  if (showingSearch) mapController?.clearDistance();
+
+  const input = showingSearch ? searchInput : distanceFromInput;
+  if (!input.disabled) input.focus({ preventScroll: true });
+}
+
+function resolvePlace(rawQuery: string): PlaceFeature | undefined {
+  if (!mapData) return undefined;
+  const query = normalizeSearchTerm(rawQuery);
+  if (!query) return undefined;
+
+  const exactMatch = mapData.places.find((place) => {
+    const { name, modernName, alternateNames } = place.properties;
+    return (
+      normalizeSearchTerm(name) === query ||
+      normalizeSearchTerm(modernName) === query ||
+      alternateNames.some((alternateName) => normalizeSearchTerm(alternateName) === query)
+    );
+  });
+  return exactMatch ?? findPlaces(mapData.places, rawQuery, 1)[0];
+}
+
+function renderDistance(from: PlaceFeature, to: PlaceFeature): void {
+  const [fromLongitude, fromLatitude] = from.geometry.coordinates;
+  const [toLongitude, toLatitude] = to.geometry.coordinates;
+  if (
+    fromLongitude === undefined ||
+    fromLatitude === undefined ||
+    toLongitude === undefined ||
+    toLatitude === undefined
+  ) {
+    distanceMessage.textContent = 'Coordinates are unavailable for one of these places.';
+    distanceResult.hidden = true;
+    return;
+  }
+
+  const { kilometers, miles } = approximateDistance(
+    [fromLongitude, fromLatitude],
+    [toLongitude, toLatitude],
+  );
+  const route = element('p', 'distance-result__route', `${from.properties.name} to ${to.properties.name}`);
+  const value = element('p', 'distance-result__value', `About ${kilometers.toLocaleString()} km`);
+  const secondaryValue = element('p', 'distance-result__secondary', `${miles.toLocaleString()} miles straight-line`);
+  const caveat = element(
+    'p',
+    'distance-result__note',
+    'This is an approximate great-circle distance between the mapped locations—not an ancient travel route.',
+  );
+  distanceResult.replaceChildren(route, value, secondaryValue, caveat);
+  distanceResult.hidden = false;
+  distanceMessage.textContent = '';
+  mapController?.showDistance(from, to);
+}
+
 function setActiveSearchResult(index: number): void {
   activeSearchResultIndex = index;
 
@@ -262,6 +406,56 @@ function hideSearchResults(): void {
   setActiveSearchResult(-1);
   searchInput.setAttribute('aria-expanded', 'false');
 }
+
+searchTab.addEventListener('click', () => showTool('search'));
+distanceTab.addEventListener('click', () => showTool('distance'));
+toolTabs.addEventListener('keydown', (event) => {
+  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+  event.preventDefault();
+  const nextTool = searchTab.getAttribute('aria-selected') === 'true' ? 'distance' : 'search';
+  showTool(nextTool);
+  (nextTool === 'search' ? searchTab : distanceTab).focus();
+});
+
+swapDistanceButton.addEventListener('click', () => {
+  const previousFrom = distanceFromInput.value;
+  distanceFromInput.value = distanceToInput.value;
+  distanceToInput.value = previousFrom;
+  distanceMessage.textContent = '';
+  if (distanceFromInput.value.trim() && distanceToInput.value.trim()) {
+    distanceForm.requestSubmit();
+  } else {
+    distanceResult.hidden = true;
+    mapController?.clearDistance();
+  }
+});
+
+for (const input of [distanceFromInput, distanceToInput]) {
+  input.addEventListener('input', () => {
+    distanceMessage.textContent = '';
+    distanceResult.hidden = true;
+    mapController?.clearDistance();
+  });
+}
+
+distanceForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const from = resolvePlace(distanceFromInput.value);
+  const to = resolvePlace(distanceToInput.value);
+  const missing: string[] = [];
+  if (!from) missing.push(`“${distanceFromInput.value.trim()}”`);
+  if (!to) missing.push(`“${distanceToInput.value.trim()}”`);
+  if (!from || !to) {
+    distanceMessage.textContent = `No mapped place matches ${missing.join(' or ')}.`;
+    distanceResult.hidden = true;
+    mapController?.clearDistance();
+    return;
+  }
+
+  distanceFromInput.value = from.properties.name;
+  distanceToInput.value = to.properties.name;
+  renderDistance(from, to);
+});
 
 function choosePlace(place: PlaceFeature): void {
   searchInput.value = place.properties.name;
@@ -362,16 +556,29 @@ renderWelcomePanel();
 void (async () => {
   try {
     mapData = await loadMapData();
+    for (const place of mapData.places) {
+      const option = element('option') as HTMLOptionElement;
+      option.value = place.properties.name;
+      option.label = place.properties.modernName;
+      placeOptions.append(option);
+    }
     renderWelcomePanel(mapData);
     mapController = createBibleMap({
       container: mapContainer,
       data: mapData,
       detailPanel: panel,
-      onPlaceSelected: (place) => renderPlacePanel(place),
+      onPlaceSelected: (place) => {
+        renderPlacePanel(place);
+        showTool('search');
+      },
+      onPlaceCleared: () => renderWelcomePanel(mapData),
       onReady: () => {
         mapLoading.hidden = true;
         searchInput.disabled = false;
         searchButton.disabled = false;
+        distanceFromInput.disabled = false;
+        distanceToInput.disabled = false;
+        measureButton.disabled = false;
         searchInput.focus({ preventScroll: true });
       },
     });

@@ -11,6 +11,7 @@ unknown in the source data.
 - searches biblical names, translation variants, and leading modern associations;
 - uses zoom-aware label tiers to keep continent and local views readable;
 - searches and immediately centers a selected place, with no cinematic flight;
+- compares two mapped places with an approximate straight-line distance;
 - uses an appropriate selection zoom for broad regions and precise sites;
 - explains feature type, confidence, modern association, Genesis references,
   source, and alternative proposals;
@@ -81,5 +82,5 @@ data carries OpenStreetMap’s ODbL notice.
 - Passage mode: search a Genesis passage, highlight referenced places, and fit
   them into one quiet map view.
 - Modern-name support: alternate-name search and optional modern labels.
-- No satellite imagery, accounts, tracking, or numeric distance measurement is
-  planned for the initial product.
+- No satellite imagery, accounts, tracking, or turn-by-turn route reconstruction
+  is planned for the initial product.
