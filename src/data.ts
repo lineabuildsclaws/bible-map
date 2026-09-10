@@ -1,4 +1,4 @@
-import { GENESIS_DATA_URL } from './config';
+import { BIBLE_DATA_URL } from './config';
 import type { BibleMapData, MapFeature, MapFeatureCollection, PlaceFeature, PlaceProperties, PlaceStatus } from './types';
 
 const PLACE_STATUSES: ReadonlySet<string> = new Set(['confirmed', 'identified', 'associated', 'uncertain']);
@@ -37,6 +37,7 @@ function isPlaceProperties(value: unknown): value is PlaceProperties {
     typeof value.confidenceScore === 'number' &&
     typeof value.modernName === 'string' &&
     typeof value.alternativeCount === 'number' &&
+    typeof value.mentionCount === 'number' &&
     isStringArray(value.references) &&
     typeof value.description === 'string' &&
     typeof value.sourceUrl === 'string'
@@ -59,11 +60,11 @@ function isPlaceFeature(value: MapFeature): value is PlaceFeature {
 
 export function parseMapData(value: unknown): BibleMapData {
   if (!isRecord(value) || value.type !== 'FeatureCollection' || !Array.isArray(value.features)) {
-    throw new Error('The Genesis map data is not a GeoJSON FeatureCollection.');
+    throw new Error('The Bible map data is not a GeoJSON FeatureCollection.');
   }
 
   if (!value.features.every(isMapFeature)) {
-    throw new Error('The Genesis map data contains an invalid feature.');
+    throw new Error('The Bible map data contains an invalid feature.');
   }
 
   const features: MapFeatureCollection = {
@@ -73,7 +74,7 @@ export function parseMapData(value: unknown): BibleMapData {
   const places = features.features.filter(isPlaceFeature);
 
   if (places.length === 0) {
-    throw new Error('The Genesis map data does not contain any searchable places.');
+    throw new Error('The Bible map data does not contain any searchable places.');
   }
 
   const metadata = isRecord(value.metadata) ? value.metadata : {};
@@ -82,9 +83,9 @@ export function parseMapData(value: unknown): BibleMapData {
 }
 
 export async function loadMapData(): Promise<BibleMapData> {
-  const response = await fetch(GENESIS_DATA_URL, { credentials: 'same-origin' });
+  const response = await fetch(BIBLE_DATA_URL, { credentials: 'same-origin' });
   if (!response.ok) {
-    throw new Error(`The Genesis place data could not be loaded (${response.status}).`);
+    throw new Error(`The Bible place data could not be loaded (${response.status}).`);
   }
 
   return parseMapData(await response.json());

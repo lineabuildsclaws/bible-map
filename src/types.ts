@@ -20,6 +20,7 @@ export interface PlaceProperties extends Record<string, unknown> {
   confidenceScore: number;
   modernName: string;
   alternativeCount: number;
+  mentionCount: number;
   references: string[];
   description: string;
   sourceUrl: string;

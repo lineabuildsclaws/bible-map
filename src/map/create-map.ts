@@ -14,7 +14,7 @@ import { INITIAL_VIEW, MAP_BOUNDS, MAP_STYLE_URL } from '../config';
 import type { BibleMapData, PlaceFeature } from '../types';
 import { enableMiddleMousePan } from './middle-mouse-pan';
 
-const MAP_SOURCE_ID = 'genesis-places';
+const MAP_SOURCE_ID = 'bible-places';
 const SELECTED_SOURCE_ID = 'selected-place';
 const DISTANCE_SOURCE_ID = 'distance-measurement';
 const LOCAL_CITY_LAYER_ID = 'label_city_local';
@@ -22,8 +22,8 @@ const LOCAL_PLACE_MIN_ZOOM = 10.5;
 const OVERVIEW_CITY_MAX_RANK = 7;
 const CANDIDATE_AREA_LAYER_IDS = ['candidate-area-fill', 'candidate-area-outline'] as const;
 const CANDIDATE_PLACE_IDS = new Set(['a0aa664', 'aa572e2']);
-const LABEL_TIERS = [3.8, 4.5, 5.2, 6.2, 8.2] as const;
-const PLACE_HIT_LAYER_IDS = LABEL_TIERS.map((tier) => `place-hit-area-${tier}`);
+const LABEL_TIERS = [3, 4.5, 8.5, 10, 11, 12, 13] as const;
+const PLACE_SYMBOL_LAYER_IDS = LABEL_TIERS.map((tier) => `place-symbols-${tier}`);
 const MARKER_IMAGE_NAMES = {
   place: 'marker-place',
   natural: 'marker-natural',
@@ -118,7 +118,7 @@ function featureId(feature: MapGeoJSONFeature): string | undefined {
   return typeof id === 'string' ? id : undefined;
 }
 
-type MarkerShape = 'circle' | 'diamond' | 'hexagon' | 'uncertain';
+type MarkerShape = 'circle' | 'diamond' | 'hexagon' | 'triangle';
 
 function createMarkerImage(shape: MarkerShape, color: string): ImageData {
   const canvas = document.createElement('canvas');
@@ -128,19 +128,23 @@ function createMarkerImage(shape: MarkerShape, color: string): ImageData {
   if (!context) throw new Error('The browser could not prepare map marker images.');
 
   context.fillStyle = color;
-  context.strokeStyle = shape === 'uncertain' ? '#9b6a25' : '#f7f2e8';
+  context.strokeStyle = '#f7f2e8';
   context.lineWidth = 3;
   context.lineJoin = 'round';
   context.beginPath();
 
-  if (shape === 'circle' || shape === 'uncertain') {
-    context.arc(16, 16, shape === 'uncertain' ? 11.5 : 9.5, 0, Math.PI * 2);
-    if (shape === 'uncertain') context.setLineDash([4, 3]);
+  if (shape === 'circle') {
+    context.arc(16, 16, 9.5, 0, Math.PI * 2);
   } else if (shape === 'diamond') {
     context.moveTo(16, 3);
     context.lineTo(29, 16);
     context.lineTo(16, 29);
     context.lineTo(3, 16);
+    context.closePath();
+  } else if (shape === 'triangle') {
+    context.moveTo(16, 3);
+    context.lineTo(29, 27);
+    context.lineTo(3, 27);
     context.closePath();
   } else {
     context.moveTo(16, 3);
@@ -162,7 +166,7 @@ function addMarkerImages(map: MapLibreMap): void {
     [MARKER_IMAGE_NAMES.place, 'circle', '#3c6659'],
     [MARKER_IMAGE_NAMES.natural, 'diamond', '#477997'],
     [MARKER_IMAGE_NAMES.region, 'hexagon', '#756b51'],
-    [MARKER_IMAGE_NAMES.uncertain, 'uncertain', '#f5efe1'],
+    [MARKER_IMAGE_NAMES.uncertain, 'triangle', '#b17925'],
   ];
 
   for (const [name, shape, color] of markerImages) {
@@ -227,7 +231,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     style: MAP_STYLE_URL,
     center: INITIAL_VIEW.center,
     zoom: INITIAL_VIEW.zoom,
-    minZoom: 3.2,
+    minZoom: 2.5,
     maxZoom: 13.5,
     maxBounds: MAP_BOUNDS,
     renderWorldCopies: false,
@@ -388,34 +392,17 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     });
 
     for (const tier of LABEL_TIERS) {
-      const tierFilter: ExpressionSpecification = [
-        'all',
-        ['==', ['get', 'kind'], 'place'],
-        ['==', ['get', 'labelMinZoom'], tier],
-      ];
-
       map.addLayer({
-        id: `place-markers-${tier}`,
-        type: 'symbol',
-        source: MAP_SOURCE_ID,
-        minzoom: tier,
-        filter: tierFilter,
-        layout: {
-          'icon-image': PLACE_MARKER_ICON,
-          'icon-allow-overlap': true,
-          'icon-ignore-placement': true,
-        },
-      });
-    }
-
-    for (const tier of LABEL_TIERS) {
-      map.addLayer({
-        id: `place-labels-${tier}`,
+        id: `place-symbols-${tier}`,
         type: 'symbol',
         source: MAP_SOURCE_ID,
         minzoom: tier,
         filter: ['all', ['==', ['get', 'kind'], 'place'], ['==', ['get', 'labelMinZoom'], tier]],
         layout: {
+          'icon-image': PLACE_MARKER_ICON,
+          'icon-allow-overlap': false,
+          'icon-ignore-placement': false,
+          'icon-padding': 8,
           'text-field': ['get', 'label'],
           'text-font': ['Noto Sans Regular'],
           'text-size': ['match', ['get', 'status'], 'uncertain', 12.5, ['match', ['get', 'featureType'], 'Region', 14.5, 13.5]],
@@ -425,7 +412,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
           'text-line-height': 1.12,
           'text-allow-overlap': false,
           'text-ignore-placement': false,
-          'text-optional': true,
+          'text-optional': false,
           'symbol-sort-key': ['*', -1, ['get', 'labelPriority']],
         },
         paint: {
@@ -581,25 +568,10 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
       },
     });
 
-    for (const tier of LABEL_TIERS) {
-      map.addLayer({
-        id: `place-hit-area-${tier}`,
-        type: 'circle',
-        source: MAP_SOURCE_ID,
-        minzoom: tier,
-        filter: ['all', ['==', ['get', 'kind'], 'place'], ['==', ['get', 'labelMinZoom'], tier]],
-        paint: {
-          'circle-radius': 18,
-          'circle-opacity': 0,
-          'circle-stroke-opacity': 0,
-        },
-      });
-    }
-
     map.addControl(new NavigationControl({ showCompass: false }), 'bottom-right');
 
     map.on('mousemove', (event: MapMouseEvent) => {
-      const isOverPlace = map.queryRenderedFeatures(event.point, { layers: PLACE_HIT_LAYER_IDS }).length > 0;
+      const isOverPlace = map.queryRenderedFeatures(event.point, { layers: PLACE_SYMBOL_LAYER_IDS }).length > 0;
       map.getCanvas().style.cursor = isOverPlace ? 'pointer' : '';
     });
 
@@ -609,7 +581,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
 
     map.on('click', (event: MapMouseEvent) => {
       const clickedPlaces = map
-        .queryRenderedFeatures(event.point, { layers: PLACE_HIT_LAYER_IDS })
+        .queryRenderedFeatures(event.point, { layers: PLACE_SYMBOL_LAYER_IDS })
         .map((feature) => {
           const id = featureId(feature);
           return id ? placesById.get(id) : undefined;

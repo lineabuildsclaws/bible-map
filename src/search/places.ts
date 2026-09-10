@@ -21,7 +21,7 @@ function scorePlace(place: PlaceFeature, query: string): number {
   return Number.POSITIVE_INFINITY;
 }
 
-export function findPlaces(places: readonly PlaceFeature[], rawQuery: string, limit = 6): PlaceFeature[] {
+export function findPlaces(places: readonly PlaceFeature[], rawQuery: string, limit = 10): PlaceFeature[] {
   const query = normalizeSearchTerm(rawQuery);
   if (!query) return [];
 

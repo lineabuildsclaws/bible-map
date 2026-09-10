@@ -2,7 +2,7 @@
 
 ## Design constraints
 
-Bible Map Phase 1 is a static, anonymous site. It intentionally has no
+Bible Map is a static, anonymous site. It intentionally has no
 accounts, cookies, analytics, uploads, user-generated content, backend, or
 private API keys. The only network connection made by the browser is to the
 configured public basemap provider.

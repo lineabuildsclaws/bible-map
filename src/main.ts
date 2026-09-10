@@ -250,24 +250,31 @@ function replacePanel(...nodes: Node[]): void {
 }
 
 function renderWelcomePanel(data?: BibleMapData): void {
-  const panelEyebrow = element('p', 'panel__eyebrow', 'Genesis geography');
+  const panelEyebrow = element('p', 'panel__eyebrow', 'Biblical geography');
   const panelTitle = element('h2', 'panel__title', 'See places in relation');
   const intro = element(
     'p',
     'panel__intro',
     data
-      ? `Explore ${data.places.length} mappable places mentioned across Genesis. Search a biblical or modern name, or click a colored marker.`
+      ? `Explore ${data.places.length.toLocaleString()} mappable places mentioned across the Bible. Search a biblical or modern name, or click a colored marker.`
       : 'Search a biblical or modern name, or click a colored marker. Plain map labels provide geographic context only.',
   );
   const guide = element('div', 'panel__guide');
   guide.append(element('p', 'panel__section-label', 'Map key'));
+  guide.append(
+    element(
+      'p',
+      'panel__data-note',
+      'Frequently mentioned landmarks appear first. Zoom in closely to reveal places with fewer Bible mentions.',
+    ),
+  );
 
   const guideList = element('ul', 'legend');
   const guideItems: Array<[LegendMarkerKind, string]> = [
     ['place', 'Settlement or built place — clickable'],
     ['natural', 'River, valley, mountain, or other natural feature'],
     ['region', 'Region or territory (marker is representative)'],
-    ['basemap', 'Basemap label — context only (e.g. Jerusalem)'],
+    ['basemap', 'Basemap label — modern context only'],
     ['candidate', 'Debated location area — shown when selected'],
   ];
   for (const [kind, label] of guideItems) {
@@ -286,7 +293,7 @@ function renderWelcomePanel(data?: BibleMapData): void {
     ? element(
         'p',
         'panel__note',
-        `${data.unlocatedPlaces.join(', ')} ${data.unlocatedPlaces.length === 1 ? 'is' : 'are'} mentioned in Genesis but not plotted because the source records no identifiable location.`,
+        `${data.unlocatedPlaces.join(', ')} ${data.unlocatedPlaces.length === 1 ? 'is' : 'are'} mentioned in the Bible but not plotted because the source records no identifiable location.`,
       )
     : undefined;
   replacePanel(panelEyebrow, panelTitle, intro, guide, ...(unlocatedNote ? [unlocatedNote] : []), dataNote);
@@ -305,6 +312,10 @@ function renderPlacePanel(place: PlaceFeature): void {
   const facts: Array<[string, string]> = [
     ['Confidence', properties.confidence],
     [properties.locationRole, properties.modernName],
+    [
+      'Bible mentions',
+      `${properties.mentionCount.toLocaleString()} referenced ${properties.mentionCount === 1 ? 'verse' : 'verses'}`,
+    ],
   ];
   if (properties.alternativeCount > 0) {
     facts.push([
@@ -533,7 +544,7 @@ function updateSearchResults(): PlaceFeature[] {
     const query = normalizeSearchTerm(searchInput.value);
     const unlocatedPlace = mapData?.unlocatedPlaces.find((name) => normalizeSearchTerm(name) === query);
     searchMessage.textContent = unlocatedPlace
-      ? `${unlocatedPlace} is mentioned in Genesis, but its location is unknown and cannot be plotted.`
+      ? `${unlocatedPlace} is mentioned in the Bible, but its location is unknown and cannot be plotted.`
       : 'No place matches that search.';
     hideSearchResults();
     return matches;
@@ -622,6 +633,7 @@ void (async () => {
       onPlaceSelected: (place) => {
         renderPlacePanel(place);
         showTool('search');
+        hideSearchResults();
       },
       onPlaceCleared: () => renderWelcomePanel(mapData),
       onReady: () => {

@@ -6,22 +6,26 @@ The original application code in this repository is licensed under the [MIT Lice
 
 ## Biblical geography data
 
-`public/data/genesis-places.geojson` is an adapted Genesis-wide selection
+`public/data/bible-places.geojson` is an adapted full-Bible selection
 derived from [OpenBible.info Bible Geocoding Data](https://github.com/openbibleinfo/Bible-Geocoding-Data),
 retrieved at commit `7eb18a5ee62f27b9b93bd6689ea272d76dd23b8f` on 2026-09-05.
 It is made available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 The source data was processed into presentation-oriented GeoJSON:
 
-- all 116 mappable ancient-place records with a Genesis reference are included;
+- all 1,278 mappable ancient-place records with a direct Protestant Bible
+  reference are included;
 - the leading scored modern association supplies each representative point;
 - lower-confidence and competing identifications are visibly marked uncertain;
-- Nod is disclosed as unlocated rather than assigned speculative coordinates;
-- labels, Genesis reference lists, and interface descriptions were adapted for this application;
+- Azazel, Bamah, Biziothiah, Holy Place, Most Holy Place, Nod, and Nohah are
+  disclosed as unlocated rather than assigned speculative coordinates;
+- duplicate biblical names are disambiguated by their first source reference;
+- marker visibility is tiered by the number of directly referenced verses;
+- labels, Bible reference lists, and interface descriptions were adapted for this application;
 - the original Phase 1 labels and descriptions remain curated overrides;
 - Sodom and Gomorrah are deliberately represented as uncertain proposal areas rather than fixed locations.
 
 Please credit “OpenBible.info Bible Geocoding Data, adapted” and link to the
-source repository when reusing this data subset.
+source repository when reusing this adapted dataset.
 
 No OpenBible images or Bible verse text are included in this application.
 
