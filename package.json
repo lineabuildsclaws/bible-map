@@ -23,7 +23,7 @@
     "data:audit:live": "node scripts/audit-locations.mjs --live"
   },
   "dependencies": {
-    "maplibre-gl": "6.6.0"
+    "maplibre-gl": "6.11.2"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
