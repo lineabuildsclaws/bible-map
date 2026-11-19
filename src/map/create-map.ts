@@ -65,7 +65,7 @@ setWorkerUrl(mapLibreWorkerUrl);
 
 export interface BibleMapController {
   selectPlace: (place: PlaceFeature, options?: { move?: boolean; preserveZoom?: boolean }) => void;
-  showDistance: (places: readonly PlaceFeature[]) => void;
+  showDistance: (places: readonly PlaceFeature[], path?: readonly (readonly [number, number])[]) => void;
   clearDistance: () => void;
   destroy: () => void;
 }
@@ -87,7 +87,7 @@ function featureForSource(place: PlaceFeature): FeatureCollection {
   return { type: 'FeatureCollection', features: [place] };
 }
 
-function distanceFeatures(places: readonly PlaceFeature[]): FeatureCollection {
+function distanceFeatures(places: readonly PlaceFeature[], path?: readonly (readonly [number, number])[]): FeatureCollection {
   return {
     type: 'FeatureCollection',
     features: [
@@ -96,7 +96,7 @@ function distanceFeatures(places: readonly PlaceFeature[]): FeatureCollection {
         properties: { kind: 'distance-line' },
         geometry: {
           type: 'LineString',
-          coordinates: places.map((place) => place.geometry.coordinates),
+          coordinates: path ? path.map((point) => [...point]) : places.map((place) => place.geometry.coordinates),
         },
       },
       ...places.map((place, index) => ({
@@ -271,16 +271,29 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
     selectedSource?.setData(featureForSource(place));
     setCandidateAreaVisibility(map, place.properties.id);
+    map.setFilter('selected-river-course', ['all', ['==', ['get', 'kind'], 'river-course'], ['==', ['get', 'placeId'], place.properties.id], ['==', ['get', 'basisId'], place.properties.selectedCandidateId ?? '']]);
 
     const [longitude, latitude] = place.geometry.coordinates;
     if (longitude === undefined || latitude === undefined) return;
 
     if (move) {
-      const selectionZoom = place.properties.selectionZoom;
-      map.jumpTo({
-        center: [longitude, latitude],
-        zoom: preserveZoom ? map.getZoom() : selectionZoom <= 6.2 ? selectionZoom : Math.max(map.getZoom(), selectionZoom),
-      });
+      const course = place.properties.hasRiverGeometry ? data.features.features.find((feature) =>
+        feature.properties.kind === 'river-course' && feature.properties.placeId === place.properties.id &&
+        feature.properties.basisId === place.properties.selectedCandidateId) : undefined;
+      const points = course?.geometry.type === 'LineString' ? course.geometry.coordinates
+        : course?.geometry.type === 'MultiLineString' ? course.geometry.coordinates.flat() : [];
+      if (points.length && !preserveZoom) {
+        const longitudes = points.map((point) => point[0]!);
+        const latitudes = points.map((point) => point[1]!);
+        map.fitBounds([[Math.min(...longitudes), Math.min(...latitudes)], [Math.max(...longitudes), Math.max(...latitudes)]],
+          { padding: 60, maxZoom: 11, duration: 0 });
+      } else {
+        const selectionZoom = place.properties.selectionZoom;
+        map.jumpTo({
+          center: [longitude, latitude],
+          zoom: preserveZoom ? map.getZoom() : selectionZoom <= 6.2 ? selectionZoom : Math.max(map.getZoom(), selectionZoom),
+        });
+      }
     }
 
     onPlaceSelected(place);
@@ -291,17 +304,18 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     const selectedSource = map.getSource(SELECTED_SOURCE_ID) as GeoJSONSource | undefined;
     selectedSource?.setData(emptyFeatureCollection());
     setCandidateAreaVisibility(map);
+    map.setFilter('selected-river-course', ['==', ['get', 'placeId'], '']);
     lastSelectedPlaceId = undefined;
     onPlaceCleared?.();
   };
 
-  const showDistance = (places: readonly PlaceFeature[]): void => {
+  const showDistance = (places: readonly PlaceFeature[], path?: readonly (readonly [number, number])[]): void => {
     if (places.length < 2) return;
     clearSelection();
     const distanceSource = map.getSource(DISTANCE_SOURCE_ID) as GeoJSONSource | undefined;
-    distanceSource?.setData(distanceFeatures(places));
+    distanceSource?.setData(distanceFeatures(places, path));
 
-    const coordinates = places.map((place) => place.geometry.coordinates);
+    const coordinates = path ?? places.map((place) => place.geometry.coordinates);
     if (coordinates.some(([longitude, latitude]) => longitude === undefined || latitude === undefined)) return;
     const longitudes = coordinates.map(([longitude]) => longitude ?? 0);
     const latitudes = coordinates.map(([, latitude]) => latitude ?? 0);
@@ -392,6 +406,14 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     });
 
     for (const tier of LABEL_TIERS) {
+      map.addLayer({ id: `river-course-${tier}`, type: 'line', source: MAP_SOURCE_ID, minzoom: tier,
+        filter: ['all', ['==', ['get', 'kind'], 'river-course'], ['==', ['get', 'labelMinZoom'], tier]],
+        paint: { 'line-color': '#38799a', 'line-width': 2.5, 'line-opacity': 0.85 } });
+    }
+    map.addLayer({ id: 'selected-river-course', type: 'line', source: MAP_SOURCE_ID,
+      filter: ['==', ['get', 'placeId'], ''],
+      paint: { 'line-color': '#226b96', 'line-width': 4 } });
+    for (const tier of LABEL_TIERS) {
       map.addLayer({
         id: `place-symbols-${tier}`,
         type: 'symbol',
@@ -399,7 +421,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
         minzoom: tier,
         filter: ['all', ['==', ['get', 'kind'], 'place'], ['==', ['get', 'labelMinZoom'], tier]],
         layout: {
-          'icon-image': PLACE_MARKER_ICON,
+          'icon-image': ['case', ['==', ['get', 'hasRiverGeometry'], true], '', PLACE_MARKER_ICON],
           'icon-allow-overlap': false,
           'icon-ignore-placement': false,
           'icon-padding': 8,
@@ -465,6 +487,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
 
     map.addLayer({
       id: 'selected-place-halo',
+      filter: ['!=', ['get', 'hasRiverGeometry'], true],
       type: 'circle',
       source: SELECTED_SOURCE_ID,
       paint: {
@@ -479,6 +502,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
 
     map.addLayer({
       id: 'selected-place-marker',
+      filter: ['!=', ['get', 'hasRiverGeometry'], true],
       type: 'circle',
       source: SELECTED_SOURCE_ID,
       paint: {
@@ -571,7 +595,7 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
     map.addControl(new NavigationControl({ showCompass: false }), 'bottom-right');
 
     map.on('mousemove', (event: MapMouseEvent) => {
-      const isOverPlace = map.queryRenderedFeatures(event.point, { layers: PLACE_SYMBOL_LAYER_IDS }).length > 0;
+      const isOverPlace = map.queryRenderedFeatures(event.point, { layers: [...PLACE_SYMBOL_LAYER_IDS, ...LABEL_TIERS.map((tier) => `river-course-${tier}`), 'selected-river-course'] }).length > 0;
       map.getCanvas().style.cursor = isOverPlace ? 'pointer' : '';
     });
 
@@ -581,9 +605,9 @@ export function createBibleMap(options: CreateBibleMapOptions): BibleMapControll
 
     map.on('click', (event: MapMouseEvent) => {
       const clickedPlaces = map
-        .queryRenderedFeatures(event.point, { layers: PLACE_SYMBOL_LAYER_IDS })
+        .queryRenderedFeatures(event.point, { layers: [...PLACE_SYMBOL_LAYER_IDS, ...LABEL_TIERS.map((tier) => `river-course-${tier}`), 'selected-river-course'] })
         .map((feature) => {
-          const id = featureId(feature);
+          const id = feature.properties.kind === 'river-course' ? feature.properties.placeId as string : featureId(feature);
           return id ? placesById.get(id) : undefined;
         })
         .filter((place): place is PlaceFeature => place !== undefined);

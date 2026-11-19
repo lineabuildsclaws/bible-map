@@ -14,7 +14,10 @@ The source data was processed into presentation-oriented GeoJSON:
 
 - all 1,278 mappable ancient-place records with a direct Protestant Bible
   reference are included;
-- the leading scored modern association supplies each representative point;
+- the leading mappable ancient identification supplies each representative point through its resolved modern basis; candidate identities and source scores remain available;
+- Dizahab uses an explicitly labeled project preference for the southern Dahab proposal (less than 10% source confidence);
+- Apollonia uses the live source point reviewed 2026-10-24, recorded in `scripts/location-overrides.json`;
+- available river courses are adapted from the source GeoJSON geometries;
 - lower-confidence and competing identifications are visibly marked uncertain;
 - Azazel, Bamah, Biziothiah, Holy Place, Most Holy Place, Nod, and Nohah are
   disclosed as unlocated rather than assigned speculative coordinates;
@@ -45,3 +48,11 @@ The map interface displays the provider attribution while it is in use.
 tree with `npm run licenses`. It records the resolved package versions and
 declared licenses. It is an inventory, not a replacement for individual
 license texts or notices.
+
+## Land-detour estimation
+
+`public/data/walking-grid.json` is derived from Natural Earth 1:50m land and
+lake polygons (public domain), retrieved 2026-10-24 from the
+[Natural Earth maintainer repository](https://github.com/nvkelso/natural-earth-vector).
+The grid records input SHA-256 hashes. It is a coarse modern shoreline mask,
+not historical travel or road data. Generation: `scripts/build-walking-grid.py`.

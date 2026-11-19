@@ -30,7 +30,7 @@ function isPlaceProperties(value: unknown): value is PlaceProperties {
     typeof value.labelPriority === 'number' &&
     typeof value.selectionZoom === 'number' &&
     typeof value.featureType === 'string' &&
-    (value.locationRole === 'Leading identification' || value.locationRole === 'Representative point') &&
+    (value.locationRole === 'Leading identification' || value.locationRole === 'Representative point' || value.locationRole === 'Selected proposal') &&
     typeof value.status === 'string' &&
     PLACE_STATUSES.has(value.status as PlaceStatus) &&
     typeof value.confidence === 'string' &&
@@ -55,7 +55,10 @@ function isMapFeature(value: unknown): value is MapFeature {
 }
 
 function isPlaceFeature(value: MapFeature): value is PlaceFeature {
-  return value.geometry.type === 'Point' && isPlaceProperties(value.properties);
+  return value.geometry.type === 'Point' && value.geometry.coordinates.length === 2 &&
+    value.geometry.coordinates.every(Number.isFinite) &&
+    Math.abs(value.geometry.coordinates[0] ?? Infinity) <= 180 &&
+    Math.abs(value.geometry.coordinates[1] ?? Infinity) <= 90 && isPlaceProperties(value.properties);
 }
 
 export function parseMapData(value: unknown): BibleMapData {
@@ -71,6 +74,9 @@ export function parseMapData(value: unknown): BibleMapData {
     type: 'FeatureCollection',
     features: value.features,
   };
+  if (features.features.some((feature) => feature.properties.kind === 'place' && !isPlaceFeature(feature))) {
+    throw new Error('The Bible map data contains an invalid place or coordinate.');
+  }
   const places = features.features.filter(isPlaceFeature);
 
   if (places.length === 0) {

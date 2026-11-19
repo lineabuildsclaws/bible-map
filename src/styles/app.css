@@ -396,13 +396,12 @@ a:hover {
 }
 
 .distance-add {
-  padding: 6px 9px;
+  padding: 6px 10px;
   color: #345f59;
   background: transparent;
   border: 1px solid #9ab7ae;
   border-radius: 5px;
-  font-size: 0.77rem;
-  font-weight: 700;
+  font: inherit;
 }
 
 .distance-add::before {
@@ -868,4 +867,49 @@ a:hover {
   .distance-tool__intro {
     display: none;
   }
+}
+
+.distance-mode, .distance-candidate {
+  display: block; width: 100%; max-width: 100%; padding: .55rem;
+  font: inherit; color: #28231d; background: #faf8f2; border: 1px solid #c8c0af;
+  border-radius: 5px; margin: .4rem 0;
+}
+.distance-candidate[hidden] { display: none; }
+.distance-reorder {
+  border: 1px solid #c8c0af; background: #faf8f2; color: #514936;
+  border-radius: 4px; padding: .35rem .5rem; cursor: grab; min-height: 36px;
+}
+.distance-reorder:focus-visible { outline: 2px solid #38799a; }
+
+
+.distance-field { grid-template-columns: 17px minmax(0, 1fr); }
+.distance-field__input { grid-column: 2; grid-row: 1; }
+.distance-field::before { grid-column: 1; grid-row: 1; }
+.distance-field .distance-candidate { grid-column: 2; }
+.distance-field__controls { grid-column: 2; display: flex; gap: 5px; align-items: center; }
+.distance-field__controls .distance-reorder:nth-child(3) { margin-left: auto; }
+.distance-actions { flex-wrap: wrap; }
+.distance-clear { padding: 6px 10px; border: 1px solid #9ab7ae; border-radius: 5px; background: #faf8f2; color: #315f54; cursor: pointer; }
+
+/* Both tools use the same ranked biblical-place suggestions. */
+.search-result { grid-template-columns: minmax(0, 1fr); gap: 4px; cursor: pointer; }
+.search-result__context { color: #554c3f; font-size: 0.875rem; line-height: 1.5; }
+.distance-input-wrap { grid-column: 2; grid-row: 1; min-width: 0; position: relative; }
+.distance-input-wrap .distance-field__input { width: 100%; box-sizing: border-box; }
+.distance-suggestions { position: relative; top: auto; margin-top: 6px; max-height: 260px; }
+.distance-input-wrap:has(.distance-suggestions:not([hidden])) { z-index: 10; }
+.distance-result__legs { padding-left: 20px; line-height: 1.6; }
+
+.distance-field > .distance-reorder { grid-column: 1; grid-row: 1; z-index: 2; border: 0; background: #f7f3e9; font-size: 20px; opacity: 0; padding: 0; width: 20px; min-height: 32px; cursor: grab; touch-action: none; user-select: none; }
+.distance-field:hover > .distance-reorder, .distance-field:focus-within > .distance-reorder { opacity: 1; }
+.distance-field--dragging { opacity: .65; outline: 1px dashed #9c927e; }
+.distance-field--dragging > .distance-reorder { cursor: grabbing; opacity: 1; }
+.distance-field { grid-template-columns: 20px minmax(0, 1fr) auto; }
+.distance-field > .distance-remove { grid-column: 3; grid-row: 1; align-self: center; }
+
+.distance-actions .distance-add, .distance-actions .distance-clear {
+  width: 116px;
+  min-height: 36px;
+  box-sizing: border-box;
+  font: inherit;
 }

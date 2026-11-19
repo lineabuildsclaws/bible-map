@@ -1,0 +1,10 @@
+{
+  "ab20df9": {
+    "basisId": "md0824c",
+    "sourcePointId": "md0824c.point",
+    "coordinates": [23.489639, 40.643194],
+    "sourceUrl": "https://a.openbible.info/geo/data/ab20df9.geojson",
+    "reviewed": "2026-10-24",
+    "reason": "Live OpenBible geometry differs from the pinned ancient.jsonl resolution by about 2.8 km. Use the verified live point; preserve the pinned source separately."
+  }
+}

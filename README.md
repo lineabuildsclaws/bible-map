@@ -99,3 +99,15 @@ data carries OpenStreetMap’s ODbL notice.
 - Modern-name support: alternate-name search and optional modern labels.
 - No satellite imagery, accounts, tracking, or turn-by-turn route reconstruction
   is planned for the initial product.
+
+## Location QA and measurements
+
+See [the root-cause report and QA plan](docs/LOCATION-QA.md). Run
+`npm run data:audit` for all pinned-source checks and `npm run data:audit:live`
+for all selected coordinates against current OpenBible GeoJSON. The standard
+`npm run check` includes the pinned-source audit.
+
+Distance preserves canonical names, requires explicit choices for ambiguous
+biblical records, offers alternate identification proposals, and supports drag,
+keyboard and button reordering plus Clear All. Land detour estimates use a
+coarse modern land/lake grid; straight-line measurements remain available.

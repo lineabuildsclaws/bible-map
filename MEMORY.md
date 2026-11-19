@@ -1,6 +1,41 @@
 # Bible Map project memory
 
-Last updated: 2026-09-09
+Last updated: 2026-11-18
+
+## User meaning of fixed
+
+The user explicitly clarified: “When I say fix the issue, I always mean the live site.” A fix is complete only after deploying to https://interactivebiblemap.pages.dev/ and verifying the served build and reported behavior. Local implementation or passing tests alone must never be reported as fixed. The user authorized deploying the full email-issue backlog on November 18.
+
+## Live release on 2026-11-18
+
+The complete 16-item email issue backlog is deployed to the existing Cloudflare Pages production site and verified there. Production deployment: `173fcf4c-f93c-4092-9141-6a770b635a62`; application asset `index-CQHd5N22.js`. Every public application/data file matched the release archive byte for byte. See `docs/RELEASE-2026-11-18.md` and `docs/issue-audit-2026-11-18/` for per-issue closure and screenshots.
+
+Search and Distance share ranked suggestions and reference context, including name-plus-reference queries such as `Edrei Deut 3:1`. Distance selections retain biblical identity. Every leg now has its own distance for the selected method. The dataset has 40 source courses, including available valley/wadi lines; Valley of Arnon and Brook Zered have clearer names with old aliases retained. Selected courses frame their full extent. Previous local-only fixes (canonical identity, Laban, southern Dizahab, land detours, reorder and Clear All) are included in this production release. Document/data responses use no-cache.
+
+`npm run check` passed with 45 tests. Full live source audit matched all 1,278 selected coordinates. Live browser checks covered matching suggestions, measured identities, land/direct leg distances, mouse/keyboard/button reorder, Clear All, stop limit/removal, mobile contexts and source line rendering, with no application errors. No Git commit/push was made; the older GitHub Pages site is outside this release.
+
+## Local changes on 2026-10-24
+
+The email issue backlog has been implemented locally; these changes have not
+been committed, pushed or deployed. See `docs/LOCATION-QA.md` for root causes,
+release QA and reproduction. Distance now prioritizes canonical biblical names,
+requires reference-qualified choices for ambiguous names, retains alternative
+identifications, supports drag/keyboard/button reordering and Clear All, and
+provides a coarse land-detour estimate as well as straight-line measurement.
+The user explicitly requested sensible distances around seas; the new estimate
+uses modern Natural Earth land/lake geometry without roads or historical-route
+claims. Earlier straight-line-only constraints below are superseded by this.
+
+The generator now ranks ancient identifications before resolving modern bases,
+fixing Laban and 32 other selections (including the explicit southern Dizahab
+preference). A full live coordinate audit additionally corrected Apollonia's
+source drift. Dizahab remains labeled less than 10% confidence, with the northern
+alternative selectable. River courses are retained from source GeoJSON, while
+internal representative points remain available for measurement. All 1,278
+selected coordinates were compared to current OpenBible GeoJSON with zero
+remaining mismatches. `npm run check` now includes the pinned-source audit;
+`npm run data:audit:live` reruns live comparisons. The live report is separate
+from the offline report to preserve release evidence.
 
 ## Current product state
 
@@ -16,7 +51,7 @@ The current public Cloudflare Pages deployment is:
 <https://interactivebiblemap.pages.dev/>
 
 It was created as a free Cloudflare Pages Direct Upload project and is not
-connected to GitHub. The 2026-09-09 deployment was verified in Chrome: the app
+connected to GitHub. The November 18, 2026 production release supersedes the September build (see release record above). The 2026-09-09 deployment was verified in Chrome: the app
 loaded without console errors, reported all 1,278 mapped places, and a search
 for Rome returned New Testament references. Cloudflare honors the security
 headers in `public/_headers`.
@@ -152,3 +187,19 @@ survived.
   product direction is explicitly changed.
 - Do not add modern routing or imply historically accurate paths. Measurement
   lines are visual connections between mapped coordinates only.
+
+## Follow-up corrections November 18
+
+Deployed index-CnPNKvnV.js: land routes now connect exact selected endpoints to the grid and count these connections; removed duplicate modern-identification stop list from distance results; replaced visible reorder arrows/buttons with :: grip on hover/focus. Verified Jerusalem–Chezib live and mouse dragging. 45 tests and build passed. Land routing remains a coarse estimate.
+
+## Distance UI clarification November 18
+
+User requests strict scope: no second location-proposal menu after selecting a Distance suggestion, and no distance-method menu. Both removed from Distance. Keep default land estimation. :: grip belongs outside input on LEFT, shown on hover/focus. Replaced native HTML drag with captured pointer gesture; verified actual mouse dragging in both directions on live production. Deployed asset index-Cvged3kJ.js; 45 tests and full check pass. Screenshot live-left-grip.jpg.
+
+## Latest distance preference and layout correction
+
+User explicitly wants straight-line distance only, without any method selector. Supersedes prior land-estimation preference. Removed live walking-grid fetch and routing from Distance UI; all legs and map lines use exact selected points. Fixed remove-stop × occupying its own row: now third grid column on same input row. Verified three stops Chezib/Jerusalem/Hebron, 61 km straight-line total, inline removal live. Asset index-CIFcZycm.js, CSS index-C3Jhn-Qx.css; public files byte-verified.
+
+## Latest units and button styling
+
+Distance UI displays kilometres only (total and legs), no miles. Add Place and Clear All have equal 116×36 CSS pixel dimensions with matching 16px/400 typography; verified live. Deployed index-Dd5Hoimn.js and index-p7hJW4KB.css, byte matched to public assets. 45 tests and checks passed.

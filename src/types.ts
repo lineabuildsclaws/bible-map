@@ -14,7 +14,7 @@ export interface PlaceProperties extends Record<string, unknown> {
   labelPriority: number;
   selectionZoom: number;
   featureType: string;
-  locationRole: 'Leading identification' | 'Representative point';
+  locationRole: 'Leading identification' | 'Representative point' | 'Selected proposal';
   status: PlaceStatus;
   confidence: string;
   confidenceScore: number;
@@ -24,6 +24,12 @@ export interface PlaceProperties extends Record<string, unknown> {
   references: string[];
   description: string;
   sourceUrl: string;
+  locationNote?: string;
+  sourceCaveat?: string;
+  candidates?: Array<{ id: string; name: string; score: number; coordinates: [number, number]; representative: boolean; sourcePointId?: string; locationNote?: string }>;
+  selectedCandidateId?: string;
+  hasRiverGeometry?: boolean;
+  riverBasisId?: string;
 }
 
 export type PlaceFeature = Feature<Point, PlaceProperties>;
